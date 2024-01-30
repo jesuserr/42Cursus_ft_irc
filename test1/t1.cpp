@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:57:26 by cescanue          #+#    #+#             */
-/*   Updated: 2024/01/30 16:56:15 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/01/30 21:15:29 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main (int argc, char **argv)
 	int new_sd = 1;
 	char   buffer[80];
 	int rc;
+	bool compressfds = false;
 	
 	if (argc < 2)
 	{
@@ -89,11 +90,11 @@ int main (int argc, char **argv)
 		{
 			if(fds[c].revents == 0)
        			continue;
-			if(fds[c].revents != POLLIN)
+			/*if(fds[c].revents != POLLIN)
 			{
-				printf("Error! revents = %d\n", fds[c].revents);
+				printf("fd:%dError! revents = %d\n", fds[c].fd, fds[c].revents);
 				exit(1);
-			}
+			}*/
 			if (fds[c].fd == listen_sd)
       		{
 				new_sd = 1;
@@ -127,11 +128,31 @@ int main (int argc, char **argv)
 					if (rc == 0)
 					{
 						printf("  Connection closed\n");
+						fflush(stdout);
+						close(fds[c].fd);
+          				fds[c].fd = -1;
+						compressfds = true;
 						break;
 					}
 					printf("%d: ", fds[c].fd);
 					fflush(stdout);
 					write(1, buffer, rc);
+				}
+			}
+		}
+		if (compressfds)
+		{
+			compressfds = false;
+			for (int i = 0; i < nfds; i++)
+			{
+				if (fds[i].fd == -1)
+				{
+					for(int j = i; j < nfds-1; j++)
+					{
+						fds[j].fd = fds[j+1].fd;
+					}
+					i--;
+					nfds--;
 				}
 			}
 		}
