@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:57:26 by cescanue          #+#    #+#             */
-/*   Updated: 2024/01/30 21:15:29 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:54:38 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int main (int argc, char **argv)
 	memset(fds, 0 , sizeof(fds));
 	fds[0].fd = listen_sd;
 	fds[0].events = POLLIN;
-
 	while (1)
 	{
 		if (poll(fds, nfds, -1) < 0)
