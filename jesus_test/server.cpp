@@ -42,7 +42,7 @@ int main()
 		std::cerr << "Unable to set socket in listening mode.\n";
 		return (-1);
 	}
-	std::cout << "Socket in listening mode.\n";
+	std::cout << "Socket in listening mode through port: " << PORT << "\n";
 
 	// 56.5.2 Accepting a Connection: accept()
 	// int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
@@ -64,6 +64,8 @@ int main()
 	while (bytesReceived)
 	{
 		std::cout << "message->" << std::string(buffer, 0, bytesReceived);
+		if (buffer[bytesReceived - 1] != '\n')
+			std::cout << std::endl;
 		memset(buffer, 0, BUFFER_SIZE);
 		bytesReceived = recv(clientSocket, buffer, BUFFER_SIZE, 0);
 	}
