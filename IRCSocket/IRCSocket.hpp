@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/01/31 22:03:10 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:59:16 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ class IRCSocket
 		struct pollfd _fds[MAXFDS];
 		int	_nfds;
 		bool _listening;
+		bool _compressfds;
+		void compressFDS(void);
+		void deleteSDMAP(std::map<int, s_socketdata> &mapdata, int c);
 
 	public:
 		~IRCSocket();

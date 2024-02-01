@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/01 11:41:33 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/01 22:08:31 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,55 +57,81 @@ bool IRCSocket::IRCPoll(std::map<int, s_socketdata> &mapdata)
 {
 	char buffer[500];
 	int rc;
-	bool compressfds = false;
-	
+	int sd;
+	int currentsize;
+
 	if (!_listening)
 		return _log->Error("You have not set listening mode.");
 	if (poll(_fds, _nfds, -1) < 0)
 		return _log->Error("Unable to poll the connections.");
-	int new_sd = 1;
-	int currentsize = _nfds;
+	int new_sd = accept(_listen_sd, NULL, NULL);
 	while (_fds[0].revents != 0 && new_sd != -1)
 	{
-		new_sd = accept(_listen_sd, NULL, NULL);
 		if (new_sd < 0 && errno != EWOULDBLOCK)
 			return _log->Error("Unable to create a socket for a new connection");
 		_fds[_nfds].fd = new_sd;
 		_fds[_nfds].events = POLLIN;
 		_nfds++;
+		new_sd = accept(_listen_sd, NULL, NULL);
 	}
+	currentsize = _nfds;
+	_compressfds = false;
 	for (int c = 1; c < currentsize ; c++)
 	{
 		if(_fds[c].revents == 0)
        		continue;
-		while ((rc = recv(_fds[c].fd, buffer, sizeof(buffer), 0)) > 0)
+		while (_fds[c].fd > 0 && (rc = recv(_fds[c].fd, buffer, sizeof(buffer), 0)) > 0)
 			mapdata[_fds[c].fd].in.insert(mapdata[_fds[c].fd].in.size(), buffer, rc);
 		if (rc < 0 && errno != EWOULDBLOCK)
-			return _log->Error("A problem occurred while receiving data");
-		if (rc == 0)
 		{
-			if (mapdata.find(_fds[c].fd) != mapdata.end())
-				mapdata.erase(mapdata.find(_fds[c].fd));
-			close(_fds[c].fd);
-          	_fds[c].fd = -1;
-			compressfds = true;
+			deleteSDMAP(mapdata, c);
+			continue;
 		}
-	}
-	if (compressfds)
-	{
-		compressfds = false;
-		for (int i = 0; i < _nfds; i++)
+		else if (rc == 0)
 		{
-			if (_fds[i].fd == -1)
+			deleteSDMAP(mapdata, c);
+			continue;
+		}
+		else
+			while (_fds[c].fd > 0 && mapdata[_fds[c].fd].out.size())
 			{
-				for(int j = i; j < _nfds-1; j++)
+				sd = send(_fds[c].fd, mapdata[_fds[c].fd].out.c_str(), mapdata[_fds[c].fd].out.size(), 0);
+				if (sd < 0)
 				{
-					_fds[j].fd = _fds[j+1].fd;
+					deleteSDMAP(mapdata, c);
+					continue;
 				}
-				i--;
-				_nfds--;
+				else 
+					mapdata[_fds[c].fd].out.erase(0, sd);
 			}
+	}
+	if (_compressfds)
+		compressFDS();	
+	return true;
+}
+
+void IRCSocket::deleteSDMAP(std::map<int, s_socketdata> &mapdata, int c)
+{
+	if (mapdata.find(_fds[c].fd) != mapdata.end())
+		mapdata.erase(mapdata.find(_fds[c].fd));
+	close(_fds[c].fd);
+	_fds[c].fd = -1;
+	_compressfds = true;
+}
+
+void IRCSocket::compressFDS(void)
+{
+	for (int i = 0; i < _nfds; i++)
+	{
+		if (_fds[i].fd == -1)
+		{
+			for(int j = i; j < _nfds-1; j++)
+			{
+				_fds[j].fd = _fds[j+1].fd;
+			}
+			i--;
+			_nfds--;
 		}
 	}
-	return true;
+	_compressfds = false;
 }
