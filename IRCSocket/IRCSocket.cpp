@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/01/31 22:36:40 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:41:33 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,16 @@ bool IRCSocket::IRCPoll(std::map<int, s_socketdata> &mapdata)
 		if(_fds[c].revents == 0)
        		continue;
 		while ((rc = recv(_fds[c].fd, buffer, sizeof(buffer), 0)) > 0)
-			mapdata[c].in.insert(mapdata[c].in.size(), buffer, rc);
+			mapdata[_fds[c].fd].in.insert(mapdata[_fds[c].fd].in.size(), buffer, rc);
 		if (rc < 0 && errno != EWOULDBLOCK)
 			return _log->Error("A problem occurred while receiving data");
 		if (rc == 0)
 		{
-			//Aqui nunca entra se tiene que revisar
-			std::cout << "here";
+			if (mapdata.find(_fds[c].fd) != mapdata.end())
+				mapdata.erase(mapdata.find(_fds[c].fd));
 			close(_fds[c].fd);
           	_fds[c].fd = -1;
 			compressfds = true;
-			if (mapdata.find(c) != mapdata.end())
-				mapdata.erase(mapdata.find(c));
 		}
 	}
 	if (compressfds)
