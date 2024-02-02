@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/01 22:08:31 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:38:13 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,22 @@ bool IRCSocket::IRClisten(void)
 	struct sockaddr_in6  iaddr;
 	int on = 1;
 	
-	_listen_sd = socket (AF_INET6, SOCK_STREAM, 0);
-	if (_listen_sd < 0)
+	_fds[0].fd = socket (AF_INET6, SOCK_STREAM, 0);
+	if (_fds[0].fd < 0)
 		return _log->Error("It has not been able to create the main listening socket.");
-	if (setsockopt(_listen_sd, SOL_SOCKET,  SO_REUSEADDR,
+	if (setsockopt(_fds[0].fd, SOL_SOCKET,  SO_REUSEADDR,
                   (char *)&on, sizeof(on)) < 0)
 		return _log->Error("Impossible to set the main socket as reusable.");
-	if (fcntl(_listen_sd, F_SETFL, O_NONBLOCK) < 0)
+	if (fcntl(_fds[0].fd, F_SETFL, O_NONBLOCK) < 0)
 		return _log->Error("Unable to set the main socket as non-blocking.");
 	memset(&iaddr, 0, sizeof(iaddr));
 	iaddr.sin6_family = AF_INET6;
 	memcpy(&iaddr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 	iaddr.sin6_port = htons(_listenPort);
-	if (bind(_listen_sd, (struct sockaddr *)&iaddr, sizeof(iaddr)) < 0)
+	if (bind(_fds[0].fd, (struct sockaddr *)&iaddr, sizeof(iaddr)) < 0)
 		return _log->Error("Unable to bind the socket to the available local IPs.");
-	if (listen(_listen_sd, MAXLISTENQUEUE) < 0)
+	if (listen(_fds[0].fd, MAXLISTENQUEUE) < 0)
 		return _log->Error("Unable to listen to the socket on the specified port.");
-	_fds[0].fd = _listen_sd;
 	_fds[0].events = POLLIN;
 	_nfds = 1;
 	_listening = true;
@@ -55,7 +54,7 @@ bool IRCSocket::IRClisten(void)
 
 bool IRCSocket::IRCPoll(std::map<int, s_socketdata> &mapdata)
 {
-	char buffer[500];
+	char buffer[BUFFERSIZE];
 	int rc;
 	int sd;
 	int currentsize;
@@ -64,7 +63,7 @@ bool IRCSocket::IRCPoll(std::map<int, s_socketdata> &mapdata)
 		return _log->Error("You have not set listening mode.");
 	if (poll(_fds, _nfds, -1) < 0)
 		return _log->Error("Unable to poll the connections.");
-	int new_sd = accept(_listen_sd, NULL, NULL);
+	int new_sd = accept(_fds[0].fd, NULL, NULL);
 	while (_fds[0].revents != 0 && new_sd != -1)
 	{
 		if (new_sd < 0 && errno != EWOULDBLOCK)
@@ -72,7 +71,7 @@ bool IRCSocket::IRCPoll(std::map<int, s_socketdata> &mapdata)
 		_fds[_nfds].fd = new_sd;
 		_fds[_nfds].events = POLLIN;
 		_nfds++;
-		new_sd = accept(_listen_sd, NULL, NULL);
+		new_sd = accept(_fds[0].fd, NULL, NULL);
 	}
 	currentsize = _nfds;
 	_compressfds = false;

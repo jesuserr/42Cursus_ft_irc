@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/01 21:59:16 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/02 09:38:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 #include "IRCBasic.hpp"
 #include <map>
 
-#define MAXFDS 32000
-#define MAXLISTENQUEUE 32000
+# define MAXFDS 32000
+# define MAXLISTENQUEUE 32000
+# define BUFFERSIZE 1024
 
 class IRCErrorLog;
 
@@ -37,7 +38,6 @@ class IRCSocket
 		IRCSocket &operator=(IRCSocket const &rhs);
 		IRCErrorLog *_log;
 		int _listenPort;
-		int _listen_sd;
 		struct pollfd _fds[MAXFDS];
 		int	_nfds;
 		bool _listening;
