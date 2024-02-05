@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IRCErrorLog.cpp                                    :+:      :+:    :+:   */
+/*   IRCClient.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 19:17:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 21:22:59 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/05 22:25:25 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCErrorLog.hpp"
+#include "IRCClient.hpp"
 
-IRCErrorLog::IRCErrorLog()
+IRCClient::IRCClient()
 {
-	return ;
 }
 
-IRCErrorLog::~IRCErrorLog()
+IRCClient::~IRCClient()
 {
-	return ;
+	
 }
 
-bool	IRCErrorLog::Error(std::string error)
+std::string &IRCClient::Getin()
 {
-	std::cout << "IRC:" << error << std::endl;
-	return false;
+	return _in;
 }
 
+std::string &IRCClient::Getout()
+{
+	return _out;
+}

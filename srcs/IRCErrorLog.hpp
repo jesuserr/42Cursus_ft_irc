@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IRCErrorLog.cpp                                    :+:      :+:    :+:   */
+/*   IRCErrorLog.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 19:17:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 21:22:59 by cescanue         ###   ########.fr       */
+/*   Created: 2024/01/31 19:15:02 by cescanue          #+#    #+#             */
+/*   Updated: 2024/01/31 21:08:28 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCErrorLog.hpp"
+#ifndef IRC_ERROR_LOG_HPP
+# define IRC_ERROR_LOG_HPP
 
-IRCErrorLog::IRCErrorLog()
-{
-	return ;
-}
+#include <string>
+#include <iostream>
 
-IRCErrorLog::~IRCErrorLog()
+class IRCErrorLog
 {
-	return ;
-}
+	private:
+		IRCErrorLog(IRCErrorLog const &src);
+		IRCErrorLog &operator=(IRCErrorLog const &rhs);
 
-bool	IRCErrorLog::Error(std::string error)
-{
-	std::cout << "IRC:" << error << std::endl;
-	return false;
-}
+	public:
+		~IRCErrorLog();
+		IRCErrorLog();
+		bool Error(std::string error);
+};
+
+#endif
 

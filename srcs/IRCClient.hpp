@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IRCErrorLog.cpp                                    :+:      :+:    :+:   */
+/*   IRCClient.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 19:17:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 21:22:59 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/05 21:34:14 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/05 22:25:10 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCErrorLog.hpp"
+#ifndef IRCCLIENT_HPP
+# define IRCCLIENT_HPP
 
-IRCErrorLog::IRCErrorLog()
+# include <string>
+# include <iostream>
+
+class IRCClient
 {
-	return ;
-}
+	private:
+		
+		IRCClient(IRCClient const &cpy);
+		IRCClient &operator=(IRCClient const &rhs);
+		std::string _in;
+		std::string _out;
 
-IRCErrorLog::~IRCErrorLog()
-{
-	return ;
-}
+	public:
+		IRCClient();
+		~IRCClient();
+		std::string &Getin();
+		std::string &Getout();
+		int Getfd(void);
+};
 
-bool	IRCErrorLog::Error(std::string error)
-{
-	std::cout << "IRC:" << error << std::endl;
-	return false;
-}
-
+#endif
