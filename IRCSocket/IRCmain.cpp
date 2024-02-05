@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 21:25:09 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/02 10:00:51 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/05 13:24:45 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,20 @@ int main(void)
 	
 	while (IRC.IRCPoll(m))
 	{
-		system("clear");
+		//system("clear");
+		int c = 0;
 		for(std::map<int,s_socketdata>::iterator it = m.begin(); it != m.end(); ++it) 
 		{
-			std::cout << it->first << ":" << it->second.in << std::endl;
-			it->second.out = "Devuelto\n";
+			//std::cout << it->first << ":" << it->second.in << std::endl;
+			//it->second.out = "Devuelto\n";
+			while (it->second.in.find("\r\n") != std::string::npos)
+			{
+				c = it->second.in.find("\r\n") + 2;
+				std::cout << "start:" << it->second.in.substr(0, c - 2) << ":end" << std::endl;
+				it->second.in.erase(0, c);
+				
+				
+			}
 		}
 	}
 	
