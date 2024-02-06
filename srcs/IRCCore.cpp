@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 13:19:14 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:38:32 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void IRCCore::run(void)
 	}
 }
 
-void IRCCore::Command(IRCClient client, std::string cmd, std::string param)
+void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
-	(void) client;
 	std::cout << cmd << std::endl;
 	std::cout << param << std::endl;
+	client.Getout() = "dentro\n";
 }

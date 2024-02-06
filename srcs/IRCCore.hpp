@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 13:15:01 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:38:27 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class IRCCore
 	public:	
 		IRCCore(std::string pass, std::map<int, IRCClient> &clients);
 		void run(void);
-		void Command(IRCClient client, std::string cmd, std::string param);
+		void Command(IRCClient &client, std::string cmd, std::string param);
 };
 
 #endif
