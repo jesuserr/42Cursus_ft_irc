@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 13:38:32 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:08:27 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,24 @@ void IRCCore::run(void)
 
 void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
-	std::cout << cmd << std::endl;
-	std::cout << param << std::endl;
-	client.Getout() = "dentro\n";
+	if (cmd.find("PASS") != std::string::npos)
+	{
+		if (param == _pass)
+		{
+			client.passok();
+			return;
+		}
+	}
+	else if (cmd.find("NICK") != std::string::npos)
+	{
+		client.nick = param;
+	}
+	else if (cmd.find("USER") != std::string::npos)
+	{
+		client.user = param;
+	}
+
+	if (client.pass() && client.nick.size() && client.user.size())
+		client.SendIRCMsg(std::string (":irc.jesuscarlos.com 001 " + client.nick + " :Welcome to the ExampleNet Internet Relay Chat Network " + client.nick));
+
 }
