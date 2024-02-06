@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 22:25:39 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:56:53 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,4 +133,26 @@ void IRCSocket::compressFDS(void)
 		}
 	}
 	_compressfds = false;
+}
+
+bool IRCSocket::IRCSend(std::map<int, IRCClient> &mapdata)
+{
+	int sd;
+	int currentsize = _nfds;
+	
+	for (int c = 1; c < currentsize ; c++)
+	{
+		while (_fds[c].fd > 0 && mapdata[_fds[c].fd].Getout().size())
+		{
+			sd = send(_fds[c].fd, mapdata[_fds[c].fd].Getout().c_str(), mapdata[_fds[c].fd].Getout().size(), 0);
+			if (sd < 0)
+			{
+				deleteSDMAP(mapdata, c);
+				continue;
+			}
+			else 
+				mapdata[_fds[c].fd].Getout().erase(0, sd);
+		}
+	}
+	return true;
 }

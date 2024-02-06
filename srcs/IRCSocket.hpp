@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 21:47:58 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:53:27 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class IRCSocket
 		IRCSocket(int port, IRCErrorLog *log);
 		bool IRClisten(void);
 		bool IRCPoll(std::map<int, IRCClient> &mapdata);
+		bool IRCSend(std::map<int, IRCClient> &mapdata);
 		
 };
 

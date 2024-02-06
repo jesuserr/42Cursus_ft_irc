@@ -6,15 +6,17 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/05 22:26:17 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 12:28:42 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <cstdlib>
+#include <map>
 #include "IRCErrorLog.hpp"
 #include "IRCSocket.hpp"
-#include <map>
+#include "IRCCore.hpp"
+
 
 int main(int argc, char **argv)
 {
@@ -25,14 +27,13 @@ int main(int argc, char **argv)
 	else if (std::atoi(argv[1]) < 1 || std::atoi(argv[1]) > 65535)
 		return _error.Error("The port has to be a number between 1 and 65535.");
 	IRCSocket _socket(std::atoi(argv[1]), &_error);
+	IRCCore _irc(argv[2], _clients);
 	if (!_socket.IRClisten())
 		return (1);
 	while (_socket.IRCPoll(_clients))
 	{
-		for(std::map<int,IRCClient>::iterator it = _clients.begin(); it != _clients.end(); ++it) 
-		{
-			std::cout << it->second.Getin() << std::endl;
-		}
+		_irc.run();
+		_socket.IRCSend(_clients);
 	}
 	return (0);	
 }
