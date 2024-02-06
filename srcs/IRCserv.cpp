@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 19:45:33 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/06 22:32:33 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 	IRCCore _irc(argv[2], _clients);
 	if (!_socket.IRClisten())
 		return (1);
-	test_messages();
+	//test_messages();
 	while (_socket.IRCPoll(_clients))
 	{
 		_irc.run();

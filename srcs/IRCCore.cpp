@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 21:55:30 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 22:29:59 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "IRCCore.hpp"
+#include "IRCCommands.hpp"
 
 std::string IRCCore::trim(const std::string& str) {
     size_t first = str.find_first_not_of(' ');
@@ -45,11 +46,12 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
 	if (cmd.find("PASS") != std::string::npos)
 	{
-		if (param == _pass)
+		pass(client, cmd, param, _pass);
+		/* if (param == _pass)
 		{
 			client.passok();
 			return;
-		}
+		} */
 	}
 	else if (cmd.find("NICK") != std::string::npos)
 	{

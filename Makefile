@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME = ircserv
-SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp
+SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp \
+pass.cpp
 PATH_SRCS = ./srcs/
 PATH_OBJS = ./srcs/objs/
 PATH_DEPS = ./srcs/objs/
