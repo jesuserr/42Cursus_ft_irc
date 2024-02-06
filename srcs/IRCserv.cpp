@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 12:28:42 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:39:23 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,23 @@
 #include "IRCErrorLog.hpp"
 #include "IRCSocket.hpp"
 #include "IRCCore.hpp"
+#include "IRCReplies.hpp"
 
+void test_messages()
+{
+	std::string client = "client";
+	std::string command = "command";
+	std::string nick = "nick";
+	std::string oldNick = "oldNick";
+	std::string newNick = "newNick";
+	std::cout << ERR_NEEDMOREPARAMS(client, command) << std::endl;
+	std::cout << ERR_ALREADYREGISTERED(client) << std::endl;
+	std::cout << ERR_PASSWDMISMATCH(client) << std::endl;
+	std::cout << ERR_NONICKNAMEGIVEN(client) << std::endl;
+	std::cout << ERR_ERRONEUSNICKNAME(client, nick) << std::endl;
+	std::cout << ERR_NICKNAMEINUSE(client, nick) << std::endl;
+	std::cout << RPL_NICK(oldNick, client, newNick) << std::endl;	
+}
 
 int main(int argc, char **argv)
 {
@@ -30,6 +46,7 @@ int main(int argc, char **argv)
 	IRCCore _irc(argv[2], _clients);
 	if (!_socket.IRClisten())
 		return (1);
+	test_messages();
 	while (_socket.IRCPoll(_clients))
 	{
 		_irc.run();
