@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 14:39:23 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:45:33 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,22 @@
 
 void test_messages()
 {
-	std::string client = "client";
+	std::string client = "jesuserr";
 	std::string command = "command";
-	std::string nick = "nick";
-	std::string oldNick = "oldNick";
-	std::string newNick = "newNick";
-	std::cout << ERR_NEEDMOREPARAMS(client, command) << std::endl;
-	std::cout << ERR_ALREADYREGISTERED(client) << std::endl;
+	std::string nick = "txus";
+	std::string newNick = "chus";
+	std::cout << ERR_NEEDMOREPARAMS(client, command);
+	std::cout << ERR_ALREADYREGISTERED(client);
 	std::cout << ERR_PASSWDMISMATCH(client) << std::endl;
-	std::cout << ERR_NONICKNAMEGIVEN(client) << std::endl;
-	std::cout << ERR_ERRONEUSNICKNAME(client, nick) << std::endl;
-	std::cout << ERR_NICKNAMEINUSE(client, nick) << std::endl;
-	std::cout << RPL_NICK(oldNick, client, newNick) << std::endl;	
+	std::cout << ERR_NONICKNAMEGIVEN(client);
+	std::cout << ERR_ERRONEUSNICKNAME(client, nick);
+	std::cout << ERR_NICKNAMEINUSE(client, nick);
+	std::cout << RPL_NICK(user_id(nick, client), newNick) << std::endl;
+	std::cout << RPL_WELCOME(client, user_id(nick, client));
+	std::cout << RPL_YOURHOST(client, "localhost", "v1.0");
+	std::cout << RPL_CREATED(client, "2024/02/06 19:38:40");
+	std::cout << RPL_MYINFO(client, "localhost", "v1.0", "xxxx", "xxxx", "xxxx");
+	std::cout << RPL_ISUPPORT(client, "xxxx") << std::endl;
 }
 
 int main(int argc, char **argv)

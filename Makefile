@@ -21,7 +21,7 @@ DEPS = $(addprefix $(PATH_DEPS), $(SRCS:.cpp=.d))
 
 INCLUDE = -I./
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 CC = g++
 GREEN = "\033[0;92m"
 RED = "\033[0;91m"
