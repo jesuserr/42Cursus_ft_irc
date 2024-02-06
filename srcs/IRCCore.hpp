@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 13:38:27 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:17:08 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <map>
 # include "IRCClient.hpp"
+# include "IRCReplies.hpp"
 
 class IRCCore
 {

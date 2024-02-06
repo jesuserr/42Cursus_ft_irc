@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 17:08:27 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/06 17:18:12 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	}
 
 	if (client.pass() && client.nick.size() && client.user.size())
-		client.SendIRCMsg(std::string (":irc.jesuscarlos.com 001 " + client.nick + " :Welcome to the ExampleNet Internet Relay Chat Network " + client.nick));
+		client.SendIRCMsg(RPL_WELCOME(client.nick, client.nick));
 
 }
