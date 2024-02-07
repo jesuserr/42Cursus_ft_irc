@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 20:50:59 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:55:18 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ bool IRCSocket::IRCPoll(std::map<int, IRCClient> &mapdata)
 {
 	char buffer[BUFFERSIZE];
 	int rc;
-	int sd;
 	int currentsize;
 
 	if (!_listening)
 		return _log->Error("You have not set listening mode.");
+	this->IRCSend(mapdata);
 	if (poll(_fds, _nfds, -1) < 0)
 		return _log->Error("Unable to poll the connections.");
 	int new_sd = accept(_fds[0].fd, NULL, NULL);
@@ -91,18 +91,6 @@ bool IRCSocket::IRCPoll(std::map<int, IRCClient> &mapdata)
 			deleteSDMAP(mapdata, c);
 			continue;
 		}
-		else
-			while (_fds[c].fd > 0 && mapdata[_fds[c].fd].Getout().size())
-			{
-				sd = send(_fds[c].fd, mapdata[_fds[c].fd].Getout().c_str(), mapdata[_fds[c].fd].Getout().size(), 0);
-				if (sd < 0)
-				{
-					deleteSDMAP(mapdata, c);
-					continue;
-				}
-				else 
-					mapdata[_fds[c].fd].Getout().erase(0, sd);
-			}
 	}
 	if (_compressfds)
 		compressFDS();	

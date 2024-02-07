@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 20:51:17 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:53:21 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ int main(int argc, char **argv)
 	//test_messages();
 	welcomeMessage(std::atoi(argv[1]));	
 	while (_socket.IRCPoll(_clients))
-	{
 		_irc.run();
-		_socket.IRCSend(_clients);
-	}
 	return (0);	
 }
