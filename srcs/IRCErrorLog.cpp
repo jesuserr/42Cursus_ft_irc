@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:17:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 12:00:10 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/07 10:02:18 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ IRCErrorLog::~IRCErrorLog()
 bool	IRCErrorLog::Error(std::string error)
 {
 	std::cout << "ircserv: " << error << std::endl;
-	return false;
+	return true;
 }
 

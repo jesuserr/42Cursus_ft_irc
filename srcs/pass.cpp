@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:03:45 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/06 22:32:08 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 09:35:05 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void pass(IRCClient &client, std::string cmd, std::string param, std::string pas
 	{
 		if (param != pass)
 			std::cout << ERR_PASSWDMISMATCH(client.user);				
-		else		
+		else
+			{		
 			std::cout << "PASS OK" << std::endl;
+			client.passok();
+			}
 	}
 }
