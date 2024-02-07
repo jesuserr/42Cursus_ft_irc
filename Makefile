@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME = ircserv
-SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp pass.cpp 
+SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp \
+commands/pass.cpp 
 PATH_SRCS = ./srcs/
 PATH_OBJS = ./srcs/objs/
 PATH_DEPS = ./srcs/objs/
@@ -24,19 +25,18 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic -g
 CC = g++
 GREEN = "\033[0;92m"
-RED = "\033[0;91m"
-BLUE = "\033[0;94m"
 NC = "\033[37m"
 
 all: $(NAME)
 
 $(PATH_OBJS)%.o: $(PATH_SRCS)%.cpp
 	@mkdir -p $(PATH_OBJS)
+	@mkdir -p $(PATH_OBJS)/commands
 	$(CC) $(CFLAGS) -MMD $(INCLUDE) -c $< -o $@
 
 $(NAME): $(OBJS) 
 	$(CC) $(CFLAGS) $(OBJS) -o $@
-	@echo ${GREEN}$(NAME) " Compiled!\n"${NC};
+	@echo ${GREEN}$(NAME) "compiled!\n"${NC};
 -include $(DEPS)
 
 clean:

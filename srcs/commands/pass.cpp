@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pass.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:03:45 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/07 09:35:05 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:52:32 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#pass-message
 
-#include "IRCCore.hpp"
+#include "../IRCCore.hpp"
 
 void pass(IRCClient &client, std::string cmd, std::string param, std::string pass)
 {
