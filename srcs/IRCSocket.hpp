@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 20:06:17 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:10:16 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ class IRCSocket
 		bool IRClisten(void);
 		bool IRCPoll(std::map<int, IRCClient> &mapdata);
 		bool IRCSend(std::map<int, IRCClient> &mapdata);
+		void welcomeMessage(int port);
 		
 };
 

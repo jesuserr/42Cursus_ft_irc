@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 22:32:33 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 11:06:01 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int main(int argc, char **argv)
 	if (!_socket.IRClisten())
 		return (1);
 	//test_messages();
+	_socket.welcomeMessage(std::atoi(argv[1]));	
 	while (_socket.IRCPoll(_clients))
 	{
 		_irc.run();
