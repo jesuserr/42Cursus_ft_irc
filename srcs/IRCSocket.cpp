@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 11:08:18 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:50:59 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,16 +155,4 @@ bool IRCSocket::IRCSend(std::map<int, IRCClient> &mapdata)
 		}
 	}
 	return true;
-}
-
-void IRCSocket::welcomeMessage(int port)
-{
-	std::cout << "  _                                         \n"
-				" (_)                                        \n"
-				"  _ _ __ ___   ___  ___ _ ____   _____ _ __ \n"
-				" | | '__/ __| / __|/ _ \\ '__\\ \\ / / _ \\ '__|\n"
-				" | | | | (__  \\__ \\  __/ |   \\ V /  __/ |   \n"
-				" |_|_|  \\___| |___/\\___|_|    \\_/ \\___|_|\n";
-	std::cout << "   by Carlos Escañuela & Jesús Serrano\n";
-	std::cout << "\n   Server listening through port: " << port << "\n\n";
 }

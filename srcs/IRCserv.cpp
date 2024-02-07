@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 11:06:01 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:51:17 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void test_messages()
 	std::cout << RPL_ISUPPORT(client, "xxxx") << std::endl;
 }
 
+void welcomeMessage(int port)
+{
+	std::cout << "  _                                         \n"
+				" (_)                                        \n"
+				"  _ _ __ ___   ___  ___ _ ____   _____ _ __ \n"
+				" | | '__/ __| / __|/ _ \\ '__\\ \\ / / _ \\ '__|\n"
+				" | | | | (__  \\__ \\  __/ |   \\ V /  __/ |   \n"
+				" |_|_|  \\___| |___/\\___|_|    \\_/ \\___|_|\n";
+	std::cout << "   by Carlos Escañuela & Jesús Serrano\n";
+	std::cout << "\n   Server listening through port: " << port << "\n\n";
+}
+
 int main(int argc, char **argv)
 {
 	IRCErrorLog _error;
@@ -51,7 +63,7 @@ int main(int argc, char **argv)
 	if (!_socket.IRClisten())
 		return (1);
 	//test_messages();
-	_socket.welcomeMessage(std::atoi(argv[1]));	
+	welcomeMessage(std::atoi(argv[1]));	
 	while (_socket.IRCPoll(_clients))
 	{
 		_irc.run();

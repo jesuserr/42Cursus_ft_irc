@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 11:10:16 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/07 20:50:43 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ class IRCSocket
 		bool IRClisten(void);
 		bool IRCPoll(std::map<int, IRCClient> &mapdata);
 		bool IRCSend(std::map<int, IRCClient> &mapdata);
-		void welcomeMessage(int port);
-		
 };
 
 #endif
