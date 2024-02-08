@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 14:19:04 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:10:49 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ IRCClient::IRCClient()
 	_in.clear();
 	_out.clear();
 	_clientAuthenticated = false;
-	_nickName.clear();
+	_nickname.clear();
+	_username = getenv("USER");
 }
 
 IRCClient::~IRCClient()
 {
-	
 }
 
 std::string &IRCClient::Getin()
@@ -41,22 +41,36 @@ void IRCClient::SendIRCMsg(std::string msg)
 	Getout() += "\r\n";
 }
 
+/*********************************** GETTERS **********************************/
+
 bool IRCClient::getClientAuthentication() const
 {
 	return _clientAuthenticated;
 }
 
-std::string IRCClient::getNickName() const
+std::string IRCClient::getNickname() const
 {
-	return _nickName;
+	return _nickname;
 }
+
+std::string IRCClient::getUsername() const
+{
+	return _username;
+}
+
+/*********************************** SETTERS **********************************/
 
 void IRCClient::setClientAuthentication(bool status)
 {
 	_clientAuthenticated = status;
 }
 
-void IRCClient::setNickName(std::string nick)
+void IRCClient::setNickname(std::string nickname)
 {
-	_nickName = nick;
+	_nickname = nickname;
+}
+
+void IRCClient::setUsername(std::string userName)
+{
+	_username = userName;
 }

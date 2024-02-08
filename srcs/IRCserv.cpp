@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 11:31:28 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:18:18 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void test_messages()
 	std::cout << ERR_NONICKNAMEGIVEN(client);
 	std::cout << ERR_ERRONEUSNICKNAME(client, nick);
 	std::cout << ERR_NICKNAMEINUSE(client, nick);
-	std::cout << RPL_NICK(user_id(nick, client), newNick) << std::endl;
-	std::cout << RPL_WELCOME(client, user_id(nick, client));
+	std::cout << RPL_NICK(USER_ID(nick, client), newNick) << std::endl;
+	std::cout << RPL_WELCOME(client, USER_ID(nick, client));
 	std::cout << RPL_YOURHOST(client, "localhost", "v1.0");
 	std::cout << RPL_CREATED(client, "2024/02/06 19:38:40");
 	std::cout << RPL_MYINFO(client, "localhost", "v1.0", "xxxx", "xxxx", "xxxx");

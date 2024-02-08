@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 11:33:38 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:16:55 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define IRCREPLIES_HPP
 
 // by default irssi sets client with $USER
-# define user_id(nickname, client) (":" + nickname + "!" + client + "@localhost")
+# define USER_ID(nickname, client) (":" + nickname + "!" + client + "@localhost")
 
 // PASS & USER messages
 # define ERR_NEEDMOREPARAMS(client, command) (":localhost 461 " + client + " " + command + " :Not enough parameters")
@@ -25,10 +25,10 @@
 # define ERR_NONICKNAMEGIVEN(client) (":localhost 431 " + client + " :No nickname given")
 # define ERR_ERRONEUSNICKNAME(client, nick) (":localhost 432 " + client + " " + nick + " :Erroneus nickname")
 # define ERR_NICKNAMEINUSE(client, nick) (":localhost 433 " + client + " " + nick + " :Nickname is already in use")
-# define RPL_NICK(user_id, newNick) (user_id + " NICK " +  newNick + "")    //send RPL before updating the nickname
+# define RPL_NICK(USER_ID, newNick) (USER_ID + " NICK " +  newNick + "")    //send RPL before updating the nickname
 
 // WELCOME messages
-# define RPL_WELCOME(client, user_id) (":localhost 001 " + client + " :Welcome to the Internet Relay Network " + user_id + "")
+# define RPL_WELCOME(client, USER_ID) (":localhost 001 " + client + " :Welcome to the Internet Relay Network " + USER_ID + "")
 # define RPL_YOURHOST(client, servername, version) (":localhost 002 " + client + " :Your host is " + servername + ", running version " + version + "")
 # define RPL_CREATED(client, datetime) (":localhost 003 " + client + " :This server was created " + datetime + "")
 # define RPL_MYINFO(client, servername, version, availableUserModes, availableChannelModes, channelModesWithParam) \

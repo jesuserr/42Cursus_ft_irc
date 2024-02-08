@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 14:21:41 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:10:24 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		nick(client, param);
 	else if (cmd.find("USER") != std::string::npos)
 	{
-		client.user = param;
-		if (client.getClientAuthentication() && client.getNickName().size() && client.user.size())
-			client.SendIRCMsg(RPL_WELCOME(client.getNickName(), client.getNickName()));
+		if (client.getClientAuthentication() && client.getNickname().size() && client.getUsername().size())
+			client.SendIRCMsg(RPL_WELCOME(client.getNickname(), client.getNickname()));
 	}
 	//std::cout << cmd << ":" << param << std::endl;
 }

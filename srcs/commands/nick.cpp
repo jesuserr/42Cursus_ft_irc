@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 14:24:24 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:20:10 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 
 void nick(IRCClient &client, std::string param)
 {
-	// client must be authenticated
-	
+	if (!client.getClientAuthentication())
+		return;
 	if (param.empty())
-		client.SendIRCMsg(ERR_NONICKNAMEGIVEN(client.user));
+		client.SendIRCMsg(ERR_NONICKNAMEGIVEN(client.getUsername()));
 	else if ((param.find_first_not_of(VALID_NICK_CHARSET) != std::string::npos) \
 	|| (param.size() > NICK_MAX_LENGTH))
-		client.SendIRCMsg(ERR_ERRONEUSNICKNAME(client.user, param));	
-	else
-		client.setNickName(param);
-	std::cout << "NICK: " << client.getNickName() << std::endl;
+		client.SendIRCMsg(ERR_ERRONEUSNICKNAME(client.getUsername(), param));
+	else if (param != client.getNickname())
+	{
+		std::string userId = USER_ID(client.getNickname(), client.getUsername());
+		client.SendIRCMsg(RPL_NICK(userId, param));
+		client.setNickname(param);		
+	}
 }
