@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 12:31:53 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 14:21:41 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,15 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
 	if (cmd.find("PASS") != std::string::npos && cmd.size() == 4)
 		pass(client, param, _password);
-	else if (cmd.find("NICK") != std::string::npos)
-	{
-		client.nick = param;
-	}
+	else if (cmd.find("NICK") != std::string::npos && cmd.size() == 4)
+		nick(client, param);
 	else if (cmd.find("USER") != std::string::npos)
 	{
 		client.user = param;
-		if (client.getClientAuthentication() && client.nick.size() && client.user.size())
-			client.SendIRCMsg(RPL_WELCOME(client.nick, client.nick));
+		if (client.getClientAuthentication() && client.getNickName().size() && client.user.size())
+			client.SendIRCMsg(RPL_WELCOME(client.getNickName(), client.getNickName()));
 	}
-	std::cout << cmd << ":" << param << std::endl;
+	//std::cout << cmd << ":" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234
