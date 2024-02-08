@@ -6,18 +6,14 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 20:06:25 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:26:04 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IRCCORE_HPP
 # define IRCCORE_HPP
 
-# include <iostream>
-# include <string>
-# include <map>
-# include "IRCClient.hpp"
-# include "IRCReplies.hpp"
+# include "IRCIncludes.hpp"
 
 class IRCCore
 {

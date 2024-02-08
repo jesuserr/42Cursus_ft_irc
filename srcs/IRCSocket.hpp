@@ -3,26 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 20:50:43 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:27:29 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IRC_SOCKET_HPP
 # define IRC_SOCKET_HPP
 
-#include <sys/poll.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <errno.h>
-#include <fcntl.h>
-#include <string>
-#include <unistd.h>
-#include "IRCErrorLog.hpp"
-#include "IRCClient.hpp"
-#include <map>
+# include "IRCIncludes.hpp"
 
 # define MAXFDS 32000
 # define MAXLISTENQUEUE 32000

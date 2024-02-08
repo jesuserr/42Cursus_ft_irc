@@ -3,18 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   IRCClient.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:34:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 16:58:21 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:26:09 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IRCCLIENT_HPP
 # define IRCCLIENT_HPP
 
-# include <string>
-# include <iostream>
+# include "IRCIncludes.hpp"
 
 class IRCClient
 {

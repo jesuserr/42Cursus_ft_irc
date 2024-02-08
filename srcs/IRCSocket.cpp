@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 20:55:18 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:27:17 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCSocket.hpp"
+#include "IRCIncludes.hpp"
 
 IRCSocket::~IRCSocket()
 {

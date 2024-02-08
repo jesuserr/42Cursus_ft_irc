@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCClient.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/06 16:47:10 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:24:35 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCClient.hpp"
+#include "IRCIncludes.hpp"
 
 IRCClient::IRCClient() 
 {

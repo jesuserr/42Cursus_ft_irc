@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 09:50:27 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:24:50 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCCore.hpp"
-#include "IRCCommands.hpp"
+#include "IRCIncludes.hpp"
 
 std::string IRCCore::trim(const std::string& str) {
     size_t first = str.find_first_not_of(' ');

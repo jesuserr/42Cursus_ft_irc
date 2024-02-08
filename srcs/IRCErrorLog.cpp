@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCErrorLog.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:17:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 10:02:18 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:26:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCErrorLog.hpp"
+#include "IRCIncludes.hpp"
 
 IRCErrorLog::IRCErrorLog()
 {

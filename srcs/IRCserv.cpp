@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/07 20:53:21 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:26:56 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <cstdlib>
-#include <map>
-#include "IRCErrorLog.hpp"
-#include "IRCSocket.hpp"
-#include "IRCCore.hpp"
-#include "IRCReplies.hpp"
+#include "IRCIncludes.hpp"
 
 void test_messages()
 {

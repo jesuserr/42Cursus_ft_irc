@@ -6,13 +6,13 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:03:45 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/07 11:52:32 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 10:34:40 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#pass-message
 
-#include "../IRCCore.hpp"
+#include "../IRCIncludes.hpp"
 
 void pass(IRCClient &client, std::string cmd, std::string param, std::string pass)
 {

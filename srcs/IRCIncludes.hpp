@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IRCErrorLog.hpp                                    :+:      :+:    :+:   */
+/*   IRCIncludes.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 19:15:02 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:26:36 by jesuserr         ###   ########.fr       */
+/*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
+/*   Updated: 2024/02/08 10:32:43 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IRC_ERROR_LOG_HPP
-# define IRC_ERROR_LOG_HPP
+#ifndef INCLUDES_HPP
+# define INCLUDES_HPP
 
-#include "IRCIncludes.hpp"
+# include <iostream>
+# include <cstdlib>
+# include <sys/poll.h>
+# include <sys/socket.h>
+# include <netinet/in.h>
+# include <errno.h>
+# include <fcntl.h>
+# include <string>
+# include <unistd.h>
+# include <map>
 
-class IRCErrorLog
-{
-	private:
-		IRCErrorLog(IRCErrorLog const &src);
-		IRCErrorLog &operator=(IRCErrorLog const &rhs);
-
-	public:
-		~IRCErrorLog();
-		IRCErrorLog();
-		bool Error(std::string error);
-};
+# include "IRCClient.hpp"
+# include "IRCSocket.hpp"
+# include "IRCCore.hpp"
+# include "IRCReplies.hpp"
+# include "IRCErrorLog.hpp"
+# include "IRCCommands.hpp"
 
 #endif
-
