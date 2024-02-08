@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:30:18 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,31 @@
 
 #include "../IRCIncludes.hpp"
 
-void nick(IRCClient &client, std::string param, mapClients &_clients)
+bool nickAlreadyInUse(mapClients &_clients, std::string newNick)
 {
-	(void)_clients;
+	for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
+	{
+		if (it->second.getNickname() == newNick)
+			return true;		
+	}
+	return false;
+}
+
+void nick(IRCClient &client, std::string newNick, mapClients &_clients)
+{
 	if (!client.getClientAuthentication())
 		return;
-	if (param.empty())
+	if (newNick.empty())
 		client.SendIRCMsg(ERR_NONICKNAMEGIVEN(client.getUsername()));
-	else if ((param.find_first_not_of(VALID_NICK_CHARSET) != std::string::npos) \
-	|| (param.size() > NICK_MAX_LENGTH))
-		client.SendIRCMsg(ERR_ERRONEUSNICKNAME(client.getUsername(), param));
-	else if (param != client.getNickname())
+	else if ((newNick.find_first_not_of(VALID_NICK_CHARSET) != std::string::npos) \
+	|| (newNick.size() > NICK_MAX_LENGTH))
+		client.SendIRCMsg(ERR_ERRONEUSNICKNAME(client.getUsername(), newNick));
+	else if (nickAlreadyInUse(_clients, newNick))
+		client.SendIRCMsg(ERR_NICKNAMEINUSE(client.getUsername(), newNick));
+	else if (newNick != client.getNickname())
 	{
 		std::string userId = USER_ID(client.getNickname(), client.getUsername());
-		client.SendIRCMsg(RPL_NICK(userId, param));
-		client.setNickname(param);		
+		client.SendIRCMsg(RPL_NICK(userId, newNick));
+		client.setNickname(newNick);
 	}
 }
