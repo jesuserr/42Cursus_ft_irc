@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:24:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:42:55 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 IRCClient::IRCClient() 
 {
-	_pass = false;
+	_clientAuthenticated = false;	
 }
 
 IRCClient::~IRCClient()
@@ -38,13 +38,12 @@ void IRCClient::SendIRCMsg(std::string msg)
 	Getout() += "\r\n";
 }
 
-bool IRCClient::pass(void)
+bool IRCClient::getClientAuthentication() const
 {
-	return _pass;
+	return _clientAuthenticated;
 }
 
-void IRCClient::passok(void)
+void IRCClient::setClientAuthentication(bool status)
 {
-	_pass = true;
+	_clientAuthenticated = status;
 }
-

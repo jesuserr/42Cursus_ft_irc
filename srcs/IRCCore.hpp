@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:26:04 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 12:31:36 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class IRCCore
 		IRCCore(IRCCore const &cpy);
 		IRCCore &operator=(IRCCore const &rhs);
 		std::map<int, IRCClient> &_clients;
-		std::string _pass;
+		std::string _password;
 		std::string trim(const std::string& str);
 	
 	public:	

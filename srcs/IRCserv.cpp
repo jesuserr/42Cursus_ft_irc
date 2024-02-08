@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:26:56 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 11:31:28 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void test_messages()
 
 void welcomeMessage(int port)
 {
+	system("clear");
 	std::cout << "  _                                         \n"
 				" (_)                                        \n"
 				"  _ _ __ ___   ___  ___ _ ____   _____ _ __ \n"
