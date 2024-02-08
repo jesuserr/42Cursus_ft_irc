@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 17:20:10 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 #include "../IRCIncludes.hpp"
 
-void nick(IRCClient &client, std::string param)
+void nick(IRCClient &client, std::string param, mapClients &_clients)
 {
+	(void)_clients;
 	if (!client.getClientAuthentication())
 		return;
 	if (param.empty())

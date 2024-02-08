@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:27:29 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ class IRCSocket
 		bool _listening;
 		bool _compressfds;
 		void compressFDS(void);
-		void deleteSDMAP(std::map<int, IRCClient> &mapdata, int c);
+		void deleteSDMAP(mapClients &mapdata, int c);
 
 	public:
 		~IRCSocket();
 		IRCSocket(int port, IRCErrorLog *log);
 		bool IRClisten(void);
-		bool IRCPoll(std::map<int, IRCClient> &mapdata);
-		bool IRCSend(std::map<int, IRCClient> &mapdata);
+		bool IRCPoll(mapClients &mapdata);
+		bool IRCSend(mapClients &mapdata);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:31:55 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 13:43:03 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@
 # define NICK_MAX_LENGTH 9
 
 void pass(IRCClient &client, std::string param, std::string pass);
-void nick(IRCClient &client, std::string param);
+void nick(IRCClient &client, std::string param, mapClients &_clients);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 17:18:18 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:53:19 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void welcomeMessage(int port)
 int main(int argc, char **argv)
 {
 	IRCErrorLog _error;
-	std::map<int, IRCClient> _clients;
+	mapClients _clients;	// mapClients is equivalent to std::map<int, IRCClient>
 	if (argc != 3)
 		return _error.Error("Use me with port number and password. Example: ircserv 6667 password.");
 	else if (std::atoi(argv[1]) < 1 || std::atoi(argv[1]) > 65535)

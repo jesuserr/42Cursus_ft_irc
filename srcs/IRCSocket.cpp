@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 10:27:17 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ bool IRCSocket::IRClisten(void)
 	return true;
 }
 
-bool IRCSocket::IRCPoll(std::map<int, IRCClient> &mapdata)
+bool IRCSocket::IRCPoll(mapClients &mapdata)
 {
 	char buffer[BUFFERSIZE];
 	int rc;
@@ -97,7 +97,7 @@ bool IRCSocket::IRCPoll(std::map<int, IRCClient> &mapdata)
 	return true;
 }
 
-void IRCSocket::deleteSDMAP(std::map<int, IRCClient> &mapdata, int c)
+void IRCSocket::deleteSDMAP(mapClients &mapdata, int c)
 {
 	if (mapdata.find(_fds[c].fd) != mapdata.end())
 		mapdata.erase(mapdata.find(_fds[c].fd));
@@ -123,7 +123,7 @@ void IRCSocket::compressFDS(void)
 	_compressfds = false;
 }
 
-bool IRCSocket::IRCSend(std::map<int, IRCClient> &mapdata)
+bool IRCSocket::IRCSend(mapClients &mapdata)
 {
 	int sd;
 	int currentsize = _nfds;
