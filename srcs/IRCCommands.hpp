@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:31:55 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:43:35 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 # define IRCCOMMANDS_H
 
 # include "IRCIncludes.hpp"
-# define VALID_NICK_CHARSET "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-"
-# define NICK_MAX_LENGTH 9
 
-void pass(IRCClient &client, std::string param, std::string pass);
-void nick(IRCClient &client, std::string param, mapClients &_clients);
+void pass(IRCClient &client, std::string input, std::string password);
+void nick(IRCClient &client, std::string newNick, mapClients &_clients);
+void user(IRCClient &client, std::string parameters);
 
 #endif

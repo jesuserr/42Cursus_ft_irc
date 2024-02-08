@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 17:16:55 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:09:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 # define ERR_NICKNAMEINUSE(client, nick) (":localhost 433 " + client + " " + nick + " :Nickname is already in use")
 # define RPL_NICK(USER_ID, newNick) (USER_ID + " NICK " +  newNick + "")    //send RPL before updating the nickname
 
-// WELCOME messages
-# define RPL_WELCOME(client, USER_ID) (":localhost 001 " + client + " :Welcome to the Internet Relay Network " + USER_ID + "")
+// WELCOME messages (RPL_WELCOME is wrong in the official documentation, says client instead of nickname)
+# define RPL_WELCOME(nickname, USER_ID) (":localhost 001 " + nickname + " :Welcome to the Internet Relay Network " + USER_ID + "")
 # define RPL_YOURHOST(client, servername, version) (":localhost 002 " + client + " :Your host is " + servername + ", running version " + version + "")
 # define RPL_CREATED(client, datetime) (":localhost 003 " + client + " :This server was created " + datetime + "")
 # define RPL_MYINFO(client, servername, version, availableUserModes, availableChannelModes, channelModesWithParam) \
