@@ -6,7 +6,11 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/09 11:23:07 by cescanue         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/09 10:47:31 by jesuserr         ###   ########.fr       */
+>>>>>>> 67dfad0694c18d5048928b4caa0b3790a57e0aa1
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +68,8 @@ void IRCCore::Command(mapClients &_clients, IRCClient &client, std::string cmd, 
 		user(client, param, _startingTime);
 	else if (cmd.find("LEAKSCHECKEXIT") != std::string::npos && cmd.size() == 14)
 		throw std::runtime_error("\b\bircserv: Bye bye..... hope to see you again soon....");
+	else if (cmd.find("PING") != std::string::npos && cmd.size() == 4)
+		ping(client, param);
 }
 
 // /connect -nocap localhost 6667 1234

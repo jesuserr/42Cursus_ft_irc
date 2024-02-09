@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 00:09:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:51:03 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,8 @@
 # define RPL_MYINFO(client, servername, version, availableUserModes, availableChannelModes, channelModesWithParam) \
     (":localhost 004 " + client + " " + servername + " " + version + " " + availableUserModes + " " + availableChannelModes + " " + channelModesWithParam"")
 # define RPL_ISUPPORT(client, supportedTokens) (":localhost 005 " + client + " " + supportedTokens + " :are supported by this server")
+
+// PING messages
+# define RPL_PONG(USER_ID, token) (USER_ID + " PONG :" + token)
 
 #endif

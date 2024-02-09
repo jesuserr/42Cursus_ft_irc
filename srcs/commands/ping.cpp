@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   IRCCommands.hpp                                    :+:      :+:    :+:   */
+/*   ping.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 21:31:55 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 10:55:10 by jesuserr         ###   ########.fr       */
+/*   Created: 2024/02/09 10:17:35 by jesuserr          #+#    #+#             */
+/*   Updated: 2024/02/09 10:56:19 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IRCCOMMANDS_H
-# define IRCCOMMANDS_H
+//https://modern.ircdocs.horse/#ping-message
+//https://modern.ircdocs.horse/#pong-message
 
-# include "IRCIncludes.hpp"
+#include "../IRCIncludes.hpp"
 
-void pass(IRCClient &client, std::string input, std::string password);
-void nick(IRCClient &client, std::string newNick, mapClients &_clients);
-void user(IRCClient &client, std::string parameters, std::string serverTime);
-void ping(IRCClient &client, std::string token);
-
-#endif
+void ping(IRCClient &client, std::string token)
+{
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	client.SendIRCMsg(RPL_PONG(userId, token));
+	//std::cout << userId + " PONG :" + token << std::endl;	
+}
