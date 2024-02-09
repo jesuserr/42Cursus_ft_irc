@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 11:21:12 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:48:20 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void welcomeMessage(int port)
 void cleanexit(int signal)
 {
 	(void) signal;
-	throw std::runtime_error("\b\bircserv: Bye bye..... hope to see you again soon....");
+	//throw std::runtime_error("\b\bircserv: Bye bye..... hope to see you again soon....");
+	throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");
 }
 
 int main(int argc, char **argv)
