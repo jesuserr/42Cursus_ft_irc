@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 01:05:50 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 10:47:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void IRCCore::Command(mapClients &_clients, IRCClient &client, std::string cmd, 
 		nick(client, param, _clients);
  	else if (cmd.find("USER") != std::string::npos && cmd.size() == 4)
 		user(client, param, _startingTime);
+	else if (cmd.find("PING") != std::string::npos && cmd.size() == 4)
+		ping(client, param);
 }
 
 // /connect -nocap localhost 6667 1234
