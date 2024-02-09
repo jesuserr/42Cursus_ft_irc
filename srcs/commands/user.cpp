@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:44:02 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 00:09:20 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 00:59:29 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool parsing(std::string parameters, std::string *parsedParameters)
 	return (true);
 }
 
-void user(IRCClient &client, std::string parameters)
+void user(IRCClient &client, std::string parameters, std::string serverTime)
 {
 	if (!client.getClientAuthentication() || client.getNickname().empty())
 		return;
@@ -73,6 +73,8 @@ void user(IRCClient &client, std::string parameters)
 		client.setClientRegistration(true);
 		std::string userId = USER_ID(client.getNickname(), client.getUsername());
 		client.SendIRCMsg(RPL_WELCOME(client.getNickname(), userId));
+		client.SendIRCMsg(RPL_YOURHOST(client.getUsername(), SERVER_NAME, SERVER_VERSION));		   
+		client.SendIRCMsg(RPL_CREATED(client.getUsername(), serverTime));
 	}
 	else
 		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "USER"));	

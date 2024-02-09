@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:49:29 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 00:02:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 01:05:50 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,20 @@ std::string IRCCore::trim(const std::string& str) {
 IRCCore::IRCCore(std::string pass, mapClients &clients) : _clients(clients)
 {
 	_password = pass;
+	_startingTime = obtainStartingTime();
 }
+
+std::string IRCCore::obtainStartingTime(void)
+{
+	time_t		elapsed_time;
+	struct tm	*time_info;
+	char		time_stamp[20];
+
+	elapsed_time = time(NULL);
+	time_info = localtime(&elapsed_time);
+	strftime(time_stamp, 20, "%Y-%m-%d %H:%M:%S", time_info);
+	return (time_stamp);
+}	
 
 void IRCCore::run(void)
 {
@@ -48,7 +61,7 @@ void IRCCore::Command(mapClients &_clients, IRCClient &client, std::string cmd, 
 	else if (cmd.find("NICK") != std::string::npos && cmd.size() == 4)
 		nick(client, param, _clients);
  	else if (cmd.find("USER") != std::string::npos && cmd.size() == 4)
-		user(client, param);	
+		user(client, param, _startingTime);
 }
 
 // /connect -nocap localhost 6667 1234
