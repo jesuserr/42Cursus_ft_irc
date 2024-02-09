@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:21:43 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 IRCSocket::~IRCSocket()
 {
+	for (int c = 0; c < _nfds ; c++)
+		close(_fds[c].fd);
 	return ;
 }
 
@@ -43,13 +45,13 @@ bool IRCSocket::IRClisten(void)
 	memcpy(&iaddr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 	iaddr.sin6_port = htons(_listenPort);
 	if (bind(_fds[0].fd, (struct sockaddr *)&iaddr, sizeof(iaddr)) < 0)
-		return _log->Error("Unable to bind the socket to the available local IPs.");
+		return _log->Error("Unable to bind the socket on the specified port.");
 	if (listen(_fds[0].fd, MAXLISTENQUEUE) < 0)
 		return _log->Error("Unable to listen to the socket on the specified port.");
 	_fds[0].events = POLLIN;
 	_nfds = 1;
 	_listening = true;
-	return true;
+	return false;
 }
 
 bool IRCSocket::IRCPoll(mapClients &mapdata)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/08 18:29:13 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:21:12 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void welcomeMessage(int port)
 	std::cout << "\n   Server listening through port: " << port << "\n\n";
 }
 
+void cleanexit(int signal)
+{
+	(void) signal;
+	throw std::runtime_error("\b\bircserv: Bye bye..... hope to see you again soon....");
+}
+
 int main(int argc, char **argv)
 {
 	IRCErrorLog _error;
@@ -33,12 +39,21 @@ int main(int argc, char **argv)
 		return _error.Error("Use me with port number and password. Example: ircserv 6667 password.");
 	else if (std::atoi(argv[1]) < 1 || std::atoi(argv[1]) > 65535)
 		return _error.Error("The port has to be a number between 1 and 65535.");
+	std::signal(SIGINT, cleanexit);
 	IRCSocket _socket(std::atoi(argv[1]), &_error);
 	IRCCore _irc(argv[2], _clients);
-	if (!_socket.IRClisten())
+	if (_socket.IRClisten())
 		return (1);
 	welcomeMessage(std::atoi(argv[1]));	
-	while (_socket.IRCPoll(_clients))
-		_irc.run();
+	try
+	{
+		while (_socket.IRCPoll(_clients))
+			_irc.run();
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << e.what() << '\n';
+		exit(0);
+	}
 	return (0);	
 }

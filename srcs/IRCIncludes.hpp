@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCIncludes.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 00:48:54 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 09:55:03 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <unistd.h>
 # include <sstream>
 # include <ctime>
+# include <csignal>
 
 # include "IRCClient.hpp"
 typedef std::map<int, IRCClient> mapClients;
