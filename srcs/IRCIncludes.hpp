@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCIncludes.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 12:29:03 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:43:55 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,17 @@
 # include <sstream>
 # include <ctime>
 # include <csignal>
+# include <algorithm>
+# include <vector>
 
 # include "IRCClient.hpp"
 typedef std::map<int, IRCClient> mapClients;
-# include "IRCCore.hpp"
 # include "IRCSocket.hpp"
 # include "IRCReplies.hpp"
 # include "IRCErrorLog.hpp"
+typedef std::vector<std::string> mapChannelUsers;
+# include "IRCChannel.hpp"
+typedef std::map<std::string, IRCChannel> mapChannelList; 
+# include "IRCCore.hpp"
 
 #endif
