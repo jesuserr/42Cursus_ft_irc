@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:44:02 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 00:59:29 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:28:14 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool parsing(std::string parameters, std::string *parsedParameters)
 	return (true);
 }
 
-void user(IRCClient &client, std::string parameters, std::string serverTime)
+void IRCCore::user(IRCClient &client, std::string parameters, std::string serverTime)
 {
 	if (!client.getClientAuthentication() || client.getNickname().empty())
 		return;

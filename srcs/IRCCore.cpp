@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 11:50:17 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:33:15 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ void IRCCore::run(void)
 		while(it->second.Getin().find("\r\n") != std::string::npos)
 		{
 			if (it->second.Getin().find(" ") != std::string::npos)
-				Command(_clients, it->second, trim(it->second.Getin().substr(0, it->second.Getin().find(" "))), trim(it->second.Getin().substr(it->second.Getin().find(" "), it->second.Getin().find("\r\n") - it->second.Getin().find(" "))));
+				Command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find(" "))), trim(it->second.Getin().substr(it->second.Getin().find(" "), it->second.Getin().find("\r\n") - it->second.Getin().find(" "))));
 			else
-				Command(_clients, it->second, trim(it->second.Getin().substr(0, it->second.Getin().find("\r\n"))), "");
+				Command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find("\r\n"))), "");
 			it->second.Getin().erase(0, it->second.Getin().find("\r\n") + 2);
 		}
 	}
 }
 
-void IRCCore::Command(mapClients &_clients, IRCClient &client, std::string cmd, std::string param)
+void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
 	if (cmd.find("PASS") != std::string::npos && cmd.size() == 4)
 		pass(client, param, _password);
 	else if (cmd.find("NICK") != std::string::npos && cmd.size() == 4)
-		nick(client, param, _clients);
+		nick(client, param);
  	else if (cmd.find("USER") != std::string::npos && cmd.size() == 4)
 		user(client, param, _startingTime);
 	else if (cmd.find("LEAKSCHECKEXIT") != std::string::npos && cmd.size() == 14)

@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:03:45 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 18:32:41 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:24:49 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "../IRCIncludes.hpp"
 
-void pass(IRCClient &client, std::string input, std::string password)
+void IRCCore::pass(IRCClient &client, std::string input, std::string password)
 {
 	if (client.getClientAuthentication())
 		client.SendIRCMsg(ERR_ALREADYREGISTERED(client.getUsername()));

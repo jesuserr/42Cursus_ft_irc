@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/08 18:30:18 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:32:40 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool nickAlreadyInUse(mapClients &_clients, std::string newNick)
 	return false;
 }
 
-void nick(IRCClient &client, std::string newNick, mapClients &_clients)
+void IRCCore::nick(IRCClient &client, std::string newNick)
 {
 	if (!client.getClientAuthentication())
 		return;
