@@ -3,22 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   IRCIncludes.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 21:43:55 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/10 21:04:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INCLUDES_HPP
 # define INCLUDES_HPP
 
-# define SERVER_NAME "IRCServer"
-# define SERVER_VERSION "Alpha 0.1"
+# define SERVER_NAME				"IRCServer"
+# define SERVER_VERSION				"Alpha-0.1"
+# define USER_MODES					""
+# define CHANNEL_MODES				"itkol"
+# define CHANNEL_MODES_WITH_PARAM	"k"
 
-# define VALID_NICK_CHARSET "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-"
-# define VALID_USER_CHARSET "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-* "
-# define NICK_MAX_LENGTH 9
+# define VALID_NICK_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-"
+# define VALID_USER_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-* "
+# define NICK_MAX_LENGTH	9
 
 # include <string>
 # include <map>

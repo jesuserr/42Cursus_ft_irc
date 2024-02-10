@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:44:02 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 12:28:14 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/10 21:40:21 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,31 @@ bool parsing(std::string parameters, std::string *parsedParameters)
 	return (true);
 }
 
-void IRCCore::user(IRCClient &client, std::string parameters, std::string serverTime)
+void welcomeMessages(IRCClient &client, std::string serverTime)
+{
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	client.SendIRCMsg(RPL_WELCOME(client.getNickname(), userId));
+	client.SendIRCMsg(RPL_YOURHOST(client.getUsername(), SERVER_NAME, SERVER_VERSION));		   
+	client.SendIRCMsg(RPL_CREATED(client.getUsername(), serverTime));
+	client.SendIRCMsg(RPL_MYINFO(client.getUsername(), SERVER_NAME, SERVER_VERSION, \
+		USER_MODES, CHANNEL_MODES, CHANNEL_MODES_WITH_PARAM));
+	std::string supportedTokens = "NICKLEN=9";
+	client.SendIRCMsg(RPL_ISUPPORT(client.getUsername(), supportedTokens));
+	client.SendIRCMsg(RPL_MOTDSTART(client.getUsername(), SERVER_NAME));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "███▓▒░░   Welcome back to the 90's   ░░▒▓███"));	
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "  _                                         "));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " (_)                                        "));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "  _ _ __ ___   ___  ___ _ ____   _____ _ __ "));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " | | '__/ __| / __|/ _ \\ '__\\ \\ / / _ \\ '__|"));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " | | | | (__  \\__ \\  __/ |   \\ V /  __/ |   "));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " |_|_|  \\___| |___/\\___|_|    \\_/ \\___|_|"));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "   by Carlos Escañuela & Jesús Serrano"));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " "));
+	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "███▓▒░░    Remember to have fun!!    ░░▒▓███"));
+	client.SendIRCMsg(RPL_ENDOFMOTD(client.getUsername()));
+}
+
+void IRCCore::user(IRCClient &client, std::string parameters)
 {
 	if (!client.getClientAuthentication() || client.getNickname().empty())
 		return;
@@ -71,10 +95,7 @@ void IRCCore::user(IRCClient &client, std::string parameters, std::string server
 		client.setUsername(parsedParameters[0]);
 		client.setRealname(parsedParameters[3]);
 		client.setClientRegistration(true);
-		std::string userId = USER_ID(client.getNickname(), client.getUsername());
-		client.SendIRCMsg(RPL_WELCOME(client.getNickname(), userId));
-		client.SendIRCMsg(RPL_YOURHOST(client.getUsername(), SERVER_NAME, SERVER_VERSION));		   
-		client.SendIRCMsg(RPL_CREATED(client.getUsername(), serverTime));
+		welcomeMessages(client, _startingTime);
 	}
 	else
 		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "USER"));	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 21:44:44 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/10 20:35:26 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class IRCCore
 		/**************************** COMMANDS ********************************/
 		void pass(IRCClient &client, std::string input, std::string password);
 		void nick(IRCClient &client, std::string newNick);
-		void user(IRCClient &client, std::string parameters, std::string serverTime);
+		void user(IRCClient &client, std::string parameters);
 		void ping(IRCClient &client, std::string token);
 	
 	public:	

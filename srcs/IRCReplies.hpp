@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 10:51:03 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/10 21:19:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,10 @@
 
 // PING messages
 # define RPL_PONG(USER_ID, token) (USER_ID + " PONG :" + token)
+
+// MOTD messages
+# define RPL_MOTDSTART(client, servername) (":localhost 375 " + client + " :- " + servername + " Message of the day - ")
+# define RPL_MOTD(client, line) (":localhost 372 " + client + " :" + line)
+# define RPL_ENDOFMOTD(client) (":localhost 376 " + client + " :End of /MOTD command.")
 
 #endif
