@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/10 20:36:23 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:08:43 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@ IRCCore::IRCCore(std::string pass, mapClients &clients) : _clients(clients)
 	_password = pass;
 	_startingTime = obtainStartingTime();
 }
-
-std::string IRCCore::obtainStartingTime(void)
-{
-	time_t		elapsed_time;
-	struct tm	*time_info;
-	char		time_stamp[20];
-
-	elapsed_time = time(NULL);
-	time_info = localtime(&elapsed_time);
-	strftime(time_stamp, 20, "%Y-%m-%d %H:%M:%S", time_info);
-	return (time_stamp);
-}	
 
 void IRCCore::run(void)
 {

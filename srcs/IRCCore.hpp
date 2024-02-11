@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/10 20:35:26 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 14:09:05 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@ class IRCCore
 		std::string _password;
 		std::string trim(const std::string& str);
 		std::string _startingTime;
-		std::string obtainStartingTime(void);
-		
+				
 		/**************************** COMMANDS ********************************/
 		void pass(IRCClient &client, std::string input, std::string password);
 		void nick(IRCClient &client, std::string newNick);
 		void user(IRCClient &client, std::string parameters);
 		void ping(IRCClient &client, std::string token);
-	
+		
+		/********************* IRCCoreCommandsUtils.cpp ***********************/
+		std::string obtainStartingTime(void);
+		void welcomeMessages(IRCClient &client);
+		
 	public:	
 		IRCCore(std::string pass, mapClients &clients);
 		void run(void);

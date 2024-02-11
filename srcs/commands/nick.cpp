@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 12:32:40 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 13:44:24 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,10 @@ void IRCCore::nick(IRCClient &client, std::string newNick)
 		std::string userId = USER_ID(client.getNickname(), client.getUsername());
 		client.SendIRCMsg(RPL_NICK(userId, newNick));
 		client.setNickname(newNick);
+		if (!client.getRealname().empty())
+		{
+			client.setClientRegistration(true);
+			welcomeMessages(client);
+		}
 	}
 }
