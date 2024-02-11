@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/10 21:19:31 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:25:02 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,9 @@
 # define RPL_MOTDSTART(client, servername) (":localhost 375 " + client + " :- " + servername + " Message of the day - ")
 # define RPL_MOTD(client, line) (":localhost 372 " + client + " :" + line)
 # define RPL_ENDOFMOTD(client) (":localhost 376 " + client + " :End of /MOTD command.")
+
+// GENERIC ERROR messages
+# define ERR_NOTREGISTERED() (":localhost 451 :You have not registered")
+# define ERR_UNKNOWNCOMMAND(client, command) (":localhost 421 " + client + " " + command + " :Unknown command")
 
 #endif

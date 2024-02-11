@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:17:35 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 12:27:10 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 20:19:37 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 
 void IRCCore::ping(IRCClient &client, std::string token)
 {
+	if (!client.getClientRegistration())
+	{
+		client.SendIRCMsg(ERR_NOTREGISTERED());
+		return;
+	}
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	client.SendIRCMsg(RPL_PONG(userId, token));
-	//std::cout << userId + " PONG :" + token << std::endl;	
 }
