@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 21:45:39 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/11 21:09:18 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ bool IRCChannel::AddUser(std::string user)
 	}
 	return false;
 }
+
 bool IRCChannel::DelUser(std::string user)
 {
 	mapChannelUsers::iterator it;
@@ -38,6 +39,29 @@ bool IRCChannel::DelUser(std::string user)
 	if (it != std::end(_users))
 	{
 		_users.erase(it);
+		return true;
+	}
+	return false;
+}
+
+bool IRCChannel::AddOper(std::string oper)
+{
+	if (std::find(_operators.begin(), _operators.end(), oper) != std::end(_operators))
+	{
+		_operators.push_back(oper);
+		return true;
+	}
+	return false;
+}
+
+bool IRCChannel::DelOper(std::string oper)
+{
+	mapChannelUsers::iterator it;
+	
+	it = std::find(_operators.begin(), _operators.end(), oper);
+	if (it != std::end(_operators))
+	{
+		_operators.erase(it);
 		return true;
 	}
 	return false;

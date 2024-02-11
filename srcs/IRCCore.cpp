@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/11 20:09:51 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 21:12:06 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");		
 	else if (cmd.find("PING") != std::string::npos && cmd.size() == 4)
 		ping(client, param);
+	else if (cmd.find("JOIN") != std::string::npos && cmd.size() == 4)
+		join(client, param);
 	else if (!client.getClientRegistration())
 		client.SendIRCMsg(ERR_NOTREGISTERED());
 	else if (client.getClientRegistration())

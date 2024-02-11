@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/11 14:09:05 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/11 21:59:19 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ class IRCCore
 		void nick(IRCClient &client, std::string newNick);
 		void user(IRCClient &client, std::string parameters);
 		void ping(IRCClient &client, std::string token);
+		void join(IRCClient &client, std::string parameters);
+		void joinc(IRCClient &client, std::string channel, std::string key);
 		
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);
