@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:44:02 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/11 13:45:39 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 11:32:13 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,9 @@
 
 #include "../IRCIncludes.hpp"
 
-std::string removeTabsAndMultipleSpaces(std::string line)
+bool userParsing(std::string parameters, std::string *parsedParameters)
 {
-	std::replace(line.begin(), line.end(), '\t', ' ');
-	std::string result;
-	char lastChar = 0;
-	for (std::string::iterator it = line.begin(); it != line.end(); ++it)
-	{
-		if (!(*it == ' ' && lastChar == ' '))
-		{
-			result += *it;
-			lastChar = *it;
-		}
-	}
-	return (result);
-}
-
-bool parsing(std::string parameters, std::string *parsedParameters)
-{
-	std::string cleanParameters = removeTabsAndMultipleSpaces(parameters);	
-	std::stringstream ss(cleanParameters);
+	std::stringstream ss(parameters);
 	std::getline(ss, parsedParameters[0], ' ');
 	std::getline(ss, parsedParameters[1], ' ');
 	std::getline(ss, parsedParameters[2], ' ');
@@ -66,7 +49,7 @@ void IRCCore::user(IRCClient &client, std::string parameters)
 	std::string parsedParameters[4];
 	for (int i = 0; i < 4; i++)
 		parsedParameters[i].clear();
-	if (parsing(parameters, parsedParameters))
+	if (userParsing(removeTabsAndMultipleSpaces(parameters), parsedParameters))
 	{
 		client.setUsername(parsedParameters[0]);
 		client.setRealname(parsedParameters[3]);
