@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 11:10:16 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:27:27 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ class IRCCore
 		std::string _password;
 		std::string trim(const std::string& str);
 		std::string _startingTime;
+		void uppercaseCommand(std::string &cmd);
 				
 		/**************************** COMMANDS ********************************/
 		void pass(IRCClient &client, std::string input, std::string password);

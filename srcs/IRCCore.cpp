@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 10:33:49 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:35:41 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,16 @@ void IRCCore::run(void)
 	}
 }
 
+void IRCCore::uppercaseCommand(std::string &cmd)
+{
+	if (!cmd.empty())
+		for (std::string::iterator it = cmd.begin(); it != cmd.end(); ++it)
+		    *it = std::toupper(*it);	
+}
+
 void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 {
+	uppercaseCommand(cmd);	
 	if (cmd.find("PASS") != std::string::npos && cmd.size() == 4)
 		pass(client, param, _password);
 	else if (cmd.find("NICK") != std::string::npos && cmd.size() == 4)
@@ -63,7 +71,7 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
-	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
+	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234
