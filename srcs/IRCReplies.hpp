@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 10:42:51 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:02:59 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,10 @@
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 
+// JOIN messages
+# define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
+# define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
+# define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
+# define RPL_NAMREPLY(channelname, nick, users) (":localhost 353 " + nick + " = " + channelname + " :" + users) 
+# define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
 #endif
