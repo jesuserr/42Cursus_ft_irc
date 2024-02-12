@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/11 21:09:18 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/12 08:14:02 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ bool IRCChannel::DelUser(std::string user)
 	it = std::find(_users.begin(), _users.end(), user);
 	if (it != std::end(_users))
 	{
+		DelOper(user);
 		_users.erase(it);
 		return true;
 	}
