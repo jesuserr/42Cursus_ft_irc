@@ -13,7 +13,8 @@
 NAME = ircserv
 SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp \
 IRCChannel.cpp IRCCoreCommandsUtils.cpp \
-commands/pass.cpp commands/nick.cpp commands/user.cpp commands/ping.cpp commands/join.cpp
+commands/pass.cpp commands/nick.cpp commands/user.cpp commands/ping.cpp \
+commands/join.cpp commands/privmsg.cpp
 PATH_SRCS = ./srcs/
 PATH_OBJS = ./srcs/objs/
 PATH_DEPS = ./srcs/objs/

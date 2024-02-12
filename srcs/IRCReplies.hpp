@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/11 20:25:02 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:42:51 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,10 @@
 // GENERIC ERROR messages
 # define ERR_NOTREGISTERED() (":localhost 451 :You have not registered")
 # define ERR_UNKNOWNCOMMAND(client, command) (":localhost 421 " + client + " " + command + " :Unknown command")
+
+// PRIVMSG messages
+# define ERR_NOSUCHNICK(client, nick) (":localhost 401 " + client + " " + nick + " :No such nick/channel")
+# define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
+# define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 
 #endif

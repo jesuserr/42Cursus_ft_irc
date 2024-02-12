@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/11 21:12:06 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/12 10:33:49 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		ping(client, param);
 	else if (cmd.find("JOIN") != std::string::npos && cmd.size() == 4)
 		join(client, param);
+	else if (cmd.find("PRIVMSG") != std::string::npos && cmd.size() == 7)
+		privmsg(client, param);
 	else if (!client.getClientRegistration())
 		client.SendIRCMsg(ERR_NOTREGISTERED());
 	else if (client.getClientRegistration())
