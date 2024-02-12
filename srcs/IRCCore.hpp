@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 10:34:57 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 11:10:16 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class IRCCore
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
+		std::string removeTabsAndMultipleSpaces(std::string line);
 		
 	public:	
 		IRCCore(std::string pass, mapClients &clients);

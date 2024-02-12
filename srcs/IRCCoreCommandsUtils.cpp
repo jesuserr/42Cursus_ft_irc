@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:35:23 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/11 14:08:48 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 11:48:51 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void IRCCore::welcomeMessages(IRCClient &client)
 	client.SendIRCMsg(RPL_MOTD(client.getUsername(), " "));
 	client.SendIRCMsg(RPL_MOTD(client.getUsername(), "███▓▒░░    Remember to have fun!!    ░░▒▓███"));
 	client.SendIRCMsg(RPL_ENDOFMOTD(client.getUsername()));
+}
+
+std::string IRCCore::removeTabsAndMultipleSpaces(std::string line)
+{
+	std::replace(line.begin(), line.end(), '\t', ' ');
+	std::string result;
+	char lastChar = 0;
+	for (std::string::iterator it = line.begin(); it != line.end(); ++it)
+	{
+		if (!(*it == ' ' && lastChar == ' '))
+		{
+			result += *it;
+			lastChar = *it;
+		}
+	}
+	return (result);
 }
