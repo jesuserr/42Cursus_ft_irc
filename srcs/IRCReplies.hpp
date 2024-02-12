@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 14:02:59 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/12 18:05:17 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@
 # define ERR_NOSUCHNICK(client, nick) (":localhost 401 " + client + " " + nick + " :No such nick/channel")
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
+# define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
 
 // JOIN messages
 # define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
