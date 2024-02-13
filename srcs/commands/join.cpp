@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 11:56:42 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:04:36 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 	if (it != _channels.end())
 	{
 		if (it->second.getKey().empty() || it->second.getKey() == key)
+		{
+			std::string userId = USER_ID(client.getNickname(), client.getUsername());
 			it->second.addUser(client.getNickname());
+			it->second.sendMsg(client, RPL_JOINCHANNEL(userId, channel));
+		}
 		else
 		{
 			client.SendIRCMsg(ERR_BADCHANNELKEY(channel));

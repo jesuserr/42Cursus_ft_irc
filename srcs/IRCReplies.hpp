@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 22:35:23 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:13:22 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,18 @@
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
 //PRIVMSG messages - channel
-# define RPL_PRIVMSGCHANNEL(nick, channelname, msg) (":" + nick + "!" + nick + "@localhost PRIVMSG " + channelname + " " + msg)
+# define RPL_PRIVMSGCHANNEL(userid, channelname, msg) (userid + " PRIVMSG " + channelname + " " + msg)
+# define ERR_CANNOTSENDTOCHAN(channelname) (":localhost 404 " + channelname + " :Cannot send to channel")
 
 // JOIN messages
 # define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
-# define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
-# define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
 # define RPL_NAMREPLY(channelname, nick, users) (":localhost 353 " + nick + " = " + channelname + " :" + users) 
 # define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
 # define ERR_BADCHANNELKEY(channelname) (":localhost 475 " + channelname + " :Cannot join channel (+k)")
 # define ERR_NOSUCHCHANNEL(channelname) (":localhost 403 " + channelname + " :No such channel")
+
+// TOPIC messages
+# define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
+# define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
+
 #endif

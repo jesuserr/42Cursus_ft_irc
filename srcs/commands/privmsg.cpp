@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 10:12:28 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:12:30 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,19 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 	std::string message;	
 	if (privmsgParsing(removeTabsAndMultipleSpaces(parameters), &target, &message))
 	{
-		//Send msg to channnel
 		if (!target.empty() && (target.at(0) == '#' || target.at(0) == '@') && _channels.find(target) != _channels.end())
 		{
-			_channels.find(target)->second.sendMsg(client, message);
+			mapChannelList::iterator itc = _channels.find(target);
+			mapChannelUsers users = itc->second.getUsers();
+			if (std::find(users.begin(), users.end(), client.getNickname()) != users.end())
+			{
+				std::string userId = USER_ID(client.getNickname(), client.getUsername());
+				itc->second.sendMsg(client, RPL_PRIVMSGCHANNEL(userId, target, message));
+			}
+			else 
+				client.SendIRCMsg(ERR_CANNOTSENDTOCHAN(target));
 			return;
 		}
-		//send msg to user
 		for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
 		{
 			if (it->second.getNickname() == target)
