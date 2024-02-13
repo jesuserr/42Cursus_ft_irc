@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 14:12:30 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 		if (!target.empty() && (target.at(0) == '#' || target.at(0) == '@') && _channels.find(target) != _channels.end())
 		{
 			mapChannelList::iterator itc = _channels.find(target);
-			mapChannelUsers users = itc->second.getUsers();
+			vectorChannelUsers users = itc->second.getUsers();
 			if (std::find(users.begin(), users.end(), client.getNickname()) != users.end())
 			{
 				std::string userId = USER_ID(client.getNickname(), client.getUsername());

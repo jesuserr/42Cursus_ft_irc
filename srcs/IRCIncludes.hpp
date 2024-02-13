@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCIncludes.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 10:11:48 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 class IRCChannel;
 class IRCClient;
-typedef std::vector<std::string> mapChannelUsers;
+typedef std::vector<std::string> vectorChannelUsers;
 typedef std::map<int, IRCClient> mapClients;
 typedef std::map<std::string, IRCChannel> mapChannelList; 
 # include "IRCClient.hpp"

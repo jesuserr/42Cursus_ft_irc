@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 22:45:07 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ private:
 	std::string _name;
 	std::string _key;
 	std::string _topic;
-	mapChannelUsers _users;
-	mapChannelUsers _operators;
+	vectorChannelUsers _users;
+	vectorChannelUsers _operators;
 	mapClients &_clients;
 	IRCChannel();
 public:
@@ -36,8 +36,8 @@ public:
 	bool delUser(std::string user);
 	bool addOper(std::string oper);
 	bool delOper(std::string oper);
-	mapChannelUsers getUsers(void);
-	mapChannelUsers getOpers(void);
+	vectorChannelUsers getUsers(void);
+	vectorChannelUsers getOpers(void);
 	std::string getListUsers(void);
 	void sendMsg(IRCClient &Client, std::string msg);
 };

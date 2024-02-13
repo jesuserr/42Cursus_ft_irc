@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 14:07:41 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool IRCChannel::addUser(std::string user)
 
 bool IRCChannel::delUser(std::string user)
 {
-	mapChannelUsers::iterator it;
+	vectorChannelUsers::iterator it;
 	
 	it = std::find(_users.begin(), _users.end(), user);
 	if (it != _users.end())
@@ -58,7 +58,7 @@ bool IRCChannel::addOper(std::string oper)
 
 bool IRCChannel::delOper(std::string oper)
 {
-	mapChannelUsers::iterator it;
+	vectorChannelUsers::iterator it;
 	
 	it = std::find(_operators.begin(), _operators.end(), oper);
 	if (it != _operators.end())
@@ -89,12 +89,12 @@ std::string IRCChannel::getTopic(void)
 	return _topic;
 }
 
-mapChannelUsers IRCChannel::getUsers(void)
+vectorChannelUsers IRCChannel::getUsers(void)
 {
 	return _users;
 }
 
-mapChannelUsers IRCChannel::getOpers(void)
+vectorChannelUsers IRCChannel::getOpers(void)
 {
 	return _operators;
 }
@@ -102,7 +102,7 @@ mapChannelUsers IRCChannel::getOpers(void)
 std::string IRCChannel::getListUsers(void)
 {
 	std::string users;
-	mapChannelUsers::iterator it = _operators.begin();
+	vectorChannelUsers::iterator it = _operators.begin();
 	while (it != _operators.end())
 	{
 		users += "@";
@@ -125,7 +125,7 @@ std::string IRCChannel::getListUsers(void)
 
 void IRCChannel::sendMsg(IRCClient &client, std::string msg)
 {
-	for (mapChannelUsers::iterator it = _users.begin(); it != _users.end(); it++)
+	for (vectorChannelUsers::iterator it = _users.begin(); it != _users.end(); it++)
 	{
 		if (*it != client.getNickname())
 			for (mapClients::iterator itc = _clients.begin(); itc != _clients.end() ; itc++)
