@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 09:40:49 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 12:06:16 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients
 
 bool IRCChannel::addUser(std::string user)
 {
-	if (std::find(_users.begin(), _users.end(), user) == std::end(_users))
+	if (std::find(_users.begin(), _users.end(), user) == _users.end())
 	{
 		_users.push_back(user);
 		return true;
@@ -37,7 +37,7 @@ bool IRCChannel::delUser(std::string user)
 	mapChannelUsers::iterator it;
 	
 	it = std::find(_users.begin(), _users.end(), user);
-	if (it != std::end(_users))
+	if (it != _users.end())
 	{
 		delOper(user);
 		_users.erase(it);
@@ -48,7 +48,7 @@ bool IRCChannel::delUser(std::string user)
 
 bool IRCChannel::addOper(std::string oper)
 {
-	if (std::find(_operators.begin(), _operators.end(), oper) == std::end(_operators))
+	if (std::find(_operators.begin(), _operators.end(), oper) == _operators.end())
 	{
 		_operators.push_back(oper);
 		return true;
@@ -61,7 +61,7 @@ bool IRCChannel::delOper(std::string oper)
 	mapChannelUsers::iterator it;
 	
 	it = std::find(_operators.begin(), _operators.end(), oper);
-	if (it != std::end(_operators))
+	if (it != _operators.end())
 	{
 		_operators.erase(it);
 		return true;
@@ -113,7 +113,7 @@ std::string IRCChannel::getListUsers(void)
 	it = _users.begin();
 	while (it != _users.end())
 	{
-		if (std::find(_operators.begin(), _operators.end(), *it) == std::end(_operators))
+		if (std::find(_operators.begin(), _operators.end(), *it) == _operators.end())
 		{
 			users += *it;
 			users += " ";
