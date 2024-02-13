@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   user.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:44:02 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 11:32:13 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:36:38 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ bool userParsing(std::string parameters, std::string *parsedParameters)
 
 void IRCCore::user(IRCClient &client, std::string parameters)
 {
-	if (!client.getClientAuthentication())
-		return;
 	if (client.getClientRegistration())
  	{
 		client.SendIRCMsg(ERR_ALREADYREGISTERED(client.getUsername()));

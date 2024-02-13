@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 14:04:36 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:36:46 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 void IRCCore::join(IRCClient &client, std::string parameters)
 {
-	if (!client.getClientRegistration())
-	{
-		client.SendIRCMsg(ERR_NOTREGISTERED());
-		return;
-	}
 	std::string channels, keys;
 	if (parameters.find(" ") != std::string::npos)
 	{

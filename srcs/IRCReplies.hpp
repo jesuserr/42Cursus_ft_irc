@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 14:13:22 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 22:03:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,6 @@
 # define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
 # define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
 
+// MODE messages
+# define ERR_CHANOPRIVSNEEDED(channelname) (":localhost 482 " + channelname + " :You're not channel operator")
 #endif

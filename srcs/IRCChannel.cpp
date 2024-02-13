@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:18:25 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,18 @@ void IRCChannel::sendMsg(IRCClient &client, std::string msg)
 					itc->second.SendIRCMsg(msg);
 			}
 	}
+}
+
+bool IRCChannel::checkOper(std::string oper)
+{
+	if (std::find(_operators.begin(), _operators.end(), oper) != _operators.end())
+		return true;
+	return false;
+}
+
+bool IRCChannel::checkUser(std::string user)
+{
+	if (std::find(_users.begin(), _users.end(), user) != _users.end())
+		return true;
+	return false;
 }

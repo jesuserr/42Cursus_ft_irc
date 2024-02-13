@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 23:07:35 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:35:22 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,16 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		user(client, param);
 	else if (cmd.find("LEAKSCHECKEXIT") != std::string::npos && cmd.size() == 14)
 		throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");		
+	else if (!client.getClientRegistration())
+		client.SendIRCMsg(ERR_NOTREGISTERED());
 	else if (cmd.find("PING") != std::string::npos && cmd.size() == 4)
 		ping(client, param);
 	else if (cmd.find("JOIN") != std::string::npos && cmd.size() == 4)
 		join(client, param);
 	else if (cmd.find("PRIVMSG") != std::string::npos && cmd.size() == 7)
 		privmsg(client, param);
-	else if (!client.getClientRegistration())
-		client.SendIRCMsg(ERR_NOTREGISTERED());
+	else if (cmd.find("MODE") != std::string::npos && cmd.size() == 4)
+		mode(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:16:01 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ public:
 	vectorChannelUsers getOpers(void);
 	std::string getListUsers(void);
 	void sendMsg(IRCClient &Client, std::string msg);
+	bool checkUser(std::string user);
+	bool checkOper(std::string oper);
 };
 
 #endif

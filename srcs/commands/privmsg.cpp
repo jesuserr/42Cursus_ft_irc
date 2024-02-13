@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/13 21:36:27 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ bool privmsgParsing(std::string parameters, std::string *target, std::string *me
 
 void IRCCore::privmsg(IRCClient &client, std::string parameters)
 {
-	if (!client.getClientRegistration())
-	{
-		client.SendIRCMsg(ERR_NOTREGISTERED());
-		return;
-	}
 	std::string target;
 	std::string message;	
 	if (privmsgParsing(removeTabsAndMultipleSpaces(parameters), &target, &message))
