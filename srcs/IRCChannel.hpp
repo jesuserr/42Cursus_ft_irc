@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 13:24:57 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:45:07 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ private:
 	std::string _topic;
 	mapChannelUsers _users;
 	mapChannelUsers _operators;
+	mapClients &_clients;
 	IRCChannel();
 public:
-	IRCChannel(std::string name);
+	IRCChannel(std::string name, mapClients &clients);
 	~IRCChannel();
 	void setKey(std::string key);
 	std::string getKey(void);
@@ -38,6 +39,7 @@ public:
 	mapChannelUsers getUsers(void);
 	mapChannelUsers getOpers(void);
 	std::string getListUsers(void);
+	void sendMsg(IRCClient &Client, std::string msg);
 };
 
 #endif

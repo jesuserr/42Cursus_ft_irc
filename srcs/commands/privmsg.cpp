@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 19:33:02 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:12:28 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool privmsgParsing(std::string parameters, std::string *target, std::string *me
 	std::getline(ss, *target, ' ');
 	std::getline(ss, *message, '\0');
 	if (target->empty() || message->empty() || (*message)[0] != ':' || \
-	(target->find_first_not_of(VALID_USER_CHARSET) != std::string::npos))
+	(target->find_first_not_of(VALID_CHANNEL_CHARSET) != std::string::npos))
 		return (false);
 	return (true);
 }
@@ -36,6 +36,13 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 	std::string message;	
 	if (privmsgParsing(removeTabsAndMultipleSpaces(parameters), &target, &message))
 	{
+		//Send msg to channnel
+		if (!target.empty() && (target.at(0) == '#' || target.at(0) == '@') && _channels.find(target) != _channels.end())
+		{
+			_channels.find(target)->second.sendMsg(client, message);
+			return;
+		}
+		//send msg to user
 		for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
 		{
 			if (it->second.getNickname() == target)

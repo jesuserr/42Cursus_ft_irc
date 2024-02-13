@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/09 10:41:58 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:14:19 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define MAXFDS 32000
 # define MAXLISTENQUEUE 32000
-# define BUFFERSIZE 1024
+# define BUFFERSIZE 8024
 
 class IRCErrorLog;
 

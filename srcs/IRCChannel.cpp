@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 14:15:36 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 09:40:49 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ IRCChannel::~IRCChannel()
 {
 }
 
-IRCChannel::IRCChannel(std::string name)
+IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients)
 {
 	_name = name;
+	
 }
 
 bool IRCChannel::addUser(std::string user)
@@ -120,4 +121,16 @@ std::string IRCChannel::getListUsers(void)
 		it++;
 	}
 	return users;
+}
+
+void IRCChannel::sendMsg(IRCClient &client, std::string msg)
+{
+	for (mapChannelUsers::iterator it = _users.begin(); it != _users.end(); it++)
+	{
+		for (mapClients::iterator itc = _clients.begin(); itc != _clients.end() ; itc++)
+		{
+			if (*it != client.getNickname() && itc->second.getNickname() == *it)
+				itc->second.SendIRCMsg(RPL_PRIVMSGCHANNEL(client.getNickname(), _name, msg));
+		}
+	}
 }

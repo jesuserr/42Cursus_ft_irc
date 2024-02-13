@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/12 14:17:49 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 10:10:49 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void IRCCore::join(IRCClient &client, std::string parameters)
 
 void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 {
+	if (!channel.empty() && channel.at(0) != '#' && channel.at(0) != '@')
+	{
+		client.SendIRCMsg(ERR_NOSUCHCHANNEL(channel));
+		return;
+	}
 	mapChannelList::iterator it = _channels.find(channel);
 	if (it != _channels.end())
 	{
@@ -59,12 +64,13 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 			it->second.addUser(client.getNickname());
 		else
 		{
-			//falta implmentar error de passwqord erroneo
+			client.SendIRCMsg(ERR_BADCHANNELKEY(channel));
+			return;
 		}
 	}
 	else
 	{
-		IRCChannel t(channel);
+		IRCChannel t(channel, _clients);
 		t.addUser(client.getNickname());
 		t.addOper(client.getNickname());
 		t.setKey(key);

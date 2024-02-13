@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 18:05:17 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/12 22:35:23 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
+//PRIVMSG messages - channel
+# define RPL_PRIVMSGCHANNEL(nick, channelname, msg) (":" + nick + "!" + nick + "@localhost PRIVMSG " + channelname + " " + msg)
 
 // JOIN messages
 # define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
@@ -59,4 +61,6 @@
 # define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
 # define RPL_NAMREPLY(channelname, nick, users) (":localhost 353 " + nick + " = " + channelname + " :" + users) 
 # define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
+# define ERR_BADCHANNELKEY(channelname) (":localhost 475 " + channelname + " :Cannot join channel (+k)")
+# define ERR_NOSUCHCHANNEL(channelname) (":localhost 403 " + channelname + " :No such channel")
 #endif
