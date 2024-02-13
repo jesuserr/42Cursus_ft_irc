@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 09:38:23 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/13 11:58:29 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ bool IRCSocket::IRCPoll(mapClients &mapdata)
 	if (!_listening)
 		return _log->Error("You have not set listening mode.");
 	this->IRCSend(mapdata);
-	if (poll(_fds, _nfds, 100) < 0)
+	if (poll(_fds, _nfds, -1) < 0)
 		return _log->Error("Unable to poll the connections.");
 	int new_sd = accept(_fds[0].fd, NULL, NULL);
 	while (_fds[0].revents != 0 && new_sd != -1)
