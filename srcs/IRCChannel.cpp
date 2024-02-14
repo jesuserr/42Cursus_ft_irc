@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 16:39:50 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 22:55:54 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,23 @@ bool IRCChannel::checkUser(std::string user)
 void IRCChannel::setTopicRestriction(bool mode)
 {
 	_topicRestriction = mode;
+}
+
+void IRCChannel::changeUserName(std::string oldName, std::string newName)
+{
+	vectorChannelUsers::iterator it;
+	
+	it = std::find(_users.begin(), _users.end(), oldName);
+	if (it != _users.end())
+		*it = newName;
+}
+
+void IRCChannel::changeOperatorName(std::string oldName, std::string newName)
+{
+	vectorChannelUsers::iterator it;
+		
+	it = std::find(_operators.begin(), _operators.end(), oldName);
+	if (it != _operators.end())
+		*it = newName;
 }
 

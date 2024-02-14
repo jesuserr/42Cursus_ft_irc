@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 16:39:45 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 23:48:14 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ public:
 	bool checkUser(std::string user);
 	bool checkOper(std::string oper);
 	void setTopicRestriction(bool mode);
+	void changeUserName(std::string oldName, std::string newName);
+	void changeOperatorName(std::string oldName, std::string newName);
 };
 
 #endif

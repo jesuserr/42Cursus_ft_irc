@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   nick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 21:36:13 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/15 00:08:26 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ bool nickAlreadyInUse(mapClients &_clients, std::string newNick)
 
 void IRCCore::nick(IRCClient &client, std::string newNick)
 {
+	bool userInChannel = false;
+	
 	if (!client.getClientAuthentication())
 		return;
 	if (newNick.empty())
@@ -37,10 +39,27 @@ void IRCCore::nick(IRCClient &client, std::string newNick)
 		client.SendIRCMsg(ERR_NICKNAMEINUSE(client.getUsername(), newNick));
 	else if (newNick != client.getNickname())
 	{
-		std::string userId = USER_ID(client.getNickname(), client.getUsername());
-		client.SendIRCMsg(RPL_NICK(userId, newNick));
-		client.setNickname(newNick);
-		if (!client.getRealname().empty() && !client.getClientRegistration())		
+		for (mapChannelList::iterator it = _channels.begin(); it != _channels.end(); it++)
+		{
+			if (it->second.checkUser(client.getNickname()))
+			{
+				if (!userInChannel)
+				{
+					std::string userId = USER_ID(client.getNickname(), client.getUsername());
+					it->second.sendMsg(client, RPL_NICK(userId, newNick), true);
+					userInChannel = true;
+				}
+				it->second.changeUserName(client.getNickname(), newNick);
+				it->second.changeOperatorName(client.getNickname(), newNick);				
+			}
+		}
+		if (!userInChannel)
+		{
+			std::string userId = USER_ID(client.getNickname(), client.getUsername());
+			client.SendIRCMsg(RPL_NICK(userId, newNick));
+		}
+		client.setNickname(newNick);		
+		if (!client.getRealname().empty() && !client.getClientRegistration())
 		{
 			client.setClientRegistration(true);
 			welcomeMessages(client);
