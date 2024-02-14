@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/14 11:37:29 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:19:04 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,6 @@
 # define ERR_CHANOPRIVSNEEDED(channelname) (":localhost 482 " + channelname + " :You're not channel operator")
 # define ERR_BADCHANMASK(channelname) (":localhost 476 " + channelname + " :Bad Channel Mask")
 # define ERR_UNKNOWNMODE(mode, channelname) ("localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
+# define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
+
 #endif

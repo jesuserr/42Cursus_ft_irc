@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 21:36:27 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:38:48 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 			if (std::find(users.begin(), users.end(), client.getNickname()) != users.end())
 			{
 				std::string userId = USER_ID(client.getNickname(), client.getUsername());
-				itc->second.sendMsg(client, RPL_PRIVMSGCHANNEL(userId, target, message));
+				itc->second.sendMsg(client, RPL_PRIVMSGCHANNEL(userId, target, message), false);
 			}
 			else 
 				client.SendIRCMsg(ERR_CANNOTSENDTOCHAN(target));

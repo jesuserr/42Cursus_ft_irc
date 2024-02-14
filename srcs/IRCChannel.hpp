@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 21:16:01 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:39:45 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ private:
 	vectorChannelUsers _users;
 	vectorChannelUsers _operators;
 	mapClients &_clients;
+	bool _topicRestriction;
 	IRCChannel();
 public:
 	IRCChannel(std::string name, mapClients &clients);
@@ -39,9 +40,10 @@ public:
 	vectorChannelUsers getUsers(void);
 	vectorChannelUsers getOpers(void);
 	std::string getListUsers(void);
-	void sendMsg(IRCClient &Client, std::string msg);
+	void sendMsg(IRCClient &Client, std::string msg, bool sendtome = true);
 	bool checkUser(std::string user);
 	bool checkOper(std::string oper);
+	void setTopicRestriction(bool mode);
 };
 
 #endif

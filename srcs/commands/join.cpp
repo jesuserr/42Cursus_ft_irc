@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 21:36:46 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:04:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 	if (it != _channels.end())
 	{
 		if (it->second.getKey().empty() || it->second.getKey() == key)
-		{
-			std::string userId = USER_ID(client.getNickname(), client.getUsername());
 			it->second.addUser(client.getNickname());
-			it->second.sendMsg(client, RPL_JOINCHANNEL(userId, channel));
-		}
 		else
 		{
 			client.SendIRCMsg(ERR_BADCHANNELKEY(channel));
@@ -77,7 +73,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 	}
 	it = _channels.find(channel);
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
-	client.SendIRCMsg(RPL_JOINCHANNEL(userId, channel));
+	it->second.sendMsg(client, RPL_JOINCHANNEL(userId, channel));
 	if (!it->second.getTopic().empty())
 		client.SendIRCMsg(RPL_TOPIC(channel, it->second.getTopic()));
 	client.SendIRCMsg(RPL_NAMREPLY(channel, client.getNickname(), _channels.find(channel)->second.getListUsers()));

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 12:30:51 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:22:18 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		flags.erase(0, 1);
 		while (!flags.empty())
 		{
-			if (flags.at(0) == 'o')
+			if (std::tolower(flags.at(0)) == 'o')
 				modePluso(client, channel, parameters);
-			else if (flags.at(0) == 'i')
+			else if (std::tolower(flags.at(0)) == 'i')
 				modePlusi(client, channel, parameters);
+			else if (std::tolower(flags.at(0)) == 't')
+				modePlust(client, channel);
 			else 
 				client.SendIRCMsg(ERR_UNKNOWNMODE(flags.substr(0, 1), channel));
 			flags.erase(0, 1);
@@ -73,15 +75,31 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		flags.erase(0, 1);
 		while (!flags.empty())
 		{
-			if (flags.at(0) == 'o')
+			if (std::tolower(flags.at(0)) == 'o')
 				modeMinuso(client, channel, parameters);
-			else if (flags.at(0) == 'i')
+			else if (std::tolower(flags.at(0)) == 'i')
 				modeMinusi(client, channel, parameters);
+			else if (std::tolower(flags.at(0)) == 't')
+				modeMinust(client, channel);
 			else 
 				client.SendIRCMsg(ERR_UNKNOWNMODE(flags.substr(0, 1), channel));
 			flags.erase(0, 1);
 		}
 	}
+}
+
+void IRCCore::modePlust(IRCClient &client, std::string channel)
+{
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	_channels.find(channel)->second.setTopicRestriction(true);
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+t", ""));
+}
+
+void IRCCore::modeMinust(IRCClient &client, std::string channel)
+{
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	_channels.find(channel)->second.setTopicRestriction(false);
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-t", ""));
 }
 
 void IRCCore::modePluso(IRCClient &client, std::string channel, std::string parameters)

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 21:18:25 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:39:50 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ IRCChannel::~IRCChannel()
 IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients)
 {
 	_name = name;
+	_topicRestriction = false;
 	
 }
 
@@ -123,11 +124,11 @@ std::string IRCChannel::getListUsers(void)
 	return users;
 }
 
-void IRCChannel::sendMsg(IRCClient &client, std::string msg)
+void IRCChannel::sendMsg(IRCClient &client, std::string msg, bool sendtome)
 {
 	for (vectorChannelUsers::iterator it = _users.begin(); it != _users.end(); it++)
 	{
-		if (*it != client.getNickname())
+		if (*it != client.getNickname() || sendtome == true)
 			for (mapClients::iterator itc = _clients.begin(); itc != _clients.end() ; itc++)
 			{
 				if (itc->second.getNickname() == *it)
@@ -149,3 +150,9 @@ bool IRCChannel::checkUser(std::string user)
 		return true;
 	return false;
 }
+
+void IRCChannel::setTopicRestriction(bool mode)
+{
+	_topicRestriction = mode;
+}
+
