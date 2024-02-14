@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 21:35:22 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 10:48:10 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
-	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
+	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234

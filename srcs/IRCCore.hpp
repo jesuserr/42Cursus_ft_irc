@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 21:14:27 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:43:34 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ class IRCCore
 		void joinc(IRCClient &client, std::string channel, std::string key);
 		void privmsg(IRCClient &client, std::string parameters);
 		void mode(IRCClient &client, std::string parameters);
-		
+		void modePluso(IRCClient &client, std::string channel, std::string parameter);
+		void modeMinuso(IRCClient &client, std::string channel, std::string parameter);
+		void modePlusi(IRCClient &client, std::string channel, std::string parameter);
+		void modeMinusi(IRCClient &client, std::string channel, std::string parameter);
+
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
