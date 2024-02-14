@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 11:47:29 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:30:51 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(channel));
 		return;
 	}
-	if (parameters.size() == 1 || parameters.at(1) == ' ' || (parameters.at(0) != '+' && parameters.at(0) != '-'))
+	if (parameters.size() == 1 || parameters.at(1) == ' ' || (parameters.at(0) != '+' && parameters.at(0) != '-') || (parameters.find("+") != std::string::npos && parameters.find("-") != std::string::npos))
 	{
 		client.SendIRCMsg(ERR_BADCHANMASK(channel));
 		return;
