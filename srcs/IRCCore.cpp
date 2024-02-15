@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 11:00:29 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:22:17 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,16 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		mode(client, param);
 	else if (cmd.find("PART") != std::string::npos && cmd.size() == 4)
 		part(client, param);
+	else if (cmd.find("QUIT") != std::string::npos && cmd.size() == 4)
+		quit(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
+	std::cout << "number of clients: " << _clients.size() << std::endl;
+	std::cout << "number of channels: " << _channels.size() << std::endl;
 	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234
 // /RAWLOG OPEN debug.log
+// /connect -nocap DALnet 6667
