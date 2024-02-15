@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 22:55:54 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:24:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ IRCChannel::~IRCChannel()
 IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients)
 {
 	_name = name;
-	_topicRestriction = false;
-	
+	_flags.clear();
 }
 
 bool IRCChannel::addUser(std::string user)
@@ -151,11 +150,6 @@ bool IRCChannel::checkUser(std::string user)
 	return false;
 }
 
-void IRCChannel::setTopicRestriction(bool mode)
-{
-	_topicRestriction = mode;
-}
-
 void IRCChannel::changeUserName(std::string oldName, std::string newName)
 {
 	vectorChannelUsers::iterator it;
@@ -172,5 +166,34 @@ void IRCChannel::changeOperatorName(std::string oldName, std::string newName)
 	it = std::find(_operators.begin(), _operators.end(), oldName);
 	if (it != _operators.end())
 		*it = newName;
+}
+
+bool IRCChannel::setFlag(char flag)
+{
+	if (checkFlag(flag))
+		return true;
+	_flags += std::tolower(flag);
+	return true;
+}
+
+bool IRCChannel::removeFlag(char flag)
+{
+	flag = std::tolower(flag);
+	if (_flags.find(flag) == std::string::npos)
+		return false;
+	_flags.erase(_flags.find(flag), 1);
+	return true;
+}
+
+bool IRCChannel::checkFlag(char flag)
+{
+	if (_flags.find(std::tolower(flag)) != std::string::npos)
+		return true;
+	return false;	
+}
+
+std::string IRCChannel::getFlags(void)
+{
+	return _flags;
 }
 

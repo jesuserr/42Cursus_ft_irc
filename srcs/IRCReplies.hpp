@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/14 21:17:48 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:52:06 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@
 // MODE messages
 # define ERR_CHANOPRIVSNEEDED(channelname) (":localhost 482 " + channelname + " :You're not channel operator")
 # define ERR_BADCHANMASK(channelname) (":localhost 476 " + channelname + " :Bad Channel Mask")
-# define ERR_UNKNOWNMODE(mode, channelname) ("localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
+# define ERR_UNKNOWNMODE(mode, channelname) (":localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
 # define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
+# define RPL_CHANNELMODEISBYSERVER(channelname, mode, parameters) (":localhost 324 MODE " + channelname + " +" + mode + " " + parameters)
 
 #endif
