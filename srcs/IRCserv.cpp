@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 10:20:58 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:36:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ int main(int argc, char **argv)
 	try
 	{
 		while (_socket.IRCPoll(_clients))
+		{
+			std::cout << "number of clients: " << _clients.size() << std::endl;
 			_irc.run();
+		}
 	}
 	catch(const std::exception& e)
 	{
