@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:11:46 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/15 19:41:14 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:56:43 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void IRCCore::quit(IRCClient &client, std::string message)
 		{
 			if (it->second.getNickname() == client.getNickname())
 			{
-				//_clients.erase(it);		// this deletion provokes a segfault
 				close(it->first);
+				//_clients.erase(it->first);		// this deletion provokes a segfault
 				break;
 			}
 		}

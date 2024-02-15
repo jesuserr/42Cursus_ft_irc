@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 11:58:29 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:01:56 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool IRCSocket::IRClisten(void)
 	return false;
 }
 
-bool IRCSocket::IRCPoll(mapClients &mapdata)
+bool IRCSocket::IRCPoll(mapClients &mapdata, vectorChannelUsers &_usersdisconnected)
 {
 	char buffer[BUFFERSIZE];
 	int rc;
@@ -62,7 +62,7 @@ bool IRCSocket::IRCPoll(mapClients &mapdata)
 
 	if (!_listening)
 		return _log->Error("You have not set listening mode.");
-	this->IRCSend(mapdata);
+	this->IRCSend(mapdata, _usersdisconnected);
 	if (poll(_fds, _nfds, -1) < 0)
 		return _log->Error("Unable to poll the connections.");
 	int new_sd = accept(_fds[0].fd, NULL, NULL);
@@ -85,12 +85,12 @@ bool IRCSocket::IRCPoll(mapClients &mapdata)
 			mapdata[_fds[c].fd].Getin().insert(mapdata[_fds[c].fd].Getin().size(), buffer, rc);
 		if (rc < 0 && errno != EWOULDBLOCK)
 		{
-			deleteSDMAP(mapdata, c);
+			deleteSDMAP(mapdata, c, _usersdisconnected);
 			continue;
 		}
 		else if (rc == 0)
 		{
-			deleteSDMAP(mapdata, c);
+			deleteSDMAP(mapdata, c, _usersdisconnected);
 			continue;
 		}
 	}
@@ -99,10 +99,14 @@ bool IRCSocket::IRCPoll(mapClients &mapdata)
 	return true;
 }
 
-void IRCSocket::deleteSDMAP(mapClients &mapdata, int c)
+void IRCSocket::deleteSDMAP(mapClients &mapdata, int c, vectorChannelUsers &_usersdisconnected)
 {
 	if (mapdata.find(_fds[c].fd) != mapdata.end())
+	{
+		if (!mapdata.find(_fds[c].fd)->second.getNickname().empty() &&std::find(_usersdisconnected.begin(), _usersdisconnected.end(), mapdata.find(_fds[c].fd)->second.getNickname()) == _usersdisconnected.end())
+			_usersdisconnected.insert(_usersdisconnected.end(), mapdata.find(_fds[c].fd)->second.getNickname() + ":" + mapdata.find(_fds[c].fd)->second.getUsername());	
 		mapdata.erase(mapdata.find(_fds[c].fd));
+	}
 	close(_fds[c].fd);
 	_fds[c].fd = -1;
 	_compressfds = true;
@@ -125,7 +129,7 @@ void IRCSocket::compressFDS(void)
 	_compressfds = false;
 }
 
-bool IRCSocket::IRCSend(mapClients &mapdata)
+bool IRCSocket::IRCSend(mapClients &mapdata, vectorChannelUsers &_usersdisconnected)
 {
 	int sd;
 	int currentsize = _nfds;
@@ -137,7 +141,7 @@ bool IRCSocket::IRCSend(mapClients &mapdata)
 			sd = send(_fds[c].fd, mapdata[_fds[c].fd].Getout().c_str(), mapdata[_fds[c].fd].Getout().size(), 0);
 			if (sd < 0)
 			{
-				deleteSDMAP(mapdata, c);
+				deleteSDMAP(mapdata, c, _usersdisconnected);
 				continue;
 			}
 			else 

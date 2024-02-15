@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/13 10:14:19 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/15 21:39:40 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ class IRCSocket
 		bool _listening;
 		bool _compressfds;
 		void compressFDS(void);
-		void deleteSDMAP(mapClients &mapdata, int c);
+		void deleteSDMAP(mapClients &mapdata, int c, vectorChannelUsers &_usersdisconnected);
 
 	public:
 		~IRCSocket();
 		IRCSocket(int port, IRCErrorLog *log);
 		bool IRClisten(void);
-		bool IRCPoll(mapClients &mapdata);
-		bool IRCSend(mapClients &mapdata);
+		bool IRCPoll(mapClients &mapdata, vectorChannelUsers &_usersdisconnected);
+		bool IRCSend(mapClients &mapdata, vectorChannelUsers &_usersdisconnected);
 };
 
 #endif

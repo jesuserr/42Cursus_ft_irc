@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 19:59:38 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:52:31 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,27 @@ std::string IRCCore::trim(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
-IRCCore::IRCCore(std::string pass, mapClients &clients) : _clients(clients)
+IRCCore::IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected) : _clients(clients), _usersdisconnected(usersdisconnected)
 {
 	_password = pass;
 	_startingTime = obtainStartingTime();
 }
 
+void IRCCore::quitDisconnectedUsers(void)
+{
+	IRCClient t;
+	while (_usersdisconnected.size())
+	{
+		t.setNickname(_usersdisconnected[0].substr(0, _usersdisconnected[0].find(":")));
+		t.setUsername(_usersdisconnected[0].substr(_usersdisconnected[0].find(":") + 1, _usersdisconnected.size()));
+		_usersdisconnected.erase(_usersdisconnected.begin());
+		quit(t, ":User lost connection");
+	}
+}
+
 void IRCCore::run(void)
 {
+	quitDisconnectedUsers();
 	for(mapClients::iterator it = _clients.begin(); it != _clients.end(); ++it) 
 	{
 		while(it->second.Getin().find("\r\n") != std::string::npos)
@@ -78,7 +91,7 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
 	//std::cout << "number of channels: " << _channels.size() << std::endl;
-	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
+	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234

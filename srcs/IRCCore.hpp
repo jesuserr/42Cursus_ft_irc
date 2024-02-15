@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 18:22:47 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:08:47 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class IRCCore
 		IRCCore(IRCCore const &cpy);
 		IRCCore &operator=(IRCCore const &rhs);
 		mapClients &_clients;
+		vectorChannelUsers &_usersdisconnected;
 		mapChannelList _channels;
 		std::string _password;
 		std::string trim(const std::string& str);
@@ -50,9 +51,11 @@ class IRCCore
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
 		std::string removeTabsAndMultipleSpaces(std::string line);
+
+		void quitDisconnectedUsers(void);
 		
 	public:	
-		IRCCore(std::string pass, mapClients &clients);
+		IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected);
 		void run(void);
 		void Command(IRCClient &client, std::string cmd, std::string param);
 };
