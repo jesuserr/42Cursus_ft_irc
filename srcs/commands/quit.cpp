@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 12:11:46 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/15 22:56:43 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/15 23:07:01 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/15 23:07:03 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ void IRCCore::quit(IRCClient &client, std::string message)
 					messagePrinted = true;
 				}
 				it->second.delUser(client.getNickname());
-				it->second.delOper(client.getNickname());
+				it->second.delOper(client.getNickname());	// I think is not needed, ask
 				if (it->second.getUsers().size() == 0)
 					_channels.erase(it++);
 				else
 					++it;
 			}
+			else
+				++it;
 		}
 		for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
 		{

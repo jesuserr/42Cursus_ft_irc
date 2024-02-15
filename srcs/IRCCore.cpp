@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 22:52:31 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/15 23:07:17 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/15 23:08:00 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 
 	//std::cout << "number of channels: " << _channels.size() << std::endl;
 	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
+	std::cout << "number of channels: " << _channels.size() << std::endl;
+	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234
