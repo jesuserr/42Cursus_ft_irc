@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:26:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 19:59:38 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 22:22:45 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
-	//std::cout << "number of channels: " << _channels.size() << std::endl;
+	std::cout << "number of channels: " << _channels.size() << std::endl;
 	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
