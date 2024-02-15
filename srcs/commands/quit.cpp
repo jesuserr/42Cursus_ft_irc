@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:11:46 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/15 18:10:31 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:39:17 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void IRCCore::quit(IRCClient &client, std::string message)
 					++it;
 			}
 		}
+		// this deletion provokes a segfault
 		for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
 		{
 			if (it->second.getNickname() == client.getNickname())
