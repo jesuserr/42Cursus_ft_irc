@@ -6,7 +6,11 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/15 11:52:06 by cescanue         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/15 11:07:24 by jesuserr         ###   ########.fr       */
+>>>>>>> cb0735c5eafc4fe24fb502a98eff5925473a2090
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +77,9 @@
 # define ERR_UNKNOWNMODE(mode, channelname) (":localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
 # define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
 # define RPL_CHANNELMODEISBYSERVER(channelname, mode, parameters) (":localhost 324 MODE " + channelname + " +" + mode + " " + parameters)
+
+// PART messages
+# define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")
+# define RPL_PARTCHANNEL(USER_ID, channelname, message) (USER_ID + " PART " + channelname + " " + message)
 
 #endif
