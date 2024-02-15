@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/14 16:14:10 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/15 10:06:47 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class IRCCore
 		void modeMinusi(IRCClient &client, std::string channel, std::string parameter);
 		void modePlust(IRCClient &client, std::string channel);
 		void modeMinust(IRCClient &client, std::string channel);
+		void part(IRCClient &client, std::string parameters);
 
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);

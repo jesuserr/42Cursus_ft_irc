@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/14 21:17:48 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:07:24 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,9 @@
 # define ERR_BADCHANMASK(channelname) (":localhost 476 " + channelname + " :Bad Channel Mask")
 # define ERR_UNKNOWNMODE(mode, channelname) ("localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
 # define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
+
+// PART messages
+# define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")
+# define RPL_PARTCHANNEL(USER_ID, channelname, message) (USER_ID + " PART " + channelname + " " + message)
 
 #endif
