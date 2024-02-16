@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:06:07 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/16 20:51:55 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/16 21:14:59 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ bool kickParsing(std::string parameters, std::string *parsedParameters)
 		return (false);
 	if ((parsedParameters[1].find_first_not_of(VALID_USER_CHARSET) != std::string::npos))
 		return (false);
+	if (parsedParameters[2].empty())
+	{
+		parsedParameters[2] = "Kicked out by operator. Consider it as a warning.";
+		parsedParameters[2] += " Repeated behavior will result in a ban.";
+	}
 	return (true);
 }
 
