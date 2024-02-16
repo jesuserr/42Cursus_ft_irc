@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 21:56:48 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 09:39:02 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ int main(int argc, char **argv)
 		while (_socket.IRCPoll(_clients, _usersdisconnected))
 		{
 			std::cout << "number of clients: " << _clients.size() << std::endl;
-			std::cout << "number of users lost: " << _usersdisconnected.size() << std::endl;
-			for (int c = 0; c < (int) _usersdisconnected.size(); c++)
-				std::cout << _usersdisconnected[c] << std::endl;
-			
 			_irc.run();
 		}
 	}

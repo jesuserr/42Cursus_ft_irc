@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 22:08:47 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 09:27:57 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ class IRCCore
 		void modeMinust(IRCClient &client, std::string channel);
 		void part(IRCClient &client, std::string parameters);
 		void quit(IRCClient &client, std::string message);
+		
+		//Function that makes a call to the quit command when a user loses the connection
+		void quitDisconnectedUsers(void);
 
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
 		std::string removeTabsAndMultipleSpaces(std::string line);
-
-		void quitDisconnectedUsers(void);
+		
 		
 	public:	
 		IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected);

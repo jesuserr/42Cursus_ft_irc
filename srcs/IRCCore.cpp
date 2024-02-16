@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 23:07:17 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 23:08:00 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 09:50:45 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ IRCCore::IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &user
 void IRCCore::quitDisconnectedUsers(void)
 {
 	IRCClient t;
-	while (_usersdisconnected.size())
+	while (_usersdisconnected.size() && _usersdisconnected[0].find(":") != std::string::npos)
 	{
 		t.setNickname(_usersdisconnected[0].substr(0, _usersdisconnected[0].find(":")));
 		t.setUsername(_usersdisconnected[0].substr(_usersdisconnected[0].find(":") + 1, _usersdisconnected.size()));
@@ -90,10 +90,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
-	//std::cout << "number of channels: " << _channels.size() << std::endl;
 	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 	std::cout << "number of channels: " << _channels.size() << std::endl;
-	//std::cout << "cmd:" << cmd << " param:" << param << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234
