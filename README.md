@@ -1,4 +1,8 @@
 # ft_irc
 
-* Cescanue --> Implementar gestion de señales
-* Jesuserr --> Implementar PRIVMSG entre usuarios (sin canales)
+* Cescanue --> TOPIC and MODE flags: t k o
+* Jesuserr --> KICK, INVITE and MODE flags: i l
+
+Future TODOs
+- Command LIST
+
