@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:11:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 18:23:05 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:33:14 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@
 
 // TOPIC messages
 # define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
-# define RPL_TOPIC(channelname, topic) (":localhost 332 " + channelname + " :" + topic)
+# define RPL_TOPIC(nick, channelname, topic) (":localhost 332 " + nick + " " + channelname + " :" + topic)
+# define RPL_TOPICSET(userid, channelname, topic) (userid  + " TOPIC " + channelname + " :" + topic)
+# define RPL_TOPICWHOTIME(nick, channelname, userid, timestamp) (":localhost 333 " + nick + " " + channelname + " " + userid + " " + timestamp)  
 
 // MODE messages
 # define ERR_CHANOPRIVSNEEDED(channelname) (":localhost 482 " + channelname + " :You're not channel operator")

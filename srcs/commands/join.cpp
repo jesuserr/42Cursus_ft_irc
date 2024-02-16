@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 21:27:52 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 13:34:42 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	it->second.sendMsg(client, RPL_JOINCHANNEL(userId, channel));
 	if (!it->second.getTopic().empty())
-		client.SendIRCMsg(RPL_TOPIC(channel, it->second.getTopic()));
+		client.SendIRCMsg(RPL_TOPIC(client.getNickname(), channel, it->second.getTopic()));
 	client.SendIRCMsg(RPL_NAMREPLY(channel, client.getNickname(), _channels.find(channel)->second.getListUsers()));
 	client.SendIRCMsg(RPL_ENDOFNAMES(channel, client.getNickname()));
 }	
