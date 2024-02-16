@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCserv.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 09:39:02 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:54:33 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void welcomeMessage(int port)
 {
 	system("clear");
+	std::cout << "\033[?25l";
 	std::cout << "  _                                         \n"
 				" (_)                                        \n"
 				"  _ _ __ ___   ___  ___ _ ____   _____ _ __ \n"
@@ -28,7 +29,7 @@ void welcomeMessage(int port)
 void cleanexit(int signal)
 {
 	(void) signal;
-	throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");
+	throw std::runtime_error("\b\b\r   Server disconnected - See you soon!\n");
 }
 
 int main(int argc, char **argv)
@@ -45,19 +46,21 @@ int main(int argc, char **argv)
 	IRCCore _irc(argv[2], _clients, _usersdisconnected);
 	if (_socket.IRClisten())
 		return (1);
-	welcomeMessage(std::atoi(argv[1]));	
+	welcomeMessage(std::atoi(argv[1]));
+	std::cout << "\r   Connected clients: " << _clients.size() << std::flush;
 	try
 	{
 		while (_socket.IRCPoll(_clients, _usersdisconnected))
 		{
-			std::cout << "number of clients: " << _clients.size() << std::endl;
+			std::cout << "\r   Connected clients: " << _clients.size() << "    " << std::flush;
 			_irc.run();
 		}
 	}
 	catch(const std::exception& e)
 	{
 		std::cout << e.what() << '\n';
+		std::cout << "\033[?25h";
 		exit(0);
 	}
-	return (0);	
+	return (0);
 }

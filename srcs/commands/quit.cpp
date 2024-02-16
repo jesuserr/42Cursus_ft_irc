@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 23:07:01 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 23:10:50 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/15 12:11:46 by jesuserr          #+#    #+#             */
+/*   Updated: 2024/02/16 10:35:01 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void IRCCore::quit(IRCClient &client, std::string message)
 					messagePrinted = true;
 				}
 				it->second.delUser(client.getNickname());
-				it->second.delOper(client.getNickname());	// I think is not needed, ask
 				if (it->second.getUsers().size() == 0)
 					_channels.erase(it++);
 				else
@@ -44,8 +43,7 @@ void IRCCore::quit(IRCClient &client, std::string message)
 		{
 			if (client.getClientAuthentication() && it->second.getNickname() == client.getNickname())
 			{
-				close(it->first);
-				//_clients.erase(it);		// this deletion provokes a segfault
+				close(it->first);				
 				break;
 			}
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 23:07:17 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 09:50:45 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:52:58 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 
-	std::cout << "cmd:" << cmd << " param:" << param << std::endl;
-	std::cout << "number of channels: " << _channels.size() << std::endl;
+	//std::cout << "\ncmd:" << cmd << " param:" << param << std::endl;
+	//std::cout << "\nnumber of channels: " << _channels.size() << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234

@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/13 19:28:27 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:41:59 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define INCLUDES_HPP
 
 # define SERVER_NAME				"IRCServer"
-# define SERVER_VERSION				"Alpha-0.1"
+# define SERVER_VERSION				"Beta-0.1"
 # define USER_MODES					""
 # define CHANNEL_MODES				"itkol"
 # define CHANNEL_MODES_WITH_PARAM	"k"

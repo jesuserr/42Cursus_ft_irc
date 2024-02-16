@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 09:28:38 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/15 22:21:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/16 10:34:54 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void IRCCore::part(IRCClient &client, std::string parameters)
 				std::string userId = USER_ID(client.getNickname(), client.getUsername());
 				itc->second.sendMsg(client, RPL_PARTCHANNEL(userId, channel, message), true);
 				itc->second.delUser(client.getNickname());
-				itc->second.delOper(client.getNickname());	// I think is not needed, ask
 				if (itc->second.getUsers().size() == 0)
 					_channels.erase(channel);
 			}
