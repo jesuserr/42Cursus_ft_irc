@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 11:24:35 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:55:43 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,16 @@ void IRCChannel::setTopic(std::string topic)
 std::string IRCChannel::getTopic(void)
 {
 	return _topic;
+}
+
+void IRCChannel::setTopicTime(std::string time)
+{
+	_topictimestamp = time;
+}
+
+std::string IRCChannel::getTopicTime(void)
+{
+	return _topictimestamp;
 }
 
 vectorChannelUsers IRCChannel::getUsers(void)

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:06:56 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 13:51:53 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 16:20:49 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ void IRCCore::topic(IRCClient &client, std::string parameters)
 		{
 			client.SendIRCMsg(RPL_TOPIC(client.getNickname(), channel, _channels.find(channel)->second.getTopic()));
 			std::string userId = USER_ID(client.getNickname(), client.getUsername());
-			std::time_t result = std::time(nullptr);
-   			client.SendIRCMsg(RPL_TOPICWHOTIME(client.getNickname(), channel, userId, std::asctime(std::localtime(&result))));
+			client.SendIRCMsg(RPL_TOPICWHOTIME(client.getNickname(), channel, userId, _channels.find(channel)->second.getTopicTime()));
 			return;	
 		}
 		else
@@ -70,6 +69,8 @@ void IRCCore::topic(IRCClient &client, std::string parameters)
 			if (parameters[0] == ':')
 				parameters.erase(0, 1);
 			_channels.find(channel)->second.setTopic(parameters);
+			std::time_t result = std::time(nullptr);
+    		_channels.find(channel)->second.setTopicTime(std::ctime(&result));
 			std::string userId = USER_ID(client.getNickname(), client.getUsername());
 			_channels.find(channel)->second.sendMsg(client, RPL_TOPICSET(userId, channel, parameters));
 		}

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 11:23:58 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:54:34 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ private:
 	std::string _name;
 	std::string _key;
 	std::string _topic;
+	std::string _topictimestamp;
 	vectorChannelUsers _users;
 	vectorChannelUsers _operators;
 	mapClients &_clients;
@@ -32,8 +33,10 @@ public:
 	~IRCChannel();
 	void setKey(std::string key);
 	std::string getKey(void);
-	void setTopic(std::string key);
+	void setTopic(std::string topic);
 	std::string getTopic(void);
+	void setTopicTime(std::string time);
+	std::string getTopicTime(void);
 	bool addUser(std::string user);
 	bool delUser(std::string user);
 	bool addOper(std::string oper);
