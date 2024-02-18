@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:06:56 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:04:57 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:38:32 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void IRCCore::topic(IRCClient &client, std::string parameters)
 	}
 	if (!_channels.find(channel)->second.checkUser(client.getNickname()))
 	{
-		client.SendIRCMsg(ERR_NOTONCHANNEL(channel));
+		client.SendIRCMsg(ERR_NOTONCHANNEL(client.getNickname(), channel));
 		return;
 	}
 	if (parameters.empty())
