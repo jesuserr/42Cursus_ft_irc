@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 12:07:22 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:15:24 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ class IRCCore
 		void mode(IRCClient &client, std::string parameters);
 		void modePluso(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinuso(IRCClient &client, std::string channel, std::string parameter);
-		void modePlusi(IRCClient &client, std::string channel, std::string parameter);
-		void modeMinusi(IRCClient &client, std::string channel, std::string parameter);
+		void modePlusk(IRCClient &client, std::string channel, std::string parameter);
+		void modeMinusk(IRCClient &client, std::string channel, std::string parameter);
 		void modePlust(IRCClient &client, std::string channel);
 		void modeMinust(IRCClient &client, std::string channel);
 		void part(IRCClient &client, std::string parameters);
@@ -55,6 +55,9 @@ class IRCCore
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
 		std::string removeTabsAndMultipleSpaces(std::string line);
+
+		//Client Utils
+		bool checkUser(std::string nickname);
 		
 		
 	public:	

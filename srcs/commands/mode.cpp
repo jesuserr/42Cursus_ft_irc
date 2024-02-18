@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 12:07:51 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:31:15 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		{
 			if (std::tolower(flags.at(0)) == 'o')
 				modePluso(client, channel, parameters);
-			else if (std::tolower(flags.at(0)) == 'i')
-				modePlusi(client, channel, parameters);
+			else if (std::tolower(flags.at(0)) == 'k')
+				modePlusk(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 't')
 				modePlust(client, channel);
 			else 
@@ -90,8 +90,8 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		{
 			if (std::tolower(flags.at(0)) == 'o')
 				modeMinuso(client, channel, parameters);
-			else if (std::tolower(flags.at(0)) == 'i')
-				modeMinusi(client, channel, parameters);
+			else if (std::tolower(flags.at(0)) == 'k')
+				modeMinusk(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 't')
 				modeMinust(client, channel);
 			else 
@@ -117,30 +117,60 @@ void IRCCore::modeMinust(IRCClient &client, std::string channel)
 
 void IRCCore::modePluso(IRCClient &client, std::string channel, std::string parameters)
 {
-	(void) client;
-	std::cout << "mode +o channel:" << channel << " parameters:" << parameters << std::endl;
-	
+	if (parameters.empty())
+	{
+		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "MODE +o"));
+		return;
+	}
+	if (!_channels.find(channel)->second.checkUser(parameters))
+	{
+		client.SendIRCMsg(ERR_USERNOTINCHANNEL(parameters, channel));
+		return;
+	}
+	_channels.find(channel)->second.addOper(parameters);
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "+o", parameters));
 }
 
-void IRCCore::modePlusi(IRCClient &client, std::string channel, std::string parameters)
-{
-	(void) client;
-	std::cout << "mode +i channel:" << channel << " parameters:" << parameters << std::endl;
-	
-}
+
 
 void IRCCore::modeMinuso(IRCClient &client, std::string channel, std::string parameters)
 {
-	(void) client;
-	std::cout << "mode -o channel:" << channel << " parameters:" << parameters << std::endl;
-	
+	if (parameters.empty())
+	{
+		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "MODE +o"));
+		return;
+	}
+	if (!checkUser(parameters))
+	{
+		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), parameters));
+		return;
+	}
+	if (!_channels.find(channel)->second.checkOper(parameters))
+	{
+		client.SendIRCMsg(ERR_USERNOTINCHANNEL(parameters, channel));
+		return;
+	}
+	_channels.find(channel)->second.delOper(parameters);
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "-o", parameters));
 }
 
-void IRCCore::modeMinusi(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modePlusk(IRCClient &client, std::string channel, std::string parameters)
 {
-	(void) client;
-	std::cout << "mode -i channel:" << channel << " parameters:" << parameters << std::endl;
-	
+	if (parameters.empty())
+	{
+		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "MODE +k"));
+		return;
+	}
+	_channels.find(channel)->second.setKey(parameters);
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "+k", parameters));	
+}
+
+void IRCCore::modeMinusk(IRCClient &client, std::string channel, std::string parameters)
+{
+	(void)parameters;
+	(void)client;
+	_channels.find(channel)->second.setKey("");
+	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "-k", ""));	
 }
 
 

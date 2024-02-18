@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   part.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 09:28:38 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/16 10:34:54 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:04:11 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void IRCCore::part(IRCClient &client, std::string parameters)
 					_channels.erase(channel);
 			}
 			else
-				client.SendIRCMsg(ERR_NOTONCHANNEL(client.getNickname(), channel));
+				client.SendIRCMsg(ERR_NOTONCHANNEL(channel));
 		}
 		else
 			client.SendIRCMsg(ERR_NOSUCHCHANNEL(channel));

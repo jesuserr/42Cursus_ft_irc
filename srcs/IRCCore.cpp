@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 23:07:17 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 16:22:39 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:19:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ void IRCCore::quitDisconnectedUsers(void)
 		quit(t, ":User lost connection");
 	}
 }
+
+bool IRCCore::checkUser(std::string nickname)
+{
+	for(mapClients::iterator it = _clients.begin(); it != _clients.end(); ++it) 
+	{
+		if (it->second.getNickname() == nickname)
+			return true;
+	}
+	return false;
+}
+
 
 void IRCCore::run(void)
 {

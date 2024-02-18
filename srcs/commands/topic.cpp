@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:06:56 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 16:20:49 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:04:57 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void IRCCore::topic(IRCClient &client, std::string parameters)
 	}
 	if (!_channels.find(channel)->second.checkUser(client.getNickname()))
 	{
-		client.SendIRCMsg(ERR_NOTONCHANNEL(client.getNickname(), channel));
+		client.SendIRCMsg(ERR_NOTONCHANNEL(channel));
 		return;
 	}
 	if (parameters.empty())
