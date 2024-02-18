@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/02/18 21:15:24 by cescanue         ###   ########.fr       */
-=======
-/*   Updated: 2024/02/16 18:08:12 by jesuserr         ###   ########.fr       */
->>>>>>> b0dd32098198195cb7267cebefe2085f380ed092
+/*   Created: 2024/02/18 21:34:58 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/18 21:35:00 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

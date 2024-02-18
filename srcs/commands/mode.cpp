@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:31:15 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:43:54 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ void IRCCore::modePluso(IRCClient &client, std::string channel, std::string para
 	}
 	if (!_channels.find(channel)->second.checkUser(parameters))
 	{
-		client.SendIRCMsg(ERR_USERNOTINCHANNEL(parameters, channel));
+		client.SendIRCMsg(ERR_USERNOTINCHANNEL(client.getUsername(), parameters, channel));
 		return;
 	}
 	_channels.find(channel)->second.addOper(parameters);
@@ -142,12 +142,12 @@ void IRCCore::modeMinuso(IRCClient &client, std::string channel, std::string par
 	}
 	if (!checkUser(parameters))
 	{
-		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), parameters));
+		client.SendIRCMsg(ERR_NOSUCHNICK(parameters));
 		return;
 	}
 	if (!_channels.find(channel)->second.checkOper(parameters))
 	{
-		client.SendIRCMsg(ERR_USERNOTINCHANNEL(parameters, channel));
+		client.SendIRCMsg(ERR_USERNOTINCHANNEL(client.getUsername(), parameters, channel));
 		return;
 	}
 	_channels.find(channel)->second.delOper(parameters);

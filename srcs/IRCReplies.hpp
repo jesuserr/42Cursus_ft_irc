@@ -3,15 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2024/02/15 12:11:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:01:34 by cescanue         ###   ########.fr       */
-=======
-/*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/16 20:54:12 by jesuserr         ###   ########.fr       */
->>>>>>> b0dd32098198195cb7267cebefe2085f380ed092
+/*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/18 21:42:21 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +48,7 @@
 # define ERR_UNKNOWNCOMMAND(client, command) (":localhost 421 " + client + " " + command + " :Unknown command")
 
 // PRIVMSG messages
-# define ERR_NOSUCHNICK(client, nick) (":localhost 401 " + client + " " + nick + " :No such nick/channel")
+# define ERR_NOSUCHNICK(nick) (":localhost 401" + nick + " :No such nick/channel")
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
@@ -82,7 +77,6 @@
 # define RPL_CHANNELMODEISBYSERVER(channelname, mode, parameters) (":localhost 324 MODE " + channelname + " +" + mode + " " + parameters)
 
 // PART messages
-# define ERR_USERNOTINCHANNEL(nick, channel) (":localhost 441 " + nick + " " + channel + " :They aren't on that channel")
 # define ERR_NOTONCHANNEL(channel) (":localhost 442 " + channel + " :You're not on that channel")
 # define RPL_PARTCHANNEL(USER_ID, channelname, message) (USER_ID + " PART " + channelname + " " + message)
 

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/14 16:38:48 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:43:35 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 				return;
 			}			
 		}
-		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), target));
+		client.SendIRCMsg(ERR_NOSUCHNICK(target));
 	}
 	else if (target.empty() || parameters.empty())
 		client.SendIRCMsg(ERR_NORECIPIENT(client.getUsername()));
 	else if (message.empty() || message[0] != ':')
 		client.SendIRCMsg(ERR_NOTEXTTOSEND(client.getUsername()));
 	else if ((target.find_first_not_of(VALID_USER_CHARSET) != std::string::npos))
-		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), target));
+		client.SendIRCMsg(ERR_NOSUCHNICK(target));
 }
