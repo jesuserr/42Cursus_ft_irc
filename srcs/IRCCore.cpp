@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 23:07:17 by cescanue          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/18 21:19:35 by cescanue         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/16 18:13:55 by jesuserr         ###   ########.fr       */
+>>>>>>> b0dd32098198195cb7267cebefe2085f380ed092
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +104,8 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		quit(client, param);
 	else if (cmd.find("TOPIC") != std::string::npos && cmd.size() == 5)
 		topic(client, param);
+	else if (cmd.find("KICK") != std::string::npos && cmd.size() == 4)
+		kick(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 

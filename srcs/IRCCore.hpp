@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 09:43:30 by cescanue          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/02/18 21:15:24 by cescanue         ###   ########.fr       */
+=======
+/*   Updated: 2024/02/16 18:08:12 by jesuserr         ###   ########.fr       */
+>>>>>>> b0dd32098198195cb7267cebefe2085f380ed092
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +51,7 @@ class IRCCore
 		void part(IRCClient &client, std::string parameters);
 		void quit(IRCClient &client, std::string message);
 		void topic(IRCClient &client, std::string message);
+		void kick(IRCClient &client, std::string parameters);
 		
 		//Function that makes a call to the quit command when a user loses the connection
 		void quitDisconnectedUsers(void);

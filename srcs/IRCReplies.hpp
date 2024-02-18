@@ -3,10 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2024/02/15 12:11:21 by cescanue          #+#    #+#             */
 /*   Updated: 2024/02/18 21:01:34 by cescanue         ###   ########.fr       */
+=======
+/*   Created: 2024/02/06 11:24:33 by jesuserr          #+#    #+#             */
+/*   Updated: 2024/02/16 20:54:12 by jesuserr         ###   ########.fr       */
+>>>>>>> b0dd32098198195cb7267cebefe2085f380ed092
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +88,9 @@
 
 // QUIT messages
 # define RPL_QUITCHANNEL(USER_ID, message) (USER_ID + " QUIT " + message)
+
+// KICK messages
+# define ERR_USERNOTINCHANNEL(client, nick, channel) (":localhost 441 " + client + " " + nick + " " + channel + " :They aren't on that channel")
+# define RPL_KICKCHANNEL(USER_ID, channel, user, message) (USER_ID + " KICK " + channel + " " + user + " " + message)
 
 #endif
