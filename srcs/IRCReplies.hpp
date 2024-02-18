@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:52:37 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 22:29:41 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@
 # define RPL_CHANNELMODEISBYSERVER(channelname, mode, parameters) (":localhost 324 MODE " + channelname + " +" + mode + " " + parameters)
 
 // PART messages
-# define ERR_NOTONCHANNEL(channel) (":localhost 442 " + channel + " :You're not on that channel")
+# define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")
 # define RPL_PARTCHANNEL(USER_ID, channelname, message) (USER_ID + " PART " + channelname + " " + message)
 
 // QUIT messages
