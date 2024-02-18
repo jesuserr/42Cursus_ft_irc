@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:43:54 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:53:58 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void IRCCore::modeMinuso(IRCClient &client, std::string channel, std::string par
 	}
 	if (!checkUser(parameters))
 	{
-		client.SendIRCMsg(ERR_NOSUCHNICK(parameters));
+		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), parameters));
 		return;
 	}
 	if (!_channels.find(channel)->second.checkOper(parameters))

@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:42:21 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:52:37 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 # define ERR_UNKNOWNCOMMAND(client, command) (":localhost 421 " + client + " " + command + " :Unknown command")
 
 // PRIVMSG messages
-# define ERR_NOSUCHNICK(nick) (":localhost 401" + nick + " :No such nick/channel")
+# define ERR_NOSUCHNICK(client, nick) (":localhost 401 " + client + " " + nick + " :No such nick/channel")
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)

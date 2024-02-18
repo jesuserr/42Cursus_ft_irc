@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:42:51 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/18 21:53:15 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 	}
 	if (channel.find_first_not_of(VALID_CHANNEL_CHARSET) != std::string::npos)
 	{
-		client.SendIRCMsg(ERR_NOSUCHNICK(channel));
+		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), channel));
 		return;
 	}
 	mapChannelList::iterator it = _channels.find(channel);
