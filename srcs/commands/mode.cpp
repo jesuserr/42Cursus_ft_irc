@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:53:58 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:57:52 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void IRCCore::modePlusk(IRCClient &client, std::string channel, std::string para
 		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "MODE +k"));
 		return;
 	}
+	_channels.find(channel)->second.setFlag('k');
 	_channels.find(channel)->second.setKey(parameters);
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "+k", parameters));	
 }
@@ -169,6 +170,7 @@ void IRCCore::modeMinusk(IRCClient &client, std::string channel, std::string par
 {
 	(void)parameters;
 	(void)client;
+	_channels.find(channel)->second.removeFlag('k');
 	_channels.find(channel)->second.setKey("");
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "-k", ""));	
 }
