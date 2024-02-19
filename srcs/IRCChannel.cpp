@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 18:06:06 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:30:05 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,17 @@ std::string IRCChannel::getTopicTime(void)
 {
 	return _topictimestamp;
 }
+
+void IRCChannel::setTopicUser(std::string user)
+{
+	_topicuser = user;
+}
+
+std::string IRCChannel::getTopicUser(void)
+{
+	return _topicuser;
+}
+
 
 vectorChannelUsers IRCChannel::getUsers(void)
 {

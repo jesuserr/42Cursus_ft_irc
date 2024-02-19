@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 18:06:31 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:30:39 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ private:
 	std::string 		_name;
 	std::string 		_key;
 	std::string 		_topic;
+	std::string 		_topicuser;
 	std::string 		_topictimestamp;
 	vectorChannelUsers 	_users;
 	vectorChannelUsers 	_operators;
@@ -38,6 +39,8 @@ public:
 	std::string getTopic(void);
 	void setTopicTime(std::string time);
 	std::string getTopicTime(void);
+	void setTopicUser(std::string user);
+	std::string getTopicUser(void);
 	bool addUser(std::string user);
 	bool delUser(std::string user);
 	bool addOper(std::string oper);

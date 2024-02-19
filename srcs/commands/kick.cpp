@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kick.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:06:07 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/18 22:30:39 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:17:18 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void IRCCore::kick(IRCClient &client, std::string parameters)
 						client.SendIRCMsg(ERR_USERNOTINCHANNEL(client.getNickname(), user, channel));
 				}
 				else
-				client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(channel));
+				client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(client.getNickname(), channel));
 			}
 			else
 				client.SendIRCMsg(ERR_NOTONCHANNEL(client.getNickname(), channel));
 		}
 		else
-			client.SendIRCMsg(ERR_NOSUCHCHANNEL(channel));
+			client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), channel));
 	}
 	else
 		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "KICK"));

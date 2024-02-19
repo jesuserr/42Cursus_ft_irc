@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mode.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 20:20:40 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:16:42 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 	}
 	if (channel.empty() ||  (channel.at(0) != '#' && channel.at(0) != '@') || _channels.find(channel) == _channels.end())
 	{
-		client.SendIRCMsg(ERR_NOSUCHCHANNEL(channel));
+		client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), channel));
 		return;
 	}
 	if (parameters.empty())
 	{
-		client.SendIRCMsg(RPL_CHANNELMODEISBYSERVER(channel, _channels.find(channel)->second.getFlags(), ""));
+		client.SendIRCMsg(RPL_CHANNELMODEISBYSERVER(client.getNickname(), channel, _channels.find(channel)->second.getFlags(), ""));
 		return;
 	}
 	if (!_channels.find(channel)->second.checkOper(client.getNickname()))
 	{
-		client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(channel));
+		client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(client.getNickname(), channel));
 		return;
 	}
 	if (parameters.size() == 1 || parameters.at(1) == ' ' || (parameters.at(0) != '+' && parameters.at(0) != '-') || (parameters.find("+") != std::string::npos && parameters.find("-") != std::string::npos))
@@ -81,7 +81,7 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 			else if (std::tolower(flags.at(0)) == 'l')
 				modePlusl(client, channel, parameters);
 			else 
-				client.SendIRCMsg(ERR_UNKNOWNMODE(flags.substr(0, 1), channel));
+				client.SendIRCMsg(ERR_UNKNOWNMODE(client.getNickname(), flags.substr(0, 1), channel));
 			flags.erase(0, 1);
 		}
 	}
@@ -99,7 +99,7 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 			else if (std::tolower(flags.at(0)) == 'l')
 				modeMinusl(client, channel);
 			else 
-				client.SendIRCMsg(ERR_UNKNOWNMODE(flags.substr(0, 1), channel));
+				client.SendIRCMsg(ERR_UNKNOWNMODE(client.getNickname(), flags.substr(0, 1), channel));
 			flags.erase(0, 1);
 		}
 	}

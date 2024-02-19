@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/18 21:53:44 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:15:53 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void IRCCore::privmsg(IRCClient &client, std::string parameters)
 				itc->second.sendMsg(client, RPL_PRIVMSGCHANNEL(userId, target, message), false);
 			}
 			else 
-				client.SendIRCMsg(ERR_CANNOTSENDTOCHAN(target));
+				client.SendIRCMsg(ERR_CANNOTSENDTOCHAN(client.getNickname(), target));
 			return;
 		}
 		for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)

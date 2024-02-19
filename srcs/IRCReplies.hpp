@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 20:10:50 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:53:40 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,29 @@
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
 //PRIVMSG messages - channel
 # define RPL_PRIVMSGCHANNEL(userid, channelname, msg) (userid + " PRIVMSG " + channelname + " " + msg)
-# define ERR_CANNOTSENDTOCHAN(channelname) (":localhost 404 " + channelname + " :Cannot send to channel")
+# define ERR_CANNOTSENDTOCHAN(client ,channelname) (":localhost 404 " + client + " " + channelname + " :Cannot send to channel")
 
 // JOIN messages
 # define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
 # define RPL_NAMREPLY(channelname, nick, users) (":localhost 353 " + nick + " = " + channelname + " :" + users) 
 # define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
 # define ERR_BADCHANNELKEY(client, channelname) (":localhost 475 " + client + " " + channelname + " :Cannot join channel (+k)")
-# define ERR_NOSUCHCHANNEL(channelname) (":localhost 403 " + channelname + " :No such channel")
+# define ERR_NOSUCHCHANNEL(client, channelname) (":localhost 403 " + client + " " + channelname + " :No such channel")
 // JOIN messages - channel is full - jesuserr - 19/02/2024 (borrar tras revisar mensajes de error)
 # define ERR_CHANNELISFULL(client, channel) (":localhost 471 " + client + " " + channel + " :Cannot join channel (+l)")
 
 // TOPIC messages
-# define RPL_NOTOPIC(channelname) (":localhost 331 " + channelname + " :No topic is set")
+# define RPL_NOTOPIC(client, channelname) (":localhost 331 " + client + " " + channelname + " :No topic is set")
 # define RPL_TOPIC(nick, channelname, topic) (":localhost 332 " + nick + " " + channelname + " :" + topic)
 # define RPL_TOPICSET(userid, channelname, topic) (userid  + " TOPIC " + channelname + " :" + topic)
-# define RPL_TOPICWHOTIME(nick, channelname, userid, timestamp) (":localhost 333 " + nick + " " + channelname + " " + userid + " " + timestamp)  
+# define RPL_TOPICWHOTIME(nick, channelname, topicuser, timestamp) (":localhost 333 " + nick + " " + channelname + " " + topicuser + " " + timestamp)  
 
 // MODE messages
-# define ERR_CHANOPRIVSNEEDED(channelname) (":localhost 482 " + channelname + " :You're not channel operator")
+# define ERR_CHANOPRIVSNEEDED(client, channelname) (":localhost 482 " + client + " " + channelname + " :You're not channel operator")
 # define ERR_BADCHANMASK(channelname) (":localhost 476 " + channelname + " :Bad Channel Mask")
-# define ERR_UNKNOWNMODE(mode, channelname) (":localhost 472 " + mode + " :is unknown mode char to me for " + channelname)
+# define ERR_UNKNOWNMODE(client, mode, channelname) (":localhost 472 " + client + " " + mode + " :is unknown mode char to me for " + channelname)
 # define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
-# define RPL_CHANNELMODEISBYSERVER(channelname, mode, parameters) (":localhost 324 MODE " + channelname + " +" + mode + " " + parameters)
+# define RPL_CHANNELMODEISBYSERVER(client, channelname, mode, parameters) (":localhost 324 MODE " + client + " " + channelname + " +" + mode + " " + parameters)
 
 // PART messages
 # define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")

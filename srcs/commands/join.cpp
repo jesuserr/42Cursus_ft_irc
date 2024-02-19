@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 20:01:13 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 21:10:05 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 {
 	if (!channel.empty() && channel.at(0) != '#' && channel.at(0) != '@')
 	{
-		client.SendIRCMsg(ERR_NOSUCHCHANNEL(channel));
+		client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), channel));
 		return;
 	}
 	if (channel.find_first_not_of(VALID_CHANNEL_CHARSET) != std::string::npos)
@@ -70,7 +70,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 			it->second.addUser(client.getNickname());
 		else
 		{
-			client.SendIRCMsg(ERR_BADCHANNELKEY(client.getUsername(), channel));
+			client.SendIRCMsg(ERR_BADCHANNELKEY(client.getNickname(), channel));
 			return;
 		}
 	}
