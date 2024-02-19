@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 22:29:41 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:46:05 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@
 # define RPL_JOINCHANNEL(userid, channelname) (userid + " JOIN :" + channelname)
 # define RPL_NAMREPLY(channelname, nick, users) (":localhost 353 " + nick + " = " + channelname + " :" + users) 
 # define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
-# define ERR_BADCHANNELKEY(channelname) (":localhost 475 " + channelname + " :Cannot join channel (+k)")
+# define ERR_BADCHANNELKEY(client, channelname) (":localhost 475 " + client + " " + channelname + " :Cannot join channel (+k)")
 # define ERR_NOSUCHCHANNEL(channelname) (":localhost 403 " + channelname + " :No such channel")
 
 // TOPIC messages

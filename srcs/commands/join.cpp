@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:53:15 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:45:34 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 			it->second.addUser(client.getNickname());
 		else
 		{
-			client.SendIRCMsg(ERR_BADCHANNELKEY(channel));
+			client.SendIRCMsg(ERR_BADCHANNELKEY(client.getUsername(), channel));
 			return;
 		}
 	}
