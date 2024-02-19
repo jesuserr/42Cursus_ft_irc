@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/16 11:38:39 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:09:05 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@
 # define SERVER_VERSION				"Beta-0.1"
 # define USER_MODES					""
 # define CHANNEL_MODES				"itkol"
-# define CHANNEL_MODES_WITH_PARAM	"ko"
+# define CHANNEL_MODES_WITH_PARAM	"kol"
 
-# define VALID_NICK_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-"
-# define VALID_USER_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-*. "
+# define VALID_NICK_CHARSET	    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-"
+# define VALID_USER_CHARSET	    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-*. "
 # define VALID_CHANNEL_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-* #@"
-# define NICK_MAX_LENGTH	9
+# define NICK_MAX_LENGTH	    9
+# define MAX_USERS_PER_CHANNEL	10
 
 # include <string>
 # include <map>

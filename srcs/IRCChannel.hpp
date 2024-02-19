@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 15:54:34 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:06:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@
 class IRCChannel
 {
 private:
-	std::string _name;
-	std::string _key;
-	std::string _topic;
-	std::string _topictimestamp;
-	vectorChannelUsers _users;
-	vectorChannelUsers _operators;
-	mapClients &_clients;
-	std::string _flags;	
+	std::string 		_name;
+	std::string 		_key;
+	std::string 		_topic;
+	std::string 		_topictimestamp;
+	vectorChannelUsers 	_users;
+	vectorChannelUsers 	_operators;
+	mapClients 			&_clients;
+	std::string 		_flags;
+	unsigned int		_maxUsers;
 	IRCChannel();
 	
 public:
@@ -53,6 +54,8 @@ public:
 	std::string getFlags(void);
 	void changeUserName(std::string oldName, std::string newName);
 	void changeOperatorName(std::string oldName, std::string newName);
+	void setMaxUsers(unsigned int max);
+	unsigned int getMaxUsers(void);
 };
 
 #endif

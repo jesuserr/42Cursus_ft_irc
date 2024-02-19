@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/16 15:55:43 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:06:06 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients
 {
 	_name = name;
 	_flags.clear();
+	_maxUsers = MAX_USERS_PER_CHANNEL;
 }
 
 bool IRCChannel::addUser(std::string user)
@@ -207,3 +208,12 @@ std::string IRCChannel::getFlags(void)
 	return _flags;
 }
 
+void IRCChannel::setMaxUsers(unsigned int max)
+{
+	_maxUsers = max;
+}
+
+unsigned int IRCChannel::getMaxUsers(void)
+{
+	return _maxUsers;
+}

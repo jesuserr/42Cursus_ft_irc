@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:34:58 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/18 21:35:00 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:33:05 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ class IRCCore
 		void modeMinusk(IRCClient &client, std::string channel, std::string parameter);
 		void modePlust(IRCClient &client, std::string channel);
 		void modeMinust(IRCClient &client, std::string channel);
+		void modePlusl(IRCClient &client, std::string channel, std::string parameter);
+		void modeMinusl(IRCClient &client, std::string channel);
 		void part(IRCClient &client, std::string parameters);
 		void quit(IRCClient &client, std::string message);
 		void topic(IRCClient &client, std::string message);
