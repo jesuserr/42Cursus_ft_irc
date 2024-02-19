@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:06:56 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:55:47 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 22:02:34 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void IRCCore::topic(IRCClient &client, std::string parameters)
 			if (parameters[0] == ':')
 				parameters.erase(0, 1);
 			_channels.find(channel)->second.setTopic(parameters);
-			_channels.find(channel)->second.setTopicTime(std::to_string(std::time(nullptr)));
+			std::time_t result = std::time(NULL);
+    		std::stringstream ss;
+    		ss << result;
+			_channels.find(channel)->second.setTopicTime(ss.str());
 			_channels.find(channel)->second.setTopicUser(USER_ID(client.getNickname(), client.getUsername()));
 			std::string userId = USER_ID(client.getNickname(), client.getUsername());
 			_channels.find(channel)->second.sendMsg(client, RPL_TOPICSET(userId, channel, parameters));
