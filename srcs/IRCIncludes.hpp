@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 10:21:15 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/19 17:09:05 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:17:26 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define VALID_USER_CHARSET	    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-*. "
 # define VALID_CHANNEL_CHARSET	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_[]\\{}|-* #@"
 # define NICK_MAX_LENGTH	    9
-# define MAX_USERS_PER_CHANNEL	10
+# define MAX_USERS_PER_CHANNEL	100
 
 # include <string>
 # include <map>

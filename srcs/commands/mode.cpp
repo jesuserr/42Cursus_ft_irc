@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 18:08:25 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:20:40 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,18 +190,13 @@ void IRCCore::modePlusl(IRCClient &client, std::string channel, std::string para
 	it->second.setMaxUsers(std::atoi(parameters.c_str()));
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+l", parameters));
-	//std::cout << it->second.getMaxUsers() << std::endl;
 }
 
 void IRCCore::modeMinusl(IRCClient &client, std::string channel)
 {
 	mapChannelList::iterator it = _channels.find(channel);
 	it->second.removeFlag('l');
-	it->second.setMaxUsers(MAX_USERS_PER_CHANNEL);
-	std::stringstream ss;
-	ss << MAX_USERS_PER_CHANNEL;
-    std::string str = ss.str();
+	it->second.setMaxUsers(MAX_USERS_PER_CHANNEL);	
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
-	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-l", str));
-	//std::cout << it->second.getMaxUsers() << std::endl;
+	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-l", ""));
 }

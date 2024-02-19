@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 12:45:34 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/19 20:01:13 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 		return;
 	}
 	mapChannelList::iterator it = _channels.find(channel);
+	if (it->second.getUsers().size() > 0 && \
+	it->second.getUsers().size() >= it->second.getMaxUsers())
+	{
+		client.SendIRCMsg(ERR_CHANNELISFULL(client.getNickname(), channel));
+		return;
+	}
 	if (it != _channels.end())
 	{
 		if (it->second.getKey().empty() || it->second.getKey() == key)
