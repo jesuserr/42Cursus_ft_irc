@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:53:50 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:09:56 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@
 # define RPL_WHOISUSER(client, nick, user, host, server, realname) (":localhost 311 " + client + " " + nick + " " + user + " " + host + " * :" + realname)
 # define RPL_WHOISSERVER(client, nick, server, serverinfo) (":localhost 312 " + client + " " + nick + " " + server + " :" + serverinfo)
 # define RPL_WHOISOPERATOR(client, nick) (":localhost 313 " + client + " " + nick + " :is an IRC operator")
-# define RPL_WHOISIDLE(client, nick, idle, signon) (":localhost 317 " + client + " " + nick + " " + std::to_string(idle) + " " + std::to_string(signon) + " :seconds idle, signon time")
+# define RPL_WHOISIDLE(client, nick, idle, signon) (":localhost 317 " + client + " " + nick + " " + idle + " " + signon + " :seconds idle, signon time")
 # define RPL_ENDOFWHOIS(client, nick) (":localhost 318 " + client + " " + nick + " :End of WHOIS list")
 
 // LIST messages

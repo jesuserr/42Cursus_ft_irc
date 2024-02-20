@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:29:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:50:50 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 12:14:58 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void IRCCore::list(IRCClient &client, std::string parameters)
 		client.SendIRCMsg(RPL_LISTSTART(client.getNickname()));
 		for (mapChannelList::iterator it = _channels.begin(); it != _channels.end(); it++)
 		{
-			client.SendIRCMsg(RPL_LIST(client.getNickname(), it->second.getName(), std::to_string(it->second.getUsers().size()), it->second.getTopic()));
+			std::stringstream ss;
+    		ss << it->second.getUsers().size();
+    		std::string channelsize = ss.str();
+			client.SendIRCMsg(RPL_LIST(client.getNickname(), it->second.getName(), channelsize, it->second.getTopic()));
 		}
 		client.SendIRCMsg(RPL_LISTEND(client.getNickname()));
 	}
@@ -34,7 +37,10 @@ void IRCCore::list(IRCClient &client, std::string parameters)
 			client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), parameters));
 			return;
 		}
-		client.SendIRCMsg(RPL_LIST(client.getNickname(), parameters, std::to_string(_channels.find(parameters)->second.getUsers().size()), _channels.find(parameters)->second.getTopic()));
+		std::stringstream ss;
+    	ss << _channels.find(parameters)->second.getUsers().size();
+    	std::string channelsize = ss.str();
+		client.SendIRCMsg(RPL_LIST(client.getNickname(), parameters, channelsize, _channels.find(parameters)->second.getTopic()));
 	}
 }
 
