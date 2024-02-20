@@ -14,7 +14,7 @@ NAME = ircserv
 SRCS = IRCserv.cpp IRCErrorLog.cpp IRCClient.cpp IRCSocket.cpp IRCCore.cpp \
 IRCChannel.cpp IRCCoreCommandsUtils.cpp \
 commands/pass.cpp commands/nick.cpp commands/user.cpp commands/ping.cpp \
-commands/join.cpp commands/privmsg.cpp commands/mode.cpp commands/part.cpp \
+commands/join.cpp commands/privmsg.cpp commands/modechannel.cpp commands/modeuser.cpp commands/part.cpp \
 commands/quit.cpp commands/topic.cpp commands/kick.cpp
 
 PATH_SRCS = ./srcs/

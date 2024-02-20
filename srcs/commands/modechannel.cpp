@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mode.cpp                                           :+:      :+:    :+:   */
+/*   modechannel.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:16:42 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:13:45 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getUsername(), "MODE"));
 		return;
 	}
-	if (channel.empty() ||  (channel.at(0) != '#' && channel.at(0) != '@') || _channels.find(channel) == _channels.end())
+	if (!channel.empty() && channel.at(0) != '#' && channel.at(0) != '@')
+	{
+		modeUser(client, channel, parameters);
+		return;
+	}
+	if (channel.empty() || (channel.at(0) != '#' && channel.at(0) != '@') || _channels.find(channel) == _channels.end())
 	{
 		client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), channel));
 		return;

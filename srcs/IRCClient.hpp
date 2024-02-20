@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:34:14 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 22:53:51 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:42:48 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class IRCClient
 		std::string _username;
 		bool		_clientRegistered;		
 		std::string _realname;
+		std::string _flags;
 
 	public:
 		IRCClient();
@@ -47,6 +48,11 @@ class IRCClient
 		void setClientRegistration(bool status);
 		void setRealname(std::string realname);
 
+		//Mode
+		bool setFlag(char flag);
+		bool removeFlag(char flag);
+		bool checkFlag(char flag);
+		std::string getFlags(void);
 };
 
 #endif

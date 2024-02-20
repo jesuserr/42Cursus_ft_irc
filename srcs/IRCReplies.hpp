@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:53:40 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:00:14 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,16 @@
 # define RPL_TOPICSET(userid, channelname, topic) (userid  + " TOPIC " + channelname + " :" + topic)
 # define RPL_TOPICWHOTIME(nick, channelname, topicuser, timestamp) (":localhost 333 " + nick + " " + channelname + " " + topicuser + " " + timestamp)  
 
-// MODE messages
+// MODE channelmessages
 # define ERR_CHANOPRIVSNEEDED(client, channelname) (":localhost 482 " + client + " " + channelname + " :You're not channel operator")
 # define ERR_BADCHANMASK(channelname) (":localhost 476 " + channelname + " :Bad Channel Mask")
 # define ERR_UNKNOWNMODE(client, mode, channelname) (":localhost 472 " + client + " " + mode + " :is unknown mode char to me for " + channelname)
 # define RPL_CHANNELMODEIS(userid, channelname, mode, parameters) (userid + " MODE " + channelname + " " + mode + " " + parameters)
 # define RPL_CHANNELMODEISBYSERVER(client, channelname, mode, parameters) (":localhost 324 MODE " + client + " " + channelname + " +" + mode + " " + parameters)
+
+// MODE usermessages
+# define ERR_UMODEUNKNOWNFLAG(client) (":localhost 501 " + client + " :Unknown MODE flag")
+# define ERR_USERSDONTMATCH(client) (":localhost 502 " + client + " :Cannot change mode for other users")
 
 // PART messages
 # define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:34:58 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 16:33:05 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:59:08 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ class IRCCore
 		void join(IRCClient &client, std::string parameters);
 		void joinc(IRCClient &client, std::string channel, std::string key);
 		void privmsg(IRCClient &client, std::string parameters);
+		void part(IRCClient &client, std::string parameters);
+		void quit(IRCClient &client, std::string message);
+		void topic(IRCClient &client, std::string message);
+		void kick(IRCClient &client, std::string parameters);
+		//Channel Mode
 		void mode(IRCClient &client, std::string parameters);
 		void modePluso(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinuso(IRCClient &client, std::string channel, std::string parameter);
@@ -46,10 +51,10 @@ class IRCCore
 		void modeMinust(IRCClient &client, std::string channel);
 		void modePlusl(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinusl(IRCClient &client, std::string channel);
-		void part(IRCClient &client, std::string parameters);
-		void quit(IRCClient &client, std::string message);
-		void topic(IRCClient &client, std::string message);
-		void kick(IRCClient &client, std::string parameters);
+		//User Mode
+		void modeUser(IRCClient &client, std::string user, std::string flags);
+		void modeUserPlusi(IRCClient &client);
+		void modeUserMinusi(IRCClient &client);
 		
 		//Function that makes a call to the quit command when a user loses the connection
 		void quitDisconnectedUsers(void);

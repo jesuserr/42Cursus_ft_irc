@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/15 22:53:54 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:53:10 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,3 +96,33 @@ void IRCClient::setRealname(std::string realname)
 {
 	_realname = realname;
 }
+
+bool IRCClient::setFlag(char flag)
+{
+	if (checkFlag(flag))
+		return true;
+	_flags += std::tolower(flag);
+	return true;
+}
+
+bool IRCClient::removeFlag(char flag)
+{
+	flag = std::tolower(flag);
+	if (_flags.find(flag) == std::string::npos)
+		return false;
+	_flags.erase(_flags.find(flag), 1);
+	return true;
+}
+
+bool IRCClient::checkFlag(char flag)
+{
+	if (_flags.find(std::tolower(flag)) != std::string::npos)
+		return true;
+	return false;	
+}
+
+std::string IRCClient::getFlags(void)
+{
+	return _flags;
+}
+
