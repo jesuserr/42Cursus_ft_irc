@@ -3,25 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:29:08 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:32:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "IRCIncludes.hpp"
 
-std::string IRCCore::trim(const std::string& str) {
-    size_t first = str.find_first_not_of(' ');
-    if (std::string::npos == first)
-        return str;
-
-    size_t last = str.find_last_not_of(' ');
-    return str.substr(first, (last - first + 1));
-}
-
-IRCCore::IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected) : _clients(clients), _usersdisconnected(usersdisconnected)
+IRCCore::IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected) \
+: _clients(clients), _usersdisconnected(usersdisconnected)
 {
 	_password = pass;
 	_startingTime = obtainStartingTime();
@@ -49,7 +41,6 @@ bool IRCCore::checkUser(std::string nickname)
 	return false;
 }
 
-
 void IRCCore::run(void)
 {
 	quitDisconnectedUsers();
@@ -58,22 +49,17 @@ void IRCCore::run(void)
 		while(it->second.Getin().find("\r\n") != std::string::npos)
 		{
 			if (it->second.Getin().find(" ") != std::string::npos)
-				Command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find(" "))), trim(it->second.Getin().substr(it->second.Getin().find(" "), it->second.Getin().find("\r\n") - it->second.Getin().find(" "))));
+				command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find(" "))), \
+				trim(it->second.Getin().substr(it->second.Getin().find(" "), it->second.Getin().find("\r\n") \
+				- it->second.Getin().find(" "))));
 			else
-				Command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find("\r\n"))), "");
+				command(it->second, trim(it->second.Getin().substr(0, it->second.Getin().find("\r\n"))), "");
 			it->second.Getin().erase(0, it->second.Getin().find("\r\n") + 2);
 		}
 	}
 }
 
-void IRCCore::uppercaseCommand(std::string &cmd)
-{
-	if (!cmd.empty())
-		for (std::string::iterator it = cmd.begin(); it != cmd.end(); ++it)
-		    *it = std::toupper(*it);	
-}
-
-void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
+void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 {
 	uppercaseCommand(cmd);	
 	if (cmd.find("PASS") != std::string::npos && cmd.size() == 4)
@@ -108,9 +94,7 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		list(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
-
 	//std::cout << "\ncmd:" << cmd << " param:" << param << std::endl;
-	//std::cout << "\nnumber of channels: " << _channels.size() << std::endl;
 }
 
 // /connect -nocap localhost 6667 1234

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:58:31 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:58:33 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:37:04 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@ class IRCCore
 		IRCCore();
 		IRCCore(IRCCore const &cpy);
 		IRCCore &operator=(IRCCore const &rhs);
-		mapClients &_clients;
-		vectorChannelUsers &_usersdisconnected;
-		mapChannelList _channels;
-		std::string _password;
-		std::string trim(const std::string& str);
-		std::string _startingTime;
-		void uppercaseCommand(std::string &cmd);
+		
+		mapClients 			&_clients;
+		vectorChannelUsers 	&_usersdisconnected;
+		mapChannelList 		_channels;
+		std::string 		_password;
+		std::string 		_startingTime;
+		
+		void quitDisconnectedUsers(void); // Calls QUIT when user loses connection
+		bool checkUser(std::string nickname);
+		void command(IRCClient &client, std::string cmd, std::string param);
 				
 		/**************************** COMMANDS ********************************/
 		void pass(IRCClient &client, std::string input, std::string password);
@@ -35,7 +38,6 @@ class IRCCore
 		void user(IRCClient &client, std::string parameters);
 		void ping(IRCClient &client, std::string token);
 		void join(IRCClient &client, std::string parameters);
-		void joinc(IRCClient &client, std::string channel, std::string key);
 		void privmsg(IRCClient &client, std::string parameters);
 		void part(IRCClient &client, std::string parameters);
 		void quit(IRCClient &client, std::string message);
@@ -43,10 +45,14 @@ class IRCCore
 		void kick(IRCClient &client, std::string parameters);
 		void whois(IRCClient &client, std::string parameters);
 		void list(IRCClient &client, std::string parameters);
-		
-		//Channel Mode
+		void invite(IRCClient &client, std::string parameters);
 		void mode(IRCClient &client, std::string parameters);
-		void modePlusO(IRCClient &client, std::string channel, std::string parameter);
+		
+		/****************** COMMANDS Auxiliary Functions **********************/
+		// For JOIN
+		void joinc(IRCClient &client, std::string channel, std::string key);
+		// For Channel MODE
+ 		void modePlusO(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinusO(IRCClient &client, std::string channel, std::string parameter);
 		void modePlusK(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinusK(IRCClient &client, std::string channel, std::string parameter);
@@ -56,27 +62,21 @@ class IRCCore
 		void modeMinusL(IRCClient &client, std::string channel);
 		void modePlusI(IRCClient &client, std::string channel);
 		void modeMinusI(IRCClient &client, std::string channel);
-		//User Mode
+		// For User MODE
 		void modeUser(IRCClient &client, std::string user, std::string flags);
 		void modeUserPlusI(IRCClient &client);
 		void modeUserMinusI(IRCClient &client);
 		
-		//Function that makes a call to the quit command when a user loses the connection
-		void quitDisconnectedUsers(void);
-
 		/********************* IRCCoreCommandsUtils.cpp ***********************/
 		std::string obtainStartingTime(void);
 		void welcomeMessages(IRCClient &client);
 		std::string removeTabsAndMultipleSpaces(std::string line);
-
-		//Client Utils
-		bool checkUser(std::string nickname);
-		
+		std::string trim(const std::string& str);
+		void uppercaseCommand(std::string &cmd);
 		
 	public:	
 		IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected);
 		void run(void);
-		void Command(IRCClient &client, std::string cmd, std::string param);
 };
 
 #endif

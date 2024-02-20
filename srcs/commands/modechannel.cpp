@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:27:48 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:23:32 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,24 +212,16 @@ void IRCCore::modeMinusL(IRCClient &client, std::string channel)
 
 void IRCCore::modePlusI(IRCClient &client, std::string channel)
 {
-	std::cout << "modePlusI" << std::endl;
-	(void)client;
-	(void)channel;
-/* 	mapChannelList::iterator it = _channels.find(channel);
-	it->second.setFlag('l');
-	it->second.setMaxUsers(std::atoi(parameters.c_str()));
+	mapChannelList::iterator it = _channels.find(channel);
+	it->second.setFlag('i');
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
-	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+l", parameters)); */
+	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+i", ""));
 }
 
 void IRCCore::modeMinusI(IRCClient &client, std::string channel)
 {
-	std::cout << "modeMinusI" << std::endl;
-	(void)client;
-	(void)channel;
-/* 	mapChannelList::iterator it = _channels.find(channel);
-	it->second.removeFlag('l');
-	it->second.setMaxUsers(MAX_USERS_PER_CHANNEL);	
+	mapChannelList::iterator it = _channels.find(channel);
+	it->second.removeFlag('i');
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
-	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-l", "")); */
+	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-i", ""));
 }

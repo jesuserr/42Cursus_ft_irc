@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:35:23 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/12 11:48:51 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:19:35 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,20 @@ std::string IRCCore::removeTabsAndMultipleSpaces(std::string line)
 		}
 	}
 	return (result);
+}
+
+std::string IRCCore::trim(const std::string& str)
+{
+	size_t first = str.find_first_not_of(' ');
+	if (std::string::npos == first)
+		return str;
+	size_t last = str.find_last_not_of(' ');
+	return str.substr(first, (last - first + 1));
+}
+
+void IRCCore::uppercaseCommand(std::string &cmd)
+{
+	if (!cmd.empty())
+		for (std::string::iterator it = cmd.begin(); it != cmd.end(); ++it)
+		    *it = std::toupper(*it);	
 }
