@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   modechannel.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 21:14:49 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:13:45 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:27:48 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		while (!flags.empty())
 		{
 			if (std::tolower(flags.at(0)) == 'o')
-				modePluso(client, channel, parameters);
+				modePlusO(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 'k')
-				modePlusk(client, channel, parameters);
+				modePlusK(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 't')
-				modePlust(client, channel);
+				modePlusT(client, channel);
 			else if (std::tolower(flags.at(0)) == 'l')
-				modePlusl(client, channel, parameters);
+				modePlusL(client, channel, parameters);
+			else if (std::tolower(flags.at(0)) == 'i')
+				modePlusI(client, channel);
 			else 
 				client.SendIRCMsg(ERR_UNKNOWNMODE(client.getNickname(), flags.substr(0, 1), channel));
 			flags.erase(0, 1);
@@ -96,13 +98,15 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 		while (!flags.empty())
 		{
 			if (std::tolower(flags.at(0)) == 'o')
-				modeMinuso(client, channel, parameters);
+				modeMinusO(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 'k')
-				modeMinusk(client, channel, parameters);
+				modeMinusK(client, channel, parameters);
 			else if (std::tolower(flags.at(0)) == 't')
-				modeMinust(client, channel);
+				modeMinusT(client, channel);
 			else if (std::tolower(flags.at(0)) == 'l')
-				modeMinusl(client, channel);
+				modeMinusL(client, channel);
+			else if (std::tolower(flags.at(0)) == 'i')
+				modeMinusI(client, channel);
 			else 
 				client.SendIRCMsg(ERR_UNKNOWNMODE(client.getNickname(), flags.substr(0, 1), channel));
 			flags.erase(0, 1);
@@ -110,21 +114,21 @@ void IRCCore::mode(IRCClient &client, std::string parameters)
 	}
 }
 
-void IRCCore::modePlust(IRCClient &client, std::string channel)
+void IRCCore::modePlusT(IRCClient &client, std::string channel)
 {
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	_channels.find(channel)->second.setFlag('t');
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+t", ""));
 }
 
-void IRCCore::modeMinust(IRCClient &client, std::string channel)
+void IRCCore::modeMinusT(IRCClient &client, std::string channel)
 {
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	_channels.find(channel)->second.removeFlag('t');
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-t", ""));
 }
 
-void IRCCore::modePluso(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modePlusO(IRCClient &client, std::string channel, std::string parameters)
 {
 	if (parameters.empty())
 	{
@@ -140,7 +144,7 @@ void IRCCore::modePluso(IRCClient &client, std::string channel, std::string para
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "+o", parameters));
 }
 
-void IRCCore::modeMinuso(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modeMinusO(IRCClient &client, std::string channel, std::string parameters)
 {
 	if (parameters.empty())
 	{
@@ -161,7 +165,7 @@ void IRCCore::modeMinuso(IRCClient &client, std::string channel, std::string par
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "-o", parameters));
 }
 
-void IRCCore::modePlusk(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modePlusK(IRCClient &client, std::string channel, std::string parameters)
 {
 	if (parameters.empty())
 	{
@@ -173,7 +177,7 @@ void IRCCore::modePlusk(IRCClient &client, std::string channel, std::string para
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "+k", parameters));	
 }
 
-void IRCCore::modeMinusk(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modeMinusK(IRCClient &client, std::string channel, std::string parameters)
 {
 	(void)parameters;
 	(void)client;
@@ -182,7 +186,7 @@ void IRCCore::modeMinusk(IRCClient &client, std::string channel, std::string par
 	_channels.find(channel)->second.sendMsg(client, RPL_CHANNELMODEIS(USER_ID(client.getNickname(), client.getUsername()), channel, "-k", ""));	
 }
 
-void IRCCore::modePlusl(IRCClient &client, std::string channel, std::string parameters)
+void IRCCore::modePlusL(IRCClient &client, std::string channel, std::string parameters)
 {
 	if (parameters.empty() || std::atoi(parameters.c_str()) == 0 || \
 	std::atoi(parameters.c_str()) > MAX_USERS_PER_CHANNEL)
@@ -197,11 +201,35 @@ void IRCCore::modePlusl(IRCClient &client, std::string channel, std::string para
 	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+l", parameters));
 }
 
-void IRCCore::modeMinusl(IRCClient &client, std::string channel)
+void IRCCore::modeMinusL(IRCClient &client, std::string channel)
 {
 	mapChannelList::iterator it = _channels.find(channel);
 	it->second.removeFlag('l');
 	it->second.setMaxUsers(MAX_USERS_PER_CHANNEL);	
 	std::string userId = USER_ID(client.getNickname(), client.getUsername());
 	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-l", ""));
+}
+
+void IRCCore::modePlusI(IRCClient &client, std::string channel)
+{
+	std::cout << "modePlusI" << std::endl;
+	(void)client;
+	(void)channel;
+/* 	mapChannelList::iterator it = _channels.find(channel);
+	it->second.setFlag('l');
+	it->second.setMaxUsers(std::atoi(parameters.c_str()));
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "+l", parameters)); */
+}
+
+void IRCCore::modeMinusI(IRCClient &client, std::string channel)
+{
+	std::cout << "modeMinusI" << std::endl;
+	(void)client;
+	(void)channel;
+/* 	mapChannelList::iterator it = _channels.find(channel);
+	it->second.removeFlag('l');
+	it->second.setMaxUsers(MAX_USERS_PER_CHANNEL);	
+	std::string userId = USER_ID(client.getNickname(), client.getUsername());
+	it->second.sendMsg(client, RPL_CHANNELMODEIS(userId, channel, "-l", "")); */
 }

@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 10:34:03 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:54:32 by cescanue         ###   ########.fr       */
+/*   Created: 2024/02/20 11:57:20 by cescanue          #+#    #+#             */
+/*   Updated: 2024/02/20 11:57:22 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../IRCIncludes.hpp"
 
@@ -25,7 +26,7 @@ void IRCCore::modeUser(IRCClient &client, std::string user, std::string flags)
 		while (!flags.empty())
 		{
 			if (std::tolower(flags.at(0)) == 'i')
-				modeUserPlusi(client);
+				modeUserPlusI(client);
 			else 
 				client.SendIRCMsg(ERR_UMODEUNKNOWNFLAG(client.getNickname()));
 			flags.erase(0, 1);
@@ -37,7 +38,7 @@ void IRCCore::modeUser(IRCClient &client, std::string user, std::string flags)
 		while (!flags.empty())
 		{
 			if (std::tolower(flags.at(0)) == 'i')
-				modeUserMinusi(client);
+				modeUserMinusI(client);
 			else 
 				client.SendIRCMsg(ERR_UMODEUNKNOWNFLAG(client.getNickname()));
 			flags.erase(0, 1);
@@ -45,13 +46,13 @@ void IRCCore::modeUser(IRCClient &client, std::string user, std::string flags)
 	}
 }
 
-void IRCCore::modeUserPlusi(IRCClient &client)
+void IRCCore::modeUserPlusI(IRCClient &client)
 {
 	client.setFlag('i');
 	client.SendIRCMsg(RPL_UMODEIS(client.getNickname(), client.getFlags()));
 }
 
-void IRCCore::modeUserMinusi(IRCClient &client)
+void IRCCore::modeUserMinusI(IRCClient &client)
 {
 	client.removeFlag('i');
 	client.SendIRCMsg(RPL_UMODEIS(client.getNickname(), client.getFlags()));
