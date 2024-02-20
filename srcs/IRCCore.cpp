@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 19:32:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/20 20:15:36 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 		whois(client, param);
 	else if (cmd.find("LIST") != std::string::npos && cmd.size() == 4)
 		list(client, param);
+	else if (cmd.find("INVITE") != std::string::npos && cmd.size() == 6)
+		invite(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 	//std::cout << "\ncmd:" << cmd << " param:" << param << std::endl;

@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 19:59:18 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:23:35 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,10 @@
 # define RPL_LISTSTART(client) (":localhost 321 " + client + " :Channel :Users Name")
 # define RPL_LIST(client, channel, users, topic) (":localhost 322 " + client + " " + channel + " " + users + " :" + topic)
 # define RPL_LISTEND(client) (":localhost 323 " + client + " :End of LIST")
+
+// INVITE messages
+# define ERR_USERONCHANNEL(client, nick, channel) (":localhost 443 " + client + " " + nick + " " + channel + " :is already on channel")
+# define RPL_INVITING(client, nick, channel) (":localhost 341 " + client + " " + nick + " " + channel)
+# define INVITE(USER_ID, nick, channel) (USER_ID + " INVITE " + nick + " " + channel)
 
 #endif
