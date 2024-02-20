@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   IRCChannel.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:32:24 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:57:38 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "IRCIncludes.hpp"
-
-IRCChannel::~IRCChannel()
-{
-}
 
 IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients)
 {
 	_name = name;
 	_flags.clear();
 	_maxUsers = MAX_USERS_PER_CHANNEL;
+}
+
+IRCChannel::~IRCChannel()
+{
 }
 
 bool IRCChannel::addUser(std::string user)
@@ -233,4 +233,3 @@ std::string IRCChannel::getName(void)
 {
 	return _name;
 }
-

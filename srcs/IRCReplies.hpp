@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCReplies.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 12:09:56 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:59:18 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@
 # define RPL_ENDOFNAMES(channelname, nick) (":localhost 366 " + nick + " " + channelname + " :End of NAMES list")
 # define ERR_BADCHANNELKEY(client, channelname) (":localhost 475 " + client + " " + channelname + " :Cannot join channel (+k)")
 # define ERR_NOSUCHCHANNEL(client, channelname) (":localhost 403 " + client + " " + channelname + " :No such channel")
-// JOIN messages - channel is full - jesuserr - 19/02/2024 (borrar tras revisar mensajes de error)
 # define ERR_CHANNELISFULL(client, channel) (":localhost 471 " + client + " " + channel + " :Cannot join channel (+l)")
 
 // TOPIC messages
