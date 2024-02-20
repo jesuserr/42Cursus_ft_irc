@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:30:05 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:32:24 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,3 +228,9 @@ unsigned int IRCChannel::getMaxUsers(void)
 {
 	return _maxUsers;
 }
+
+std::string IRCChannel::getName(void)
+{
+	return _name;
+}
+

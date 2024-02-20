@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 10:34:03 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:06:34 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:54:32 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,13 @@ void IRCCore::modeUser(IRCClient &client, std::string user, std::string flags)
 void IRCCore::modeUserPlusi(IRCClient &client)
 {
 	client.setFlag('i');
+	client.SendIRCMsg(RPL_UMODEIS(client.getNickname(), client.getFlags()));
 }
 
 void IRCCore::modeUserMinusi(IRCClient &client)
 {
 	client.removeFlag('i');
+	client.SendIRCMsg(RPL_UMODEIS(client.getNickname(), client.getFlags()));
 }
 
 

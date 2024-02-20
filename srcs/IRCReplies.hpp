@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:00:14 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:53:50 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@
 // MODE usermessages
 # define ERR_UMODEUNKNOWNFLAG(client) (":localhost 501 " + client + " :Unknown MODE flag")
 # define ERR_USERSDONTMATCH(client) (":localhost 502 " + client + " :Cannot change mode for other users")
+# define RPL_UMODEIS(client, mode) (":localhost 221 " + client + " " + mode)
 
 // PART messages
 # define ERR_NOTONCHANNEL(client, channel) (":localhost 442 " + client + " " + channel + " :You're not on that channel")
@@ -92,5 +93,17 @@
 // KICK messages
 # define ERR_USERNOTINCHANNEL(client, nick, channel) (":localhost 441 " + client + " " + nick + " " + channel + " :They aren't on that channel")
 # define RPL_KICKCHANNEL(USER_ID, channel, user, message) (USER_ID + " KICK " + channel + " " + user + " " + message)
+
+// WHOIS messages
+# define RPL_WHOISUSER(client, nick, user, host, server, realname) (":localhost 311 " + client + " " + nick + " " + user + " " + host + " * :" + realname)
+# define RPL_WHOISSERVER(client, nick, server, serverinfo) (":localhost 312 " + client + " " + nick + " " + server + " :" + serverinfo)
+# define RPL_WHOISOPERATOR(client, nick) (":localhost 313 " + client + " " + nick + " :is an IRC operator")
+# define RPL_WHOISIDLE(client, nick, idle, signon) (":localhost 317 " + client + " " + nick + " " + std::to_string(idle) + " " + std::to_string(signon) + " :seconds idle, signon time")
+# define RPL_ENDOFWHOIS(client, nick) (":localhost 318 " + client + " " + nick + " :End of WHOIS list")
+
+// LIST messages
+# define RPL_LISTSTART(client) (":localhost 321 " + client + " :Channel :Users Name")
+# define RPL_LIST(client, channel, users, topic) (":localhost 322 " + client + " " + channel + " " + users + " :" + topic)
+# define RPL_LISTEND(client) (":localhost 323 " + client + " :End of LIST")
 
 #endif

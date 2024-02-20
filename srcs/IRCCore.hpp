@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:34:58 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 10:59:08 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:30:25 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ class IRCCore
 		void quit(IRCClient &client, std::string message);
 		void topic(IRCClient &client, std::string message);
 		void kick(IRCClient &client, std::string parameters);
+		void whois(IRCClient &client, std::string parameters);
+		void list(IRCClient &client, std::string parameters);
+		
 		//Channel Mode
 		void mode(IRCClient &client, std::string parameters);
 		void modePluso(IRCClient &client, std::string channel, std::string parameter);

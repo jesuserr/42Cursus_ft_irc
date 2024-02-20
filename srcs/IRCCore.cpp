@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 10:55:53 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:29:08 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,10 @@ void IRCCore::Command(IRCClient &client, std::string cmd, std::string param)
 		topic(client, param);
 	else if (cmd.find("KICK") != std::string::npos && cmd.size() == 4)
 		kick(client, param);
+	else if (cmd.find("WHOIS") != std::string::npos && cmd.size() == 5)
+		whois(client, param);
+	else if (cmd.find("LIST") != std::string::npos && cmd.size() == 4)
+		list(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 

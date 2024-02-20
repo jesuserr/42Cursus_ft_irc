@@ -6,7 +6,7 @@
 /*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:07:00 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:30:39 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/20 11:32:17 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ private:
 public:
 	IRCChannel(std::string name, mapClients &clients);
 	~IRCChannel();
+	std::string getName(void);
 	void setKey(std::string key);
 	std::string getKey(void);
 	void setTopic(std::string topic);
