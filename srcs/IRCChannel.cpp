@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 19:57:38 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:04:26 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,4 +232,33 @@ unsigned int IRCChannel::getMaxUsers(void)
 std::string IRCChannel::getName(void)
 {
 	return _name;
+}
+
+bool IRCChannel::addInvited(std::string user)
+{
+	if (std::find(_invited.begin(), _invited.end(), user) == _invited.end())
+	{
+		_invited.push_back(user);
+		return true;
+	}
+	return false;
+}
+
+bool IRCChannel::delInvited(std::string user)
+{
+	vectorChannelUsers::iterator it;	
+	it = std::find(_invited.begin(), _invited.end(), user);
+	if (it != _invited.end())
+	{
+		_invited.erase(it);
+		return true;
+	}
+	return false;
+}
+
+bool IRCChannel::checkInvited(std::string user)
+{
+	if (std::find(_invited.begin(), _invited.end(), user) != _invited.end())
+		return true;
+	return false;
 }

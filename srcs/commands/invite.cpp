@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:04:44 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/20 21:20:55 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:33:44 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,16 @@ void IRCCore::invite(IRCClient &client, std::string parameters)
 		return (client.SendIRCMsg(ERR_CHANOPRIVSNEEDED(client.getNickname(), channel)));
 	if (itc->second.checkUser(nick))
 		return (client.SendIRCMsg(ERR_USERONCHANNEL(client.getNickname(), nick, channel)));
+	if (!checkUser(nick))
+		return (client.SendIRCMsg(ERR_NOSUCHNICK(client.getNickname(), nick)));
 	client.SendIRCMsg(RPL_INVITING(client.getNickname(), nick, channel));
-	std::string userId = USER_ID(client.getNickname(), client.getUsername());
-	client.SendIRCMsg(INVITE(userId, nick, channel));
+	for (mapClients::iterator it = _clients.begin(); it != _clients.end(); it++)
+	{
+		if (it->second.getNickname() == nick)
+		{
+			std::string userId = USER_ID(client.getNickname(), client.getUsername());
+			it->second.SendIRCMsg(RPL_INVITE(userId, nick, channel));
+		}			
+	}
+	itc->second.addInvited(nick);
 }

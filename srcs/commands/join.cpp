@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 21:10:05 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/21 09:53:40 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,32 @@ void IRCCore::join(IRCClient &client, std::string parameters)
 		joinc(client, channels, keys);
 }
 
+bool IRCCore::checkChannelFull(IRCClient &client, std::string channel)
+{
+	mapChannelList::iterator it = _channels.find(channel);
+	if (it->second.getUsers().size() > 0 && \
+	it->second.getUsers().size() >= it->second.getMaxUsers())
+	{
+		client.SendIRCMsg(ERR_CHANNELISFULL(client.getNickname(), channel));
+		return true;
+	}
+	return false;
+}
+
+bool IRCCore::checkInvitationList(IRCClient &client, std::string channel)
+{
+	mapChannelList::iterator it = _channels.find(channel);
+	if (!it->second.checkFlag('i'))
+		return true;
+	if (it->second.checkInvited(client.getNickname()))
+	{
+		it->second.delInvited(client.getNickname());
+		return true;
+	}
+	client.SendIRCMsg(ERR_INVITEONLYCHAN(client.getNickname(), channel));
+	return false;
+}
+
 void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 {
 	if (!channel.empty() && channel.at(0) != '#' && channel.at(0) != '@')
@@ -57,13 +83,11 @@ void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 		client.SendIRCMsg(ERR_NOSUCHNICK(client.getUsername(), channel));
 		return;
 	}
-	mapChannelList::iterator it = _channels.find(channel);
-	if (it->second.getUsers().size() > 0 && \
-	it->second.getUsers().size() >= it->second.getMaxUsers())
-	{
-		client.SendIRCMsg(ERR_CHANNELISFULL(client.getNickname(), channel));
+	if (checkChannelFull(client, channel))
 		return;
-	}
+	if (!checkInvitationList(client, channel))
+		return;
+	mapChannelList::iterator it = _channels.find(channel);
 	if (it != _channels.end())
 	{
 		if (it->second.getKey().empty() || it->second.getKey() == key)

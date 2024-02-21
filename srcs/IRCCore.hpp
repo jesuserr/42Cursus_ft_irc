@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:58:31 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 19:37:04 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 09:41:05 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class IRCCore
 		std::string 		_password;
 		std::string 		_startingTime;
 		
-		void quitDisconnectedUsers(void); // Calls QUIT when user loses connection
-		bool checkUser(std::string nickname);
+		void quitDisconnectedUsers(void); 		// Calls QUIT when user loses connection
+		bool checkUser(std::string nickname); 	// Checks if user exists at server level
 		void command(IRCClient &client, std::string cmd, std::string param);
 				
 		/**************************** COMMANDS ********************************/
@@ -51,6 +51,8 @@ class IRCCore
 		/****************** COMMANDS Auxiliary Functions **********************/
 		// For JOIN
 		void joinc(IRCClient &client, std::string channel, std::string key);
+		bool checkChannelFull(IRCClient &client, std::string channel);
+		bool checkInvitationList(IRCClient &client, std::string channel);
 		// For Channel MODE
  		void modePlusO(IRCClient &client, std::string channel, std::string parameter);
 		void modeMinusO(IRCClient &client, std::string channel, std::string parameter);

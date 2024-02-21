@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 21:23:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:34:02 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@
 # define ERR_BADCHANNELKEY(client, channelname) (":localhost 475 " + client + " " + channelname + " :Cannot join channel (+k)")
 # define ERR_NOSUCHCHANNEL(client, channelname) (":localhost 403 " + client + " " + channelname + " :No such channel")
 # define ERR_CHANNELISFULL(client, channel) (":localhost 471 " + client + " " + channel + " :Cannot join channel (+l)")
+# define ERR_INVITEONLYCHAN(client, channel) (":localhost 473 " + client + " " + channel + " :Cannot join channel (+i)")
 
 // TOPIC messages
 # define RPL_NOTOPIC(client, channelname) (":localhost 331 " + client + " " + channelname + " :No topic is set")
@@ -108,6 +109,6 @@
 // INVITE messages
 # define ERR_USERONCHANNEL(client, nick, channel) (":localhost 443 " + client + " " + nick + " " + channel + " :is already on channel")
 # define RPL_INVITING(client, nick, channel) (":localhost 341 " + client + " " + nick + " " + channel)
-# define INVITE(USER_ID, nick, channel) (USER_ID + " INVITE " + nick + " " + channel)
+# define RPL_INVITE(USER_ID, nick, channel) (USER_ID + " INVITE " + nick + " " + channel)
 
 #endif
