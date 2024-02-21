@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCClient.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 10:53:10 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/21 10:56:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,6 @@ IRCClient::IRCClient()
 
 IRCClient::~IRCClient()
 {
-}
-
-std::string &IRCClient::Getin()
-{
-	return _in;
-}
-
-std::string &IRCClient::Getout()
-{
-	return _out;
-}
-
-void IRCClient::SendIRCMsg(std::string msg)
-{
-	Getout() += msg;
-	Getout() += "\r\n";
 }
 
 /*********************************** GETTERS **********************************/
@@ -70,6 +54,11 @@ std::string IRCClient::getRealname() const
 	return _realname;
 }
 
+std::string IRCClient::getFlags(void) const
+{
+	return _flags;
+}
+
 /*********************************** SETTERS **********************************/
 
 void IRCClient::setClientAuthentication(bool status)
@@ -97,6 +86,24 @@ void IRCClient::setRealname(std::string realname)
 	_realname = realname;
 }
 
+/*********************************** FUNCTIONS ********************************/
+
+std::string &IRCClient::Getin()
+{
+	return _in;
+}
+
+std::string &IRCClient::Getout()
+{
+	return _out;
+}
+
+void IRCClient::SendIRCMsg(std::string msg)
+{
+	Getout() += msg;
+	Getout() += "\r\n";
+}
+
 bool IRCClient::setFlag(char flag)
 {
 	if (checkFlag(flag))
@@ -120,9 +127,3 @@ bool IRCClient::checkFlag(char flag)
 		return true;
 	return false;	
 }
-
-std::string IRCClient::getFlags(void)
-{
-	return _flags;
-}
-
