@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 20:15:36 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 21:34:22 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 		nick(client, param);
  	else if (cmd.find("USER") != std::string::npos && cmd.size() == 4)
 		user(client, param);
+	else if (cmd.find("CAP") != std::string::npos && cmd.size() == 3)
+		;
 	else if (cmd.find("LEAKSCHECKEXIT") != std::string::npos && cmd.size() == 14)
 		throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");		
 	else if (!client.getClientRegistration())
