@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/21 09:53:40 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/21 13:50:28 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void IRCCore::join(IRCClient &client, std::string parameters)
 bool IRCCore::checkChannelFull(IRCClient &client, std::string channel)
 {
 	mapChannelList::iterator it = _channels.find(channel);
-	if (it->second.getUsers().size() > 0 && \
-	it->second.getUsers().size() >= it->second.getMaxUsers())
+	
+	if (it != _channels.end() && it->second.getUsers().size() >= it->second.getMaxUsers())
 	{
 		client.SendIRCMsg(ERR_CHANNELISFULL(client.getNickname(), channel));
 		return true;
@@ -60,6 +60,9 @@ bool IRCCore::checkChannelFull(IRCClient &client, std::string channel)
 bool IRCCore::checkInvitationList(IRCClient &client, std::string channel)
 {
 	mapChannelList::iterator it = _channels.find(channel);
+	
+	if (it == _channels.end())
+		return true;
 	if (!it->second.checkFlag('i'))
 		return true;
 	if (it->second.checkInvited(client.getNickname()))

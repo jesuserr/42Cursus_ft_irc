@@ -1,8 +1,8 @@
 # ft_irc
 
-* Cescanue --> ~~TOPIC and~~ MODE flags: t k o
-* Jesuserr --> ~~KICK,~~ INVITE and MODE flags: i l
+- Implementar Bot
+- Revisar iteradores y protegerlos
+- Pasar hoja de evaluación
 
-Future TODOs
-- Command LIST
+
 
