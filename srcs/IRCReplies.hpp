@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:33:57 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/21 10:34:02 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:16:07 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define ERR_NORECIPIENT(client) (":localhost 411 " + client + " :No recipient given (PRIVMSG)")
 # define ERR_NOTEXTTOSEND(client) (":localhost 412 " + client + " :No text to send")
 # define RPL_PRIVMSG(USER_ID, nick, message) (USER_ID + " PRIVMSG " + nick + " " + message)
-//PRIVMSG messages - channel
+// PRIVMSG messages - channel
 # define RPL_PRIVMSGCHANNEL(userid, channelname, msg) (userid + " PRIVMSG " + channelname + " " + msg)
 # define ERR_CANNOTSENDTOCHAN(client ,channelname) (":localhost 404 " + client + " " + channelname + " :Cannot send to channel")
 
