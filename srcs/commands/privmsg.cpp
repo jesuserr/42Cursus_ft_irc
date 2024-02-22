@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   privmsg.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 10:32:58 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/19 21:15:53 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#privmsg-message
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 bool privmsgParsing(std::string parameters, std::string *target, std::string *message)
 {

@@ -6,11 +6,11 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:40:16 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/21 10:56:31 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:19 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCIncludes.hpp"
+#include "../incs/IRCIncludes.hpp"
 
 IRCClient::IRCClient() 
 {

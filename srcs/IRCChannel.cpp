@@ -6,11 +6,11 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 21:18:21 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/21 10:04:26 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:24 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCIncludes.hpp"
+#include "../incs/IRCIncludes.hpp"
 
 IRCChannel::IRCChannel(std::string name, mapClients &clients) : _clients(clients)
 {

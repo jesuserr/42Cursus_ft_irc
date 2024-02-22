@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   modeuser.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:57:20 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/20 11:57:22 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 void IRCCore::modeUser(IRCClient &client, std::string user, std::string flags)
 {

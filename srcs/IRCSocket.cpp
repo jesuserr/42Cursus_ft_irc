@@ -6,11 +6,11 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/22 11:39:52 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:06:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCIncludes.hpp"
+#include "../incs/IRCIncludes.hpp"
 
 IRCSocket::~IRCSocket()
 {

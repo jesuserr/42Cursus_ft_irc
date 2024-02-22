@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   topic.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 12:06:56 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/19 22:02:34 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 void IRCCore::topic(IRCClient &client, std::string parameters)
 {

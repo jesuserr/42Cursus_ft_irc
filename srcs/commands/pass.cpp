@@ -6,13 +6,13 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 21:03:45 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/09 12:24:49 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#pass-message
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 void IRCCore::pass(IRCClient &client, std::string input, std::string password)
 {

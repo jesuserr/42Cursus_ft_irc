@@ -6,13 +6,13 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:47 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/15 12:04:54 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#nick-message
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 bool nickAlreadyInUse(mapClients &_clients, std::string newNick)
 {

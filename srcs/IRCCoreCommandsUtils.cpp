@@ -6,11 +6,11 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 13:35:23 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/20 19:19:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:07 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCIncludes.hpp"
+#include "../incs/IRCIncludes.hpp"
 
 std::string IRCCore::obtainStartingTime(void)
 {

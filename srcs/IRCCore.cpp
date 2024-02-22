@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   IRCCore.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/21 21:34:22 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:35:54 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IRCIncludes.hpp"
+#include "../incs/IRCIncludes.hpp"
 
 IRCCore::IRCCore(std::string pass, mapClients &clients, vectorChannelUsers &usersdisconnected) \
 : _clients(clients), _usersdisconnected(usersdisconnected)
@@ -100,7 +100,3 @@ void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
 	//std::cout << "\ncmd:" << cmd << " param:" << param << std::endl;
 }
-
-// /connect -nocap localhost 6667 1234
-// /RAWLOG OPEN debug.log
-// /connect -nocap DALnet 6667

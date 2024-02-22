@@ -6,13 +6,13 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:04:44 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/21 10:33:44 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:07:36 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //https://modern.ircdocs.horse/#invite-message
 
-#include "../IRCIncludes.hpp"
+#include "../../incs/IRCIncludes.hpp"
 
 bool inviteParsing(std::string parameters, std::string *nick, std::string *channel)
 {
