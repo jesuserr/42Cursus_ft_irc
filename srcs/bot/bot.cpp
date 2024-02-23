@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 12:47:07 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:08:50 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ bool registration(int clientSocket, std::string password, std::string botNick, s
 int main(int argc, char **argv)
 {
 	if (argc != 5 || std::atoi(argv[2]) < 1 || std::atoi(argv[2]) > 65535)
-		return errorMessage("Please introduce valid arguments as shown below.\n./bot <host> <port> <password> <channel>");		
+		return errorMessage("Please introduce valid arguments as shown below.\n./ircbot <host> <port> <password> <channel>");		
 	std::string password = argv[3];
 	std::string channel = "#" + std::string(argv[4]);
 	std::string botNick = "Botijo";
@@ -66,6 +66,10 @@ int main(int argc, char **argv)
 	while (1);
 }
 
-// g++ -Wall -Wextra -Werror -std=c++98 -pedantic bot.cpp -o bot && ./bot localhost 6667 1234 channel
-// ideas: hacer un "make bot" dentro del makefile
-//        saludo al unirse al canal
+// make bot && ./ircbot localhost 6667 1234 test
+// si hacemos esto peta el server
+	/* while (1)
+	{
+		std::string ping = "PING\r\n";
+		send(clientSocket, ping.c_str(), ping.size(), 0);
+	} */
