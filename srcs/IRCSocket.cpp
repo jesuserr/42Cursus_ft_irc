@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/22 12:06:57 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:17:55 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ bool IRCSocket::IRClisten(void)
 		return _log->Error("Unable to set main socket as reusable.");
 	if (fcntl(_fds[0].fd, F_SETFL, O_NONBLOCK) < 0)
 		return _log->Error("Unable to set main socket as non-blocking.");
-	memset(&iaddr, 0, sizeof(iaddr));
+	std::memset(&iaddr, 0, sizeof(iaddr));
 	iaddr.sin6_family = AF_INET6;
 	memcpy(&iaddr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 	iaddr.sin6_port = htons(_listenPort);

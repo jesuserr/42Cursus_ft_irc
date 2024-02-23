@@ -6,34 +6,11 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 01:07:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:58:56 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/socket.h>
-#include <iostream>
-#include <arpa/inet.h>
-#define BUFFER_SIZE	8192
-
-void welcomeMessage(std::string channel)
-{
-	system("clear");
-	std::cout << "\033[?25l";
-	std::cout << "     _            _           _   \n"
-				"    (_)          | |         | |  \n"
-				"     _ _ __ ___  | |__   ___ | |_ \n"
-				"    | | '__/ __| | '_ \\ / _ \\| __|		\n"
-				"    | | | | (__  | |_) | (_) | |_		\n"
-				"    |_|_|  \\___| |_.__/ \\___/ \\__|	\n";
-	std::cout << "  by Carlos Escañuela & Jesús Serrano\n";
-	std::cout << "\n Bot connected to server on channel: " << channel << "\n\n";
-}
-
-int errorMessage(std::string message)
-{
-	std::cerr << message << std::endl;
-	return (1);	
-}
+#include "bot.hpp"
 
 bool registration(int clientSocket, std::string password, std::string botNick, std::string channel)
 {
@@ -46,11 +23,12 @@ bool registration(int clientSocket, std::string password, std::string botNick, s
 	std::string join = "JOIN " + channel + "\r\n";
 	send(clientSocket, join.c_str(), join.size(), 0);
 	char buffer[BUFFER_SIZE];
-	memset(buffer, 0, BUFFER_SIZE);
+	std::memset(buffer, 0, BUFFER_SIZE);
 	ssize_t bytesReceived = recv(clientSocket, buffer, BUFFER_SIZE, 0);
  	if (bytesReceived == -1 || std::strstr(buffer, "End of NAMES list") == NULL)
 		return (false);
-	welcomeMessage(channel);
+	welcomeMessageSerious(channel);			//pick one of the two
+	//welcomeMessageFunny(channel);			//pick one of the two
 	return (true);
 }
 
@@ -64,6 +42,7 @@ int main(int argc, char **argv)
 	std::string password = argv[3];
 	std::string channel = "#" + std::string(argv[4]);
 	std::string botNick = "Botijo";
+	std::signal(SIGINT, cleanExit);
 
 	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 	if (clientSocket == -1)
