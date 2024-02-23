@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:49 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 12:42:41 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 16:26:23 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <arpa/inet.h>
 # include <csignal>
 # include <netdb.h>
+# include <sstream>
 
 # define BUFFER_SIZE	8192
 
@@ -25,5 +26,6 @@ int errorMessage(std::string message);
 void welcomeMessageSerious(std::string channel);
 void welcomeMessageFunny(std::string channel);
 void cleanExit(int signal);
+void sendMessage(int clientSocket, std::string channel, std::string message);
 
 #endif
