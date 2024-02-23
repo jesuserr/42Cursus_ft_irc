@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   join.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/11 20:57:22 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/22 12:08:57 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 21:29:08 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 void IRCCore::join(IRCClient &client, std::string parameters)
 {
 	std::string channels, keys;
+	parameters = trim(parameters);
+	if (parameters.empty())
+	{
+		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getNickname(), "JOIN"));
+		return;
+	}
 	if (parameters.find(" ") != std::string::npos)
 	{
 		channels = parameters.substr(0, parameters.find(" "));
@@ -27,7 +33,7 @@ void IRCCore::join(IRCClient &client, std::string parameters)
 	{
 		std::string c;
 		std::string k;
-		
+		channels = trim(channels);
 		c = channels.substr(0, channels.find(","));
 		channels.erase(0, channels.find(",") + 1);
 		if (keys.find(",") != std::string::npos)
@@ -76,6 +82,13 @@ bool IRCCore::checkInvitationList(IRCClient &client, std::string channel)
 
 void IRCCore::joinc(IRCClient &client, std::string channel, std::string key)
 {
+	
+	channel = trim(channel);
+	if (channel.empty())
+	{
+		client.SendIRCMsg(ERR_NEEDMOREPARAMS(client.getNickname(), "JOIN"));
+		return;
+	}
 	if (!channel.empty() && channel.at(0) != '#' && channel.at(0) != '@')
 	{
 		client.SendIRCMsg(ERR_NOSUCHCHANNEL(client.getNickname(), channel));
