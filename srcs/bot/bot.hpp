@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:49 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 10:57:31 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:42:41 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <iostream>
 # include <arpa/inet.h>
 # include <csignal>
+# include <netdb.h>
+
 # define BUFFER_SIZE	8192
 
 int errorMessage(std::string message);

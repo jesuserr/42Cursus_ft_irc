@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 10:58:56 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:47:07 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,41 @@ bool registration(int clientSocket, std::string password, std::string botNick, s
 		return (false);
 	welcomeMessageSerious(channel);			//pick one of the two
 	//welcomeMessageFunny(channel);			//pick one of the two
+	std::string message = "PRIVMSG " + channel + " :Hi guys, type \"Hey Botijo\" to interact with me\r\n";
+	send(clientSocket, message.c_str(), message.size(), 0);
 	return (true);
 }
 
 int main(int argc, char **argv)
 {
-	if (argc != 5 || std::atoi(argv[2]) < 1 || std::atoi(argv[2]) > 65535) //add more checks?
-		return errorMessage("Please introduce valid arguments as shown below\n./bot localhost 6667 <password> <channel>");
-			
-	std::string server = argv[1];
-	int port = std::atoi(argv[2]);
+	if (argc != 5 || std::atoi(argv[2]) < 1 || std::atoi(argv[2]) > 65535)
+		return errorMessage("Please introduce valid arguments as shown below.\n./bot <host> <port> <password> <channel>");		
 	std::string password = argv[3];
 	std::string channel = "#" + std::string(argv[4]);
 	std::string botNick = "Botijo";
 	std::signal(SIGINT, cleanExit);
 
-	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+	struct addrinfo hints, *res;
+	std::memset(&hints, 0, sizeof(hints));
+	hints.ai_family = AF_UNSPEC;						// Allow IPv4 or IPv6
+	hints.ai_socktype = SOCK_STREAM;
+	if (getaddrinfo(argv[1], argv[2], &hints, &res) != 0)
+		return errorMessage("Unable to resolve hostname.");
+	int clientSocket = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
 	if (clientSocket == -1)
+	{
+		freeaddrinfo(res);
 		return errorMessage("Unable to create socket.");
-		
-	sockaddr_in address;
-	address.sin_family = AF_INET;
-	address.sin_port = htons(port);
-	address.sin_addr.s_addr = inet_addr("127.0.0.1");			//Cambiar esto, puede ser otra ip
-	if (connect(clientSocket, (sockaddr*)&address, sizeof(address)) == -1)
-		return errorMessage("Unable to connect to server.");	
-		
+	}
+	if (connect(clientSocket, res->ai_addr, res->ai_addrlen) == -1)
+	{
+		freeaddrinfo(res);
+		return errorMessage("Unable to connect to server.");
+	}
+	freeaddrinfo(res);
 	if (!registration(clientSocket, password, botNick, channel))
 		return errorMessage("Unable to register the connection with server and join the channel.");
-	
-	while (1);	
+	while (1);
 }
 
 // g++ -Wall -Wextra -Werror -std=c++98 -pedantic bot.cpp -o bot && ./bot localhost 6667 1234 channel

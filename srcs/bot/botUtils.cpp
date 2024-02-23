@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 10:58:42 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/23 12:29:30 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int errorMessage(std::string message)
 {
-	std::cerr << message << std::endl;
+	std::cerr << "bot: " << message << std::endl;
 	return (1);	
 }
 
