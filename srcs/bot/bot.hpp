@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:49 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 16:26:23 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:24:28 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <netdb.h>
 # include <sstream>
 
-# define BUFFER_SIZE	8192
+# define BUFFER_SIZE	    8192
+# define SPANISH_CHARSET    "áéíóúñÁÉÍÓÚÑüÜ"
 
 int errorMessage(std::string message);
 void welcomeMessageSerious(std::string channel);

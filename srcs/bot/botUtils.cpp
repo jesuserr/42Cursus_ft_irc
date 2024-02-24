@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 16:16:41 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 12:41:35 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int errorMessage(std::string message)
 {
-	std::cerr << " ircbot: " << message << std::endl;
+	std::cerr << " ircbot: " << message << "\033[?25h" << std::endl;
 	return (1);	
 }
 

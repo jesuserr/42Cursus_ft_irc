@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/23 18:33:24 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 16:56:47 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ bool registration(int clientSocket, std::string password, std::string botNick, s
 	ssize_t bytesReceived = recv(clientSocket, buffer, BUFFER_SIZE, 0);
  	if (bytesReceived == -1 || std::strstr(buffer, "End of NAMES list") == NULL)
 		return (false);
-	//welcomeMessageSerious(channel);
 	welcomeMessageFunny(channel);
 	std::string message = "PRIVMSG " + channel + " :Hi guys, type \"Hey Botijo\" to start interacting with me\r\n";
 	send(clientSocket, message.c_str(), message.size(), 0);
@@ -96,22 +95,25 @@ int main(int argc, char **argv)
 		if (readMessage(clientSocket, msg) == 1)
 			return (1);
 		if (msg.find("Hey Botijo") != std::string::npos && msg.size() == 10)
-			sendMessage(clientSocket, channel, "Hi, what can I do for you? Remember to start your message with \"Botijo\"");
+			sendMessage(clientSocket, channel, "Hi, what can I do for you? Feel free to ask me anything about the weather, \
+			date or time. Just remember to start your message with \"Botijo \"");
 		if (msg.size() >= 6 && msg.substr(0, 6) == "Botijo")
 		{
+			for (std::string::iterator it = msg.begin() + 6; it != msg.end(); ++it)
+		    	*it = std::toupper(*it);
 			if (msg.find("Botijo") != std::string::npos && msg.size() == 6)
 				sendMessage(clientSocket, channel, "Yes, yes, that's my name, don't wear it out");
-			else if (msg.find("Botijo") != std::string::npos && ((msg.find("time") != std::string::npos) || (msg.find("date") != std::string::npos)))
-				sendMessage(clientSocket, channel, "You are in a computer, have you considered to check the screen corner?");
-			else if (msg.find("Botijo") != std::string::npos && (msg.find("weather") != std::string::npos))
+			else if (msg.find("Botijo ") != std::string::npos && ((msg.find("TIME") != std::string::npos) || (msg.find("DATE") != std::string::npos)))
+				sendMessage(clientSocket, channel, "You are using a computer, have you considered to check the screen corner?");
+			else if (msg.find("Botijo ") != std::string::npos && (msg.find("WEATHER") != std::string::npos))
 				sendMessage(clientSocket, channel, "Take a look through the window, it will be faster");
-			else if (msg.find("Botijo") != std::string::npos && msg.find("ñ") != std::string::npos)
+			else if (msg.find("Botijo ") != std::string::npos && msg.find_first_of(SPANISH_CHARSET) != std::string::npos)
 				sendMessage(clientSocket, channel, "Mi no hablar españolo (although having a Spanish name)");
-			else if (msg.find("Botijo") != std::string::npos && msg.find("?") != std::string::npos)
+			else if (msg.find("Botijo ") != std::string::npos && msg.find("?") != std::string::npos)
 				sendMessage(clientSocket, channel, "Always asking things... please be a bit more proactive");
-			else if (msg.find("Botijo") != std::string::npos && msg.find("!") != std::string::npos)
+			else if (msg.find("Botijo ") != std::string::npos && msg.find("!") != std::string::npos)
 				sendMessage(clientSocket, channel, "Chill, no need to yell at me, it's hard to be a troll bot, you know?");
-			else if (msg.find("Botijo") != std::string::npos)
+			else if (msg.find("Botijo ") != std::string::npos)
 				sendMessage(clientSocket, channel, "Unfortunately, I have no answer to all your questions, heard about something called Google?");
 		}
 	}
