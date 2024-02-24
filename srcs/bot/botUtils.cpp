@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 10:49:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/24 12:41:35 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:14:39 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int errorMessage(std::string message)
 {
-	std::cerr << " ircbot: " << message << "\033[?25h" << std::endl;
+	system("stty echo");
+	std::cerr << " ircbot: " << message << "\033[?25h" << std::endl;	
 	return (1);	
 }
 
@@ -49,6 +50,7 @@ void welcomeMessageFunny(std::string channel)
 void cleanExit(int signal)
 {
 	(void) signal;
+	system("stty echo");
 	std::cout << "\b\b Bot disconnected - See you soon!\n\n\033[?25h";
 	exit(0);
 }

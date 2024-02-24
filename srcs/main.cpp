@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/24 17:55:09 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 18:14:49 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int main(int argc, char **argv)
 	{
 		std::cout << e.what() << '\n';
 		std::cout << "\033[?25h";
+		system("stty echo");
 		exit(0);
 	}
 	return (0);
