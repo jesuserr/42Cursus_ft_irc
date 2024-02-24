@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/24 16:56:47 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:55:03 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int main(int argc, char **argv)
 	if (!registration(clientSocket, password, botNick, channel))
 		return errorMessage("Unable to register the connection with server and join the channel.");
 	std::string msg;
+	system("stty -echo");
 	while (1)
 	{
 		if (readMessage(clientSocket, msg) == 1)
