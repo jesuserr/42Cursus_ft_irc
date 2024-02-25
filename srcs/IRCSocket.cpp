@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IRCSocket.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:53:30 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/23 10:17:55 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:52:23 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ bool IRCSocket::IRClisten(void)
 		return _log->Error("Unable to set main socket as non-blocking.");
 	std::memset(&iaddr, 0, sizeof(iaddr));
 	iaddr.sin6_family = AF_INET6;
-	memcpy(&iaddr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
+	std::memcpy(&iaddr.sin6_addr, &in6addr_any, sizeof(in6addr_any));
 	iaddr.sin6_port = htons(_listenPort);
 	if (bind(_fds[0].fd, (struct sockaddr *)&iaddr, sizeof(iaddr)) < 0)
 		return _log->Error("Unable to bind main socket to specified port.");
