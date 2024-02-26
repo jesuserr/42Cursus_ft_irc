@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/26 12:41:34 by cescanue         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:16:28 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void welcomeMessage(int port)
 {
-	system("clear");
+	std::system("clear");
 	std::cout << "\033[?25l";
 	std::cout << "  _                                         \n"
 				" (_)                                        \n"
