@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 20:14:01 by jesuserr          #+#    #+#             */
-/*   Updated: 2024/02/24 17:55:03 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:17:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int readMessage(int clientSocket, std::string &msg)
 	else if (bytesReceived == 0)
 		return errorMessage("Connection closed by server.\n");
 	std::string temp = buffer;
-	if (temp.find("KICK") != std::string::npos)
+	if (temp.find("KICK") != std::string::npos && (temp.find("Botijo") != std::string::npos))
 		return errorMessage("Bot kicked out from the server by operator.\n");
 	std::stringstream ss(buffer);
 	std::getline(ss, msg, ':');
