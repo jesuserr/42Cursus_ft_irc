@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/26 17:16:28 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:01:31 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void welcomeMessage(int port)
 void cleanexit(int signal)
 {
 	(void) signal;
-	throw std::runtime_error("\b\b\r   Server disconnected - See you soon!\n");
+	std::cout << "\b\b\r   Server disconnected - See you soon!\n\n";
+	std::cout << "\033[?25h";
+	std::system("stty echo");
+	exit(0);
 }
 
 int main(int argc, char **argv)
@@ -48,20 +51,10 @@ int main(int argc, char **argv)
 	welcomeMessage(std::atoi(argv[1]));
 	std::system("stty -echo");
 	std::cout << "\r   Connected clients: " << _clients.size() << std::flush;
-	try
+	while (_socket.IRCPoll(_clients, _usersdisconnected))
 	{
-		while (_socket.IRCPoll(_clients, _usersdisconnected))
-		{
-			std::cout << "\r   Connected clients: " << _clients.size() << "    " << std::flush;
-			_irc.run();
-		}
-	}
-	catch(const std::exception& e)
-	{
-		std::cout << e.what() << '\n';
-		std::cout << "\033[?25h";
-		std::system("stty echo");
-		exit(0);
+		std::cout << "\r   Connected clients: " << _clients.size() << "    " << std::flush;
+		_irc.run();
 	}
 	return (0);
 }

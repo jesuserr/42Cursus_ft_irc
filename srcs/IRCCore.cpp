@@ -6,7 +6,7 @@
 /*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 21:35:12 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/22 12:35:54 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/26 17:59:39 by jesuserr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 		user(client, param);
 	else if (cmd.find("CAP") != std::string::npos && cmd.size() == 3)
 		;
-	else if (cmd.find("LEAKSCHECKEXIT") != std::string::npos && cmd.size() == 14)
-		throw std::runtime_error("\b\b   Server disconnected - See you soon!\n");		
 	else if (!client.getClientRegistration())
 		client.SendIRCMsg(ERR_NOTREGISTERED());
 	else if (cmd.find("PING") != std::string::npos && cmd.size() == 4)
@@ -98,5 +96,4 @@ void IRCCore::command(IRCClient &client, std::string cmd, std::string param)
 		invite(client, param);
 	else if (client.getClientRegistration())
 		client.SendIRCMsg(ERR_UNKNOWNCOMMAND(client.getUsername(), cmd));		
-	//std::cout << "\ncmd:" << cmd << " param:" << param << std::endl;
 }
