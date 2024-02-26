@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jesuserr <jesuserr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cescanue <cescanue@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:10:24 by cescanue          #+#    #+#             */
-/*   Updated: 2024/02/24 18:14:49 by jesuserr         ###   ########.fr       */
+/*   Updated: 2024/02/26 12:41:34 by cescanue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	if (_socket.IRClisten())
 		return (1);
 	welcomeMessage(std::atoi(argv[1]));
-	system("stty -echo");
+	std::system("stty -echo");
 	std::cout << "\r   Connected clients: " << _clients.size() << std::flush;
 	try
 	{
@@ -60,7 +60,7 @@ int main(int argc, char **argv)
 	{
 		std::cout << e.what() << '\n';
 		std::cout << "\033[?25h";
-		system("stty echo");
+		std::system("stty echo");
 		exit(0);
 	}
 	return (0);
