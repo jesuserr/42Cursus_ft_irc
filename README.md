@@ -1,16 +1,7 @@
-# ft_irc
+Mandatory part + Bonus -> 125%
 
-~~- Implementar Bot~~
-~~- Revisar iteradores y protegerlos~~
-- Pasar hoja de evaluación
+ft_irc - Internet Relay Chat
 
+Summary: This project is about creating your own IRC server. You will use an actual IRC client to connect to your server and test it. Internet is ruled by solid standards protocols that allow connected computers to interact with each other. It’s always a good thing to know.
 
-Notes:
-
-- Bringing a Background Job to the Foreground -> fg %1
-- /connect -nocap localhost 6667 1234
-- /RAWLOG OPEN debug.log
-- /connect -nocap DALnet 6667
-- nc localhost 6667 -c
-
-- ejecutar bot -> make bot && ./ircbot localhost 6667 1234 test
+For detailed information, refer to the subject of this project
